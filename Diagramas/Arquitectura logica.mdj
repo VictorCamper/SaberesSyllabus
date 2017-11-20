@@ -924,7 +924,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Model1)",
+											"text": "(from Vista)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1537,17 +1537,17 @@
 								"$ref": "AAAAAAFf0e5tHZjSfSM="
 							},
 							"visibility": "public"
+						},
+						{
+							"_type": "UMLPackage",
+							"_id": "AAAAAAFf0e84s5lbB4Y=",
+							"_parent": {
+								"$ref": "AAAAAAFf0e6bipj9Kv4="
+							},
+							"name": "Modelo",
+							"visibility": "public"
 						}
 					],
-					"visibility": "public"
-				},
-				{
-					"_type": "UMLPackage",
-					"_id": "AAAAAAFf0e84s5lbB4Y=",
-					"_parent": {
-						"$ref": "AAAAAAFf0e4Ge5iwg2w="
-					},
-					"name": "Modelo",
 					"visibility": "public"
 				}
 			],
