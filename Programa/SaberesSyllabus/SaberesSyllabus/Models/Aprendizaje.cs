@@ -11,5 +11,12 @@ namespace SaberesSyllabus.Models
         public string categoria { get; set; }
         public string descripcion { get; set; }
         public List<Saber> saberes { get; set; }
+
+        public Aprendizaje()
+        {
+            this.saberes = new List<Saber>();
+        }
     }
+
+    
 }

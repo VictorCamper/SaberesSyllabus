@@ -9,5 +9,10 @@ namespace SaberesSyllabus.Models
     {
         public EnumTipoEvaluacion tipo { get; set; }
         public List<Saber> saberes { get; set; }
+
+        public Evaluacion()
+        {
+            this.saberes = new List<Saber>();
+        }
     }
 }

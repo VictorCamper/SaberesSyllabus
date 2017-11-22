@@ -11,5 +11,13 @@ namespace SaberesSyllabus.Models
         public List<Clase> clases { get; set; }
         public List<Saber> saberes { get; set; }
         public List<Evaluacion> evaluaciones { get; set; }
+
+        public Unidad()
+        {
+            this.clases = new List<Clase>();
+            this.saberes = new List<Saber>();
+            this.evaluaciones = new List<Evaluacion>();            
+        }
     }
 }
+

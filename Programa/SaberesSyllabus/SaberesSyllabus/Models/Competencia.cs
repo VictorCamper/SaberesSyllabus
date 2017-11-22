@@ -11,5 +11,10 @@ namespace SaberesSyllabus.Models
         public string descripcion { get; set; }
         public int nivel { get; set; }
         public List<Aprendizaje> aprendizajes { get; set; }
+
+        public Competencia()
+        {
+            this.aprendizajes = new List<Aprendizaje>();
+        }
     }
 }

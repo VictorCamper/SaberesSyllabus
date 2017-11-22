@@ -13,5 +13,10 @@ namespace SaberesSyllabus.Models
         public string descripcion { get; set; }
         public List<Saber> saberes { get; set; }
         public EnumTipoClase tipo { get; set; }
+
+        public Clase()
+        {
+            this.saberes = new List<Saber>();
+        }
     }
 }

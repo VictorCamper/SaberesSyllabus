@@ -14,5 +14,12 @@ namespace SaberesSyllabus.Models
         public List<Competencia> competencias { get; set; }
         public Encargado encargado { get; set; }
         public List<Alumno> alumnos { get; set; }
+
+        public Curso()
+        {
+            this.unidades = new List<Unidad>();
+            this.competencias = new List<Competencia>();
+            this.alumnos = new List<Alumno>();
+        }
     }
 }
