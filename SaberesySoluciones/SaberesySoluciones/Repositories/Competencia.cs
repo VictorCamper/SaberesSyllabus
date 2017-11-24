@@ -7,14 +7,24 @@ namespace SaberesSyllabus.Repositories
 {
     public class Competencia
     {
-        public static Competencia Crear(Competencia competencia) { }
+        public static Competencia Crear(Competencia competencia) {
+            return null;
+        }
 
-        public static bool Editar(Competencia competencia) { }
+        public static bool Editar(Competencia competencia) {
+            return false;
+        }
 
-        public static bool Eliminar(Competencia competencia) { }
+        public static bool Eliminar(Competencia competencia) {
+            return false;
+        }
 
-        public static Competencia Leer(int codigo) { }
+        public static Competencia Leer(int codigo) {
+            return null;
+        }
 
-        public static List<Competencia> LeerTodo() {    }
+        public static List<Competencia> LeerTodo() {
+            return null;
+        }
     }
 }
