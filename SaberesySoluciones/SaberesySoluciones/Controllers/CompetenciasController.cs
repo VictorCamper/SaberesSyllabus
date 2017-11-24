@@ -9,14 +9,33 @@ namespace SaberesySoluciones.Controllers
 {
     public class CompetenciasController : Controller
     {
-        List<Competencia> finalcompetencias;
+        List<Competencia> finalcompetencias = new List<Competencia>();
         // GET: Competencias
         public ActionResult Index()
         {
-            finalcompetencias = new List<Competencia>();
-            finalcompetencias.Add(new Competencia() { codigo = 1, descripcion = "soy una descripción", nivel=1});
+            finalcompetencias.Add(new Competencia() { codigo = 1, descripcion = "soy una descripción", nivel = 1 });
 
             return View(finalcompetencias);
+        }
+
+        [HttpPost]
+        public ActionResult Crear(Competencia competencia)
+        {
+            
+            return RedirectToAction("Index", "Competencias");
+        }
+
+        public ActionResult Editar(Competencia competencia)
+        {
+
+            return RedirectToAction("Index", "Competencias");
+        }
+
+        [HttpPost]
+        public ActionResult Eliminar(int codigo)
+        {
+
+            return RedirectToAction("Index", "Competencias");
         }
     }
 }
