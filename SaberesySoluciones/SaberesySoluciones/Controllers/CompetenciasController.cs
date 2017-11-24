@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaberesySoluciones.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,14 @@ namespace SaberesySoluciones.Controllers
 {
     public class CompetenciasController : Controller
     {
-        // GET: Cmpetencias
+        List<Competencia> finalcompetencias;
+        // GET: Competencias
         public ActionResult Index()
         {
-            return View();
+            finalcompetencias = new List<Competencia>();
+            finalcompetencias.Add(new Competencia() { codigo = 1, descripcion = "soy una descripción", nivel=1});
+
+            return View(finalcompetencias);
         }
     }
 }
