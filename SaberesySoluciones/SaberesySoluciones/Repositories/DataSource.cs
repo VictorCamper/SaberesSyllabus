@@ -1,4 +1,4 @@
-﻿/*using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -30,7 +30,7 @@ namespace SaberesySoluciones.Repositories
          * Ejecuta el commando y lo retorna (en caso de que se requiera revisar parametros de salida).
          * El comando tiene que corresponder con algún procedure existente en la base de datos.
          */
-        /*public static MySqlCommand ExecuteProcedure(MySqlCommand command)
+        public static MySqlCommand ExecuteProcedure(MySqlCommand command)
         {
             using (var conn = new MySqlConnection(connStr))
             {
@@ -59,4 +59,4 @@ namespace SaberesySoluciones.Repositories
             return command;
         }
     }
-}*/
+}

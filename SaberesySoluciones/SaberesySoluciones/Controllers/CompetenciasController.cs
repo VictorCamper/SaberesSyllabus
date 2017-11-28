@@ -8,7 +8,7 @@ namespace SaberesySoluciones.Controllers
 {
     public class CompetenciasController : Controller
     {
-        // GET: Cmpetencias
+        // GET: Competencias
         public ActionResult Index()
         {
             return View();
