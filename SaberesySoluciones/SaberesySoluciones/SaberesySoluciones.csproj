@@ -50,6 +50,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -142,11 +143,37 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AprendizajesController.cs" />
+    <Compile Include="Controllers\CompetenciasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SaberesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Alumno.cs" />
+    <Compile Include="Models\Aprendizaje.cs" />
+    <Compile Include="Models\Clase.cs" />
+    <Compile Include="Models\Competencia.cs" />
+    <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\Encargado.cs" />
+    <Compile Include="Models\EnumCargo.cs" />
+    <Compile Include="Models\EnumLogro.cs" />
+    <Compile Include="Models\EnumTipoClase.cs" />
+    <Compile Include="Models\EnumTipoEvaluacion.cs" />
+    <Compile Include="Models\Evaluacion.cs" />
+    <Compile Include="Models\Saber.cs" />
+    <Compile Include="Models\Unidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Alumno.cs" />
+    <Compile Include="Repositories\Aprendizaje.cs" />
+    <Compile Include="Repositories\Clase.cs" />
+    <Compile Include="Repositories\Competencia.cs" />
+    <Compile Include="Repositories\Curso.cs" />
+    <Compile Include="Repositories\DataSource.cs" />
+    <Compile Include="Repositories\Encargado.cs" />
+    <Compile Include="Repositories\Evaluacion.cs" />
+    <Compile Include="Repositories\Saber.cs" />
+    <Compile Include="Repositories\Unidad.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -185,10 +212,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Saberes\Index.cshtml" />
+    <Content Include="Views\Aprendizajes\Index.cshtml" />
+    <Content Include="Views\Competencias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
