@@ -11,7 +11,7 @@ namespace SaberesySoluciones.Controllers
         // GET: Evaluacion
         public ActionResult Index()
         {
-            ViewBag.nuevoAtributo = "Vista Evaluaciones";
+            ViewBag.title = "Vista Evaluaciones";
             return View();
         }
     }
