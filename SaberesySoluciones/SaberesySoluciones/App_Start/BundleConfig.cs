@@ -20,12 +20,11 @@ namespace SaberesySoluciones
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.bundle.min.js",
                       "~/Scripts/fontawesome5.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+            bundles.Add(new StyleBundle("~/Content/css").Include(                      
                       "~/Content/materia.css",
                       "~/Content/fontawesome-pro-core.css",
                       "~/Content/site.css"));
