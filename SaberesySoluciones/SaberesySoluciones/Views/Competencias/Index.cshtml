@@ -26,34 +26,42 @@ $(document).ready(function() {
         <th>Código</th>
         <th>Descripción</th>
         <th>Nivel</th>
-        <th></th>
+        <th>Básico</th>
+        <th>Intermedio</th>
+        <th>Avanzado</th>
         <th></th>
         <th></th>
     </tr>
-    <tr>
-        @foreach (var comp in Model)
-        {
-
-        <td style="text-align:center">@comp.codigo</td>
-        <td style="text-align:justify">@comp.descripcion</td>
-        <td>@comp.nivel</td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-success ">Ver Aprendizajes</a>
+    @foreach (var comp in Model)
+    {
+        <tr>
+            <td style="text-align:center">@comp.Codigo</td>
+            <td style="text-align:justify">@comp.Descripcion</td>
+            <td>@comp.Nivel</td>
+            <td>@comp.Basico</td>
+            <td>@comp.Intermedio</td>
+            <td>@comp.Avanzado</td>
+            <td style="vertical-align: middle">
+                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Descripcion', '@comp.Nivel')">Modificar</a>
+            </td>
+            <td style="vertical-align: middle">
+                @if (@comp.Estado == "Habilitado")
+                {
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deletemsj('@comp.Codigo',0)">Deshabilitar</a>
+                }
+                @if (@comp.Estado == "Deshabilitado")
+                {
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="deletemsj('@comp.Codigo',1)">Habilitar</a>
+                }
         </td>
 
-        <td style="vertical-align: middle">
-            <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.codigo', '@comp.descripcion', '@comp.nivel')">Modificar</a>
-        </td>
-        <td style="vertical-align: middle">
-            <a href="" id="btn-delete" class="btn btn-danger" data-title="delete" data-toggle="modal" data-target="#delete" onclick="deletemsj('@comp.codigo')">Eliminar</a>
-        </td>
-        }
     </tr>
+    }
 
 </table>
 
 <script type="text/javascript">
-    deletemsj = function(idcomp) {
+    deletemsj = function (idcomp) {
         document.getElementById("deletecomp").setAttribute("value", idcomp);
     }
 
@@ -131,23 +139,45 @@ $(document).ready(function() {
     </div>
 </div>
 
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+<div class="modal fade" id="desh" tabindex="-1" role="dialog" aria-labelledby="desh" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                <h4 class="modal-title custom_align" id="Heading">Eliminar Competencia</h4>
+                <h4 class="modal-title custom_align" id="Heading">Deshabilitar Competencia</h4>
             </div>
-            @using (Html.BeginForm("Eliminar", "Competencias", FormMethod.Post, new { @style = "border:none" }))
+            @using (Html.BeginForm("Deshabilitar", "Competencias", FormMethod.Post, new { @style = "border:none" }))
             {
             <div class="modal-body">
-                <p>¿Estás seguro de que quieres eliminar la Competencia?</p>
+                <p id="message">¿Estás seguro de que quieres Deshabilitar la Competencia?</p>
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="deletecomp" name="codigo" value="" />
-                <button type="submit" class="btn btn-primary">Eliminar</button>
+                <button type="submit" class="btn btn-primary">Deshabilitar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="hab" tabindex="-1" role="dialog" aria-labelledby="hab" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Habilitar Competencia</h4>
+            </div>
+            @using (Html.BeginForm("Eliminar", "Competencias", FormMethod.Post, new { @style = "border:none" }))
+            {
+                <div class="modal-body">
+                    <p id="message">¿Estás seguro de que quieres Habilitar la Competencia?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="deletecomp" name="codigo" value="" />
+                    <button type="submit" class="btn btn-primary">Deshabilitar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
             }
         </div>
     </div>
