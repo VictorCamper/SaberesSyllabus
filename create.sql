@@ -24,12 +24,14 @@ DROP TABLE IF EXISTS
 
 
 CREATE TABLE syllabus.competencia(
-  codigo INTEGER,
+  codigo INTEGER PRIMARY KEY AUTO_INCREMENT,
   descripcion VARCHAR(256),
-  nivel VARCHAR(256),
+  nivel_dominio VARCHAR(256),
+  basico TEXT,
+  intermedio TEXT,
+  avanzado TEXT,
   tiempoDesarrollo VARCHAR(256),
-  estado VARCHAR(256),
-  PRIMARY KEY(codigo)
+  estado VARCHAR(256)
 );
 
 CREATE TABLE syllabus.aprendizaje(
@@ -39,17 +41,29 @@ CREATE TABLE syllabus.aprendizaje(
   codigoCompetencia INTEGER,
   estado VARCHAR(256),
   PRIMARY KEY(codigo),
-  FOREIGN KEY(codigoCompetencia) REFERENCES competencia(codigo) ON DELETE CASCADE
+  FOREIGN KEY(codigoCompetencia) REFERENCES competencia(codigo) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE syllabus.nivelLogroaprendizaje (
+  codigo INTEGER PRIMARY KEY AUTO_INCREMENT,
+  codigoAprendizaje VARCHAR(256),
+  nivelLogro VARCHAR(256),
+  FOREIGN KEY(codigoAprendizaje) REFERENCES aprendizaje(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.saber(
-  codigo VARCHAR(256),
+  codigo VARCHAR(256) PRIMARY KEY,
   descripcion VARCHAR(256),
-  nivelLogro VARCHAR(256),
-  codigoAprendizaje VARCHAR(256),
   estado VARCHAR(256),
   PRIMARY KEY(codigo),
-  FOREIGN KEY(codigoAprendizaje) REFERENCES aprendizaje(codigo) ON DELETE CASCADE
+  FOREIGN KEY(codigoAprendizaje) REFERENCES aprendizaje(codigo) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE syllabus.nivelLogroTieneSaber (
+  codigoNivelLogro INTEGER PRIMARY KEY,
+  codigoSaber VARCHAR(256),
+  FOREIGN KEY(codigoNivelLogro) REFERENCES nivelLogroaprendizaje(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.curso(
@@ -64,15 +78,15 @@ CREATE TABLE syllabus.unidad(
   titulo VARCHAR(256),
   nombreCurso VARCHAR(256),
   PRIMARY KEY(titulo),
-  FOREIGN KEY(nombreCurso) REFERENCES curso(nombre) ON DELETE CASCADE
+  FOREIGN KEY(nombreCurso) REFERENCES curso(nombre) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.evaluacion(
   tituloUnidad VARCHAR(256),
   codigoSaber VARCHAR(256),
   tipo VARCHAR(256),
-  FOREIGN KEY(tituloUnidad) REFERENCES unidad(titulo) ON DELETE CASCADE,
-  FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE
+  FOREIGN KEY(tituloUnidad) REFERENCES unidad(titulo) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.clase(
@@ -84,27 +98,27 @@ CREATE TABLE syllabus.clase(
   descripcion VARCHAR(256),
   nombreUnidad VARCHAR(256),
   PRIMARY KEY(codigo),
-  FOREIGN KEY(nombreUnidad) REFERENCES unidad(titulo) ON DELETE CASCADE
+  FOREIGN KEY(nombreUnidad) REFERENCES unidad(titulo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.cursoposeecompetencia(
   codigoCompetencia INTEGER,
   nombreCurso VARCHAR(256),
   nivelLogro VARCHAR(256),
-  FOREIGN KEY(codigoCompetencia) REFERENCES competencia(codigo) ON DELETE CASCADE,
-  FOREIGN KEY(nombreCurso) REFERENCES curso(nombre) ON DELETE CASCADE
+  FOREIGN KEY(codigoCompetencia) REFERENCES competencia(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(nombreCurso) REFERENCES curso(nombre) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.unidadtienesaber(
   tituloUnidad VARCHAR(256),
   codigoSaber VARCHAR(256),
-  FOREIGN KEY(tituloUnidad) REFERENCES unidad(titulo) ON DELETE CASCADE,
-  FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE
+  FOREIGN KEY(tituloUnidad) REFERENCES unidad(titulo) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.claseposeesaber(
   codigoClase INTEGER,
   codigoSaber VARCHAR(256),
-  FOREIGN KEY(codigoClase) REFERENCES clase(codigo) ON DELETE CASCADE,
-  FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE
+  FOREIGN KEY(codigoClase) REFERENCES clase(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
