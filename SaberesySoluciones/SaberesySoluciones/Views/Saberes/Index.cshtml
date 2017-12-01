@@ -48,8 +48,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            
             <div class="modal-body">
+
                 <form>
+                    <div class="form-group">
+                        <label for="inputCodigo">Código</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Nivel de logro</label>
                         <select class="form-control" id="exampleFormControlSelect1">
@@ -72,7 +78,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="Example textarea" aria-hidden="true">
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -82,6 +88,22 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="form-group">
+                    <div class="form-group">
+                    <label for="inputCodigo">Código</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    </div>
+                    <label for="dropboxCategoria">Nivel de logro</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Saber</option>
+                        <option>Saber Hacer</option>
+                        <option>Saber Ser</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescripcion">Descripcion</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
