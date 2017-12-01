@@ -1,0 +1,115 @@
+﻿
+@model IEnumerable<SaberesySoluciones.Models.Clase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-hover table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.fecha)</th>
+            <th>@Html.DisplayNameFor(model => model.horario)</th>
+            <th>@Html.DisplayNameFor(model => model.tema)</th>
+            <th><button type="button" data-toggle="modal" data-target="#modalAdd" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Añadir</button></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="text-align:justify">@Html.DisplayFor(modelItem => item.fecha)</td>
+                <td style="text-align:justify">@Html.DisplayFor(modelItem => item.horario)</td>
+                <td style="text-align:justify">@Html.DisplayFor(modelItem => item.tema)</td>
+                <td style="text-align:justify">@Html.DisplayFor(modelItem => item.descripcion)</td>
+                <td style="vertical-align: middle;white-space: nowrap">
+                    <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
+                    <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAddLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddLabel">Añadir</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Email address</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Categoría</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Añadir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Modificar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dehabilitar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Esta seguro de deshabilitar este aprendizaje?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Deshabilitar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
