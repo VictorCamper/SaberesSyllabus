@@ -167,7 +167,7 @@
     <Compile Include="Repositories\Alumno.cs" />
     <Compile Include="Repositories\Aprendizaje.cs" />
     <Compile Include="Repositories\Clase.cs" />
-    <Compile Include="Repositories\Competencia.cs" />
+    <Compile Include="Repositories\Competencias.cs" />
     <Compile Include="Repositories\Curso.cs" />
     <Compile Include="Repositories\DataSource.cs" />
     <Compile Include="Repositories\Encargado.cs" />
