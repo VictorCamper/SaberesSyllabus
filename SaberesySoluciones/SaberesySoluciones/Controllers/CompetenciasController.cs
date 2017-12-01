@@ -26,13 +26,14 @@ namespace SaberesySoluciones.Controllers
         [HttpPost]
         public ActionResult Crear(Competencia competencia)
         {
-            
+            competencia = Competencias.Crear(competencia);
             return RedirectToAction("Index", "Competencias");
         }
 
         public ActionResult Editar(Competencia competencia)
         {
-
+            
+            Boolean result = Competencias.Editar(competencia);
             return RedirectToAction("Index", "Competencias");
         }
 

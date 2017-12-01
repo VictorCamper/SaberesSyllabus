@@ -42,7 +42,7 @@ $(document).ready(function() {
             <td>@comp.Intermedio</td>
             <td>@comp.Avanzado</td>
             <td style="vertical-align: middle">
-                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Descripcion', '@comp.Nivel')">Modificar</a>
+                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Descripcion', '@comp.Nivel', '@comp.Basico', '@comp.Intermedio', '@comp.Avanzado', '@comp.TiempoDesarrollo')">Modificar</a>
             </td>
             <td style="vertical-align: middle">
                 @if (@comp.Estado == "Habilitado")
@@ -68,10 +68,14 @@ $(document).ready(function() {
         document.getElementById("habcomp").setAttribute("value", idcomp);
     }
 
-    editmsj = function (idcod, descrp, lvl) {
+    editmsj = function (idcod, descrp, nivel, basico, intermedio, avanzado, tiempod) {
         document.getElementById("editcomp").setAttribute("value", idcod);
         document.getElementById("editdescripcion").setAttribute("value", descrp);
-        document.getElementById("editnivel").setAttribute("value", lvl);
+        $("#nivelid").append(nivel);
+        document.getElementById("editbasica").setAttribute("value", basico);
+        document.getElementById("editintermedia").setAttribute("value", intermedio);
+        document.getElementById("editavanzada").setAttribute("value", avanzado);
+        document.getElementById("edittiempodesarrollo").setAttribute("value", tiempod);
     }
 </script>
 
@@ -88,15 +92,37 @@ $(document).ready(function() {
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="Nombre">Descripción de la Competencia:</label>
-                        <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="descripcion" required>
+                        <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="Descripcion" required>
                     </div>
 
                     <div class="form-group">
                         <label for="Nombre">Nivel de la Competencia:</label>
-                        <input maxlength="200" type="number" min="0" class="form-control" placeholder="300" name="nivel" required>
+                        <select id="Nivel" name="nivel" required>
+                            <option value="Basico">Basico</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Avanzado">Avanzado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Básica del Nivel:</label>
+                        <input type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción básica del nivel la Competencia." name="Basico" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Intermedia del Nivel:</label>
+                        <input type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción intermedia del nivel la Competencia." name="Intermedio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Avanzado del Nivel:</label>
+                        <input type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción avanzada del nivel la Competencia." name="Avanzado" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Tiempo de Desarrollo:</label>
+                        <input type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción básica del tiempo de desarrollo de la Competencia." name="TiempoDesarrollo" required>
                     </div>
                 </div>
-                <input type="hidden" name="codigo" value="-1">
+                <input type="hidden" name="Codigo" value="-1">
+                <input type="hidden" name="Estado" value="Habilitado">
             </div>
 
             <div class="modal-footer">
@@ -121,15 +147,36 @@ $(document).ready(function() {
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="Nombre">Descripción de la Competencia:</label>
-
                         <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="descripcion" id="editdescripcion" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label for="Nombre">Nivel de la Competencia:</label>
-
-                        <input maxlength="200" type="number" min="0" class="form-control" placeholder="300" name="nivel" id="editnivel" value="" required>
+                        <p>Usted seleccionó: <span id="nivelid"></span></p>
+                        <select id="Nivel" name="Nivel" id="Nivel" required>
+                            <option value="Basico">Basico</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Avanzado">Avanzado</option>
+                        </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Básica del Nivel:</label>
+                        <input type="text" id="editbasica" min="0" class="form-control" placeholder="Escriba aquí la descripción básica del nivel la Competencia." name="Basico" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Intermedia del Nivel:</label>
+                        <input type="text" id="editintermedia" min="0" class="form-control" placeholder="Escriba aquí la descripción intermedia del nivel la Competencia." name="Intermedio"  value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Avanzado del Nivel:</label>
+                        <input type="text" id="editavanzada" min="0" class="form-control" placeholder="Escriba aquí la descripción avanzada del nivel la Competencia." name="Avanzado"  value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombre">Descripción Tiempo de Desarrollo:</label>
+                        <input type="text" id="edittiempodesarrollo" min="0" class="form-control" placeholder="Escriba aquí la descripción básica del tiempo de desarrollo de la Competencia." name="TiempoDesarrollo"  value="" required>
+                    </div>
+                <p>Al modificar esto, usted está aceptando que la Competencia anterior será deshabilitada para dar paso a una nueva Competencia</p>
                 </div>
             </div>
             <div class="modal-footer">
