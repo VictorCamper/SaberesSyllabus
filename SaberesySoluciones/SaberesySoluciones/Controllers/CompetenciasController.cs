@@ -39,6 +39,8 @@ namespace SaberesySoluciones.Controllers
         [HttpPost]
         public ActionResult Deshabilitar(int codigo)
         {
+            Boolean resultadoConsulta;
+            resultadoConsulta = Competencias.Deshabilitar(codigo);
 
             return RedirectToAction("Index", "Competencias");
         }
@@ -46,7 +48,8 @@ namespace SaberesySoluciones.Controllers
         [HttpPost]
         public ActionResult Habilitar(int codigo)
         {
-
+            Boolean resultadoConsulta;
+            resultadoConsulta = Competencias.Habilitar(codigo);
             return RedirectToAction("Index", "Competencias");
         }
     }

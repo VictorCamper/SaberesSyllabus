@@ -47,11 +47,11 @@ $(document).ready(function() {
             <td style="vertical-align: middle">
                 @if (@comp.Estado == "Habilitado")
                 {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deletemsj('@comp.Codigo',0)">Deshabilitar</a>
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@comp.Codigo')">Deshabilitar</a>
                 }
                 @if (@comp.Estado == "Deshabilitado")
                 {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="deletemsj('@comp.Codigo',1)">Habilitar</a>
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@comp.Codigo')">Habilitar</a>
                 }
         </td>
 
@@ -61,8 +61,11 @@ $(document).ready(function() {
 </table>
 
 <script type="text/javascript">
-    deletemsj = function (idcomp) {
+    deshmsj = function (idcomp) {
         document.getElementById("deletecomp").setAttribute("value", idcomp);
+    }
+    habmsj = function (idcomp) {
+        document.getElementById("habcomp").setAttribute("value", idcomp);
     }
 
     editmsj = function (idcod, descrp, lvl) {
@@ -168,14 +171,14 @@ $(document).ready(function() {
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                 <h4 class="modal-title custom_align" id="Heading">Habilitar Competencia</h4>
             </div>
-            @using (Html.BeginForm("Eliminar", "Competencias", FormMethod.Post, new { @style = "border:none" }))
+            @using (Html.BeginForm("Habilitar", "Competencias", FormMethod.Post, new { @style = "border:none" }))
             {
                 <div class="modal-body">
                     <p id="message">¿Estás seguro de que quieres Habilitar la Competencia?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="deletecomp" name="codigo" value="" />
-                    <button type="submit" class="btn btn-primary">Deshabilitar</button>
+                    <input type="hidden" id="habcomp" name="codigo" value="" />
+                    <button type="submit" class="btn btn-primary">Habilitar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             }
