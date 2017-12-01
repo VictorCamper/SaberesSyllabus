@@ -13,7 +13,7 @@ namespace SaberesySoluciones.Controllers
         // GET: Competencias
         public ActionResult Index()
         {
-            finalcompetencias.Add(new Competencia() { codigo = 1, descripcion = "soy una descripción", nivel = 1 });
+            finalcompetencias.Add(new Competencia() { Codigo = 1, Descripcion = "soy una descripción", Nivel = "Básico", Basico="soy basico", Intermedio="soy intermedio", Avanzado="soy avanzado", TiempoDesarrollo="pta, igual depende", Estado="Habilitado" });
 
             return View(finalcompetencias);
         }
@@ -32,7 +32,14 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult Eliminar(int codigo)
+        public ActionResult Deshabilitar(int codigo)
+        {
+
+            return RedirectToAction("Index", "Competencias");
+        }
+
+        [HttpPost]
+        public ActionResult Habilitar(int codigo)
         {
 
             return RedirectToAction("Index", "Competencias");
