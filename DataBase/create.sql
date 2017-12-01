@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS
 DROP TABLE IF EXISTS
   syllabus.claseposeesaber;
 
+USE syllabus;
 
 CREATE TABLE syllabus.competencia(
   codigo INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -53,9 +54,9 @@ CREATE TABLE syllabus.nivelLogroaprendizaje (
 
 CREATE TABLE syllabus.saber(
   codigo VARCHAR(256) PRIMARY KEY,
+  codigoAprendizaje VARCHAR(256),
   descripcion VARCHAR(256),
   estado VARCHAR(256),
-  PRIMARY KEY(codigo),
   FOREIGN KEY(codigoAprendizaje) REFERENCES aprendizaje(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
