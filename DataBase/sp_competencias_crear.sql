@@ -8,8 +8,8 @@ CREATE PROCEDURE sp_competencias_crear
   	in_intermedio TEXT,
   	in_avanzado TEXT,
   	in_tiempoDesarrollo VARCHAR(256),
-  	in_estado VARCHAR(256)
-	OUT out_codigo bigint
+  	in_estado VARCHAR(256),
+	OUT out_codigo INTEGER
 )
 BEGIN
 
