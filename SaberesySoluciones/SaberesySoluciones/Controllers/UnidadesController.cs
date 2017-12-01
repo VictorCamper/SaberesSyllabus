@@ -16,7 +16,8 @@ namespace SaberesySoluciones.Controllers
         {
             //Para agregar un nuevo atributo a ViewBag basta con crearlo y asignarlo. No es necesaria acciones adicionales
             ViewBag.title = "Index de Unidad";
-            return View();
+            Unidad nuevo = new Unidad();
+            return View(nuevo);
         }
 
         [HttpGet]

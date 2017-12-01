@@ -10,16 +10,16 @@
 <table class="table table-hover table-bordered">
     <thead class="thead-light">
         <tr>
-            <th>Titulo</th>
+            <th> @Html.DisplayNameFor(model => model.titulo) </th>
             <th>Lista de Clases</th>
             <th>Lista de Saberes</th>
             <th><button type="button" data-toggle="modal" data-target="#miModal" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Añadir</button></th>
         </tr>
     </thead>
     <tbody>
-        
+    @foreach (var item in Model) { 
         <tr>
-            <td style="text-align:center">Unidad 1</td>
+            <td style="text-align:center"> @Html.DisplayFor(modelItem => item.titulo) </td>
 
             <td style="vertical-align: middle;white-space: nowrap">
                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalClases"> Ver Lista de Clases </button>
@@ -33,8 +33,8 @@
                 <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
             </td>
         </tr>
-        
-         
+
+    } <!--    
         <tr>
             <td style="text-align:center">Unidad 2</td>
             <td style="vertical-align: middle;white-space: nowrap">
@@ -47,7 +47,7 @@
                 <button type="button" data-toggle="modal" data-target="#ModalModificar" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
                 <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
             </td>
-        </tr>
+        </tr>  -->
            
     </tbody>
 </table>
