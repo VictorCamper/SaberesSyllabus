@@ -67,12 +67,28 @@ CREATE TABLE syllabus.nivelLogroTieneSaber (
   FOREIGN KEY(codigoSaber) REFERENCES saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE syllabus.usuario(
+  username varchar(200) PRIMARY KEY,
+  passwrd varchar(200) NOT NULL,
+  email varchar(256),
+  cargo varchar(200),
+  estado varchar(256)
+);
+
 CREATE TABLE syllabus.curso(
   nombre VARCHAR(256),
   horasPresenciales INTEGER,
   horasAutonomas INTEGER,
   descripcion VARCHAR(256),
   PRIMARY KEY(nombre)
+);
+
+CREATE TABLE syllabus.cursotienencargado(
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  codigousuario varchar(200),
+  nombrecurso varchar(256),
+  FOREIGN KEY(codigousuario) REFERENCES usuario(username) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(nombreCurso) REFERENCES curso(nombre) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE syllabus.unidad(
