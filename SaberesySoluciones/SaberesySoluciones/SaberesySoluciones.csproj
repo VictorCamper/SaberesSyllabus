@@ -194,6 +194,7 @@
     <Compile Include="Repositories\Evaluacion.cs" />
     <Compile Include="Repositories\Saber.cs" />
     <Compile Include="Repositories\Unidad.cs" />
+    <Compile Include="ViewModel\AprendizajesViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
