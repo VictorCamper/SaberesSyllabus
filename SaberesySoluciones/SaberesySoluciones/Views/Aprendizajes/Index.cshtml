@@ -1,127 +1,42 @@
-﻿@model SaberesySoluciones.ViewModel.AprendizajesViewController
+﻿
 @{
     ViewBag.Title = "Aprendizajes";
 }
 
 <h2>@ViewBag.Title</h2>
 
+<a class="btn btn-primary" style="margin-bottom:10px">Agregar</a>
 
-<table class="table table-hover">
-    <thead class="thead-light">
-        <tr>
-            <th>Código</th>
-            <th>Categoría</th>
-            <th>Descripción</th>
-            <th><button type="button" data-toggle="modal" data-target="#modalAdd" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Añadir</button></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var aprendizaje in Model.aprendizajes)
-        {
-            <tr>
-                <td>@aprendizaje.codigo</td>
-                <td>@aprendizaje.categoria</td>
-                <td style="text-align:justify">@aprendizaje.descripcion</td>
-                <td style="vertical-align: middle; white-space: nowrap;text-align:right">
-                    <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
-                    <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>                
-                </td>
-            </tr>
-        }
-    </tbody>
+
+
+<table class="table table-hover ">
+    <tr>
+        <th>Código</th>
+        <th>Categoría</th>
+        <th>Descripción</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td style="text-align:center">1</td>
+        <td>Habilidades blandas</td>
+        <td style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis nihil enim tenetur, provident vitae modi perferendis, temporibus quam perspiciatis minus praesentium ab ullam non. Repellat cupiditate corporis explicabo impedit dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum illo corrupti delectus sit, dolore molestiae adipisci. Facilis, temporibus. Amet, possimus. Quos neque accusamus iure animi tempora, mollitia facere quam similique!</td>
+        <td style="vertical-align: middle">
+            <a class="btn btn-warning ">Modificar</a>
+        </td>
+        <td style="vertical-align: middle">
+            <a class="btn btn-danger">Eliminar</a>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:center">2</td>
+        <td>Habilidades prácticas</td>
+        <td style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati quos eaque eveniet nostrum voluptatum praesentium ad ut illum sit veritatis, mollitia, officiis. Exercitationem repellat harum vel distinctio esse labore eaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa ea dolorem quae consectetur vitae nihil in, recusandae delectus non animi unde qui tenetur temporibus odio dicta libero! Quae, sed.</td>
+        <td style="vertical-align: middle">
+            <a class="btn btn-warning">Modificar</a>
+        </td>
+        <td style="vertical-align: middle">
+            <a class="btn btn-danger">Eliminar</a>
+        </td>
+    </tr>
 </table>
-
-
-<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAddLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalAddLabel">Añadir</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="inputCodigo">Código</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="dropboxCategoria">Categoría</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Análisis Básico de Algoritmos</option>
-                            <option>Estrategias de Diseño de Algoritmos</option>
-                            <option>Estructuras de Datos y Algoritmos Fundamentales</option>
-                            <option>Computabilidad y Complejidad de Autómatas Básicos</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescripcion">Descripcion</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Añadir</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="inputCodigo">Código</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="dropboxCategoria">Categoría</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Análisis Básico de Algoritmos</option>
-                        <option>Estrategias de Diseño de Algoritmos</option>
-                        <option>Estructuras de Datos y Algoritmos Fundamentales</option>
-                        <option>Computabilidad y Complejidad de Autómatas Básicos</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inputDescripcion">Descripcion</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Modificar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Dehabilitar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Esta seguro de deshabilitar este aprendizaje?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Deshabilitar</button>
-            </div>
-        </div>
-    </div>
-</div>
