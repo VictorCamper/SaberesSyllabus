@@ -8,8 +8,8 @@ namespace SaberesSyllabus.Models
 {
     public class Evaluacion
     {
-        public EnumTipoEvaluacion tipo { get; set; }
-        public List<Saber> saberes { get; set; }
+        private EnumTipoEvaluacion tipo { get; set; }
+        private List<Saber> saberes { get; set; }
 
         public Evaluacion()
         {
