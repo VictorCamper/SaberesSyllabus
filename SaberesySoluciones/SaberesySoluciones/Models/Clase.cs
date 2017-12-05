@@ -8,12 +8,12 @@ namespace SaberesySoluciones.Models
 {
     public class Clase
     {
-        public DateTime fecha { get; set; }
-        public TimeZone horario { get; set; }
-        public string tema { get; set; }
-        public string descripcion { get; set; }
-        public List<Saber> saberes { get; set; }
-        public EnumTipoClase tipo { get; set; }
+        private DateTime fecha { get; set; }
+        private TimeZone horario { get; set; }
+        private string tema { get; set; }
+        private string descripcion { get; set; }
+        private List<Saber> saberes { get; set; }
+        private EnumTipoClase tipo { get; set; }
 
         public Clase()
         {

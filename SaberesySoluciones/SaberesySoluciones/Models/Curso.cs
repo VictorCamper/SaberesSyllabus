@@ -8,13 +8,15 @@ namespace SaberesySoluciones.Models
 {
     public class Curso
     {
-        public string nombre { get; set; }
-        public int horasPresenciales { get; set; }
-        public int horasAutonomas { get; set; }
-        public List<Unidad> unidades { get; set; }
-        public List<Competencia> competencias { get; set; }
-        public Encargado encargado { get; set; }
-        public List<Alumno> alumnos { get; set; }
+        private string nombre { get; set; }
+        private int horasPresenciales { get; set; }
+        private int horasAutonomas { get; set; }
+        private string descripcion { get; set; }
+        private List<Unidad> unidades { get; set; }
+        private List<Competencia> competencias { get; set; }
+        private Encargado encargado { get; set; }
+        private List<Alumno> alumnos { get; set; }
+        private EnumEstado estado { get; set; }
 
         public Curso()
         {

@@ -7,7 +7,7 @@ namespace SaberesySoluciones.Models
 {
     public class Alumno
     {
-        public string nombre { get; set; }
-        public string matricula { get; set; }
+        private string nombre { get; set; }
+        private string matricula { get; set; }
     }
 }
