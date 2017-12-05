@@ -7,10 +7,10 @@ namespace SaberesSyllabus.Models
 {
     public class Saber
     {
-        private string codigo { get; set; }
-        private string descripcion { get; set; }
-        private EnumLogro logro { get; set; }
-        private EnumEstado estado { get; set; }
-        private int porcentajeLogro { get; set; }
+        public string codigo { get; set; }
+        public string descripcion { get; set; }
+        public EnumLogro logro { get; set; }
+        public EnumEstado estado { get; set; }
+        public int porcentajeLogro { get; set; }
     }
 }
