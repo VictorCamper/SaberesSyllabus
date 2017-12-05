@@ -22,6 +22,7 @@ namespace SaberesySoluciones.Models
         public string descripcion { get; set; }
         public List<Saber> saberes { get; set; }
         public TipoClase tipo { get; set; }
+        public string tipoClase { get; set; }
 
         public Clase()
         {
@@ -41,6 +42,7 @@ namespace SaberesySoluciones.Models
                     command.Parameters.AddWithValue("fecha", this.fecha);
                     command.Parameters.AddWithValue("tema", this.tema);
                     command.Parameters.AddWithValue("descripcion", this.descripcion);
+                    command.Parameters.AddWithValue("tipoClase", this.tipoClase);
                     command.Connection = conn;
                     command.Transaction = sqlTran;
                     command.ExecuteNonQuery();
@@ -97,6 +99,7 @@ namespace SaberesySoluciones.Models
             this.tema = dr["tema"].ToString();
             this.descripcion = dr["descripcion"].ToString();
             //this.tipo = (TipoClase)Convert.ToInt32(dr["tipoClase"].ToString());
+            this.tipoClase = dr["tipoClase"].ToString();
 
         }
 

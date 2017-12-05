@@ -47,14 +47,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EnumDropDownListFor(model => model.tipo)
+                        @Html.EnumDropDownListFor(model => model.tipo, htmlAttributes: new { @class = "form-control" })
                     </div>
                 </div>
-
-
-                    //@Html.TextBoxFor(model => model.tema)
-                    //@Html.TextBoxFor(model => model.descripcion)
-                    //@Html.
 
                 <button type="submit" class="btn btn-primary">Crear</button>
 

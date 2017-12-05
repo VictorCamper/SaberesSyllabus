@@ -11,8 +11,7 @@
             <th>@Html.DisplayNameFor(model => model.horario)</th>
             <th>@Html.DisplayNameFor(model => model.tema)</th>
             <th>@Html.DisplayNameFor(model => model.descripcion)</th>
-            <th>@Html.DisplayNameFor(model => model.tipo)</th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.tipoClase)</th>
             <th></th>
             <th><button type="button" data-toggle="modal" data-target="#modalAdd" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Añadir</button></th>
         </tr>
@@ -25,6 +24,7 @@
                 <td style="text-align:justify">@Html.DisplayFor(modelItem => item.horario)</td>
                 <td style="text-align:justify">@Html.DisplayFor(modelItem => item.tema)</td>
                 <td style="text-align:justify">@Html.DisplayFor(modelItem => item.descripcion)</td>
+                <td style="text-align:justify">@Html.DisplayFor(modelItem => item.tipoClase)</td>
                 <td style="vertical-align: middle;white-space: nowrap">
                     <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
                     <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
