@@ -21,6 +21,7 @@ namespace SaberesySoluciones.Controllers
         public ActionResult Crear()
         {
             Clase clase = new Clase();
+            clase.fecha = DateTime.Today;
             return View(clase);
         }
 
