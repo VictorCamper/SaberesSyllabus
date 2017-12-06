@@ -1,4 +1,5 @@
-﻿@model List<SaberesySoluciones.Models.Competencia>
+﻿@using SaberesySoluciones.Models
+@model List<SaberesySoluciones.Models.Competencia>
 @{
     ViewBag.Title = "Competencias";
 }
@@ -46,14 +47,14 @@ $(document).ready(function() {
                 <td>@comp.Intermedio</td>
                 <td>@comp.Avanzado</td>
                 <td style="vertical-align: middle">
-                    <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Descripcion', '@comp.Nivel', '@comp.Basico', '@comp.Intermedio', '@comp.Avanzado', '@comp.TiempoDesarrollo')">Modificar</a>
+                    <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Descripcion', '@comp.Dominio', '@comp.Basico', '@comp.Intermedio', '@comp.Avanzado', '@comp.TiempoDesarrollo')">Modificar</a>
                 </td>
                 <td style="vertical-align: middle">
-                    @if (@comp.Estado == "Habilitado")
+                    @if (@comp.Estado == EnumEstado.Habilitado)
                     {
                         <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@comp.Codigo')">Deshabilitar</a>
                     }
-                    @if (@comp.Estado == "Deshabilitado")
+                    @if (@comp.Estado == EnumEstado.Deshabilitado)
                     {
                         <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@comp.Codigo')">Habilitar</a>
                     }
