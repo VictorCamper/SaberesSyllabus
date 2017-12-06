@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SaberesSyllabus.Models;
+using SaberesSyllabus.Repositories;
 
 namespace SaberesySoluciones.Controllers
 {
@@ -39,7 +41,7 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult Deshabilitar(int codigo)
+        public ActionResult Deshabilitar(string codigo)
         {
             Boolean resultadoConsulta;
             resultadoConsulta = Saberes.Deshabilitar(codigo);
@@ -48,7 +50,7 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult Habilitar(int codigo)
+        public ActionResult Habilitar(string codigo)
         {
             Boolean resultadoConsulta;
             resultadoConsulta = Saberes.Habilitar(codigo);
