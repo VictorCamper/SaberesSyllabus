@@ -8,16 +8,16 @@ namespace SaberesSyllabus.Models
 {
     public class Unidad
     {
-        private string titulo { get; set; }
-        private List<Clase> clases { get; set; }
-        private List<Saber> saberes { get; set; }
-        private List<Evaluacion> evaluaciones { get; set; }
+        public string Titulo { get; set; }
+        public List<Clase> Clases { get; set; }
+        public List<Saber> Saberes { get; set; }
+        public List<Evaluacion> Evaluaciones { get; set; }
 
         public Unidad()
         {
-            this.clases = new List<Clase>();
-            this.saberes = new List<Saber>();
-            this.evaluaciones = new List<Evaluacion>();            
+            this.Clases = new List<Clase>();
+            this.Saberes = new List<Saber>();
+            this.Evaluaciones = new List<Evaluacion>();            
         }
     }
 }

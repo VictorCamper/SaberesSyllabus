@@ -8,12 +8,12 @@ namespace SaberesSyllabus.Models
 {
     public class Evaluacion
     {
-        private EnumTipoEvaluacion tipo { get; set; }
-        private List<Saber> saberes { get; set; }
+        public EnumTipoEvaluacion Tipo { get; set; }
+        public List<Saber> Saberes { get; set; }
 
         public Evaluacion()
         {
-            this.saberes = new List<Saber>();
+            this.Saberes = new List<Saber>();
         }
     }
 }
