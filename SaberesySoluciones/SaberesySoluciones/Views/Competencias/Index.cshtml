@@ -25,6 +25,7 @@ $(document).ready(function() {
     <thead class="thead-dark">
         <tr>
             <th>Código</th>
+            <th>Nombre</th>
             <th>Descripción</th>
             <th>Nivel</th>
             <th>Básico</th>
@@ -38,8 +39,9 @@ $(document).ready(function() {
         {
             <tr>
                 <td style="text-align:center">@comp.Codigo</td>
+                <td>@comp.Nombre</td>
                 <td style="text-align:justify">@comp.Descripcion</td>
-                <td>@comp.Nivel</td>
+                <td>@comp.Dominio</td>
                 <td>@comp.Basico</td>
                 <td>@comp.Intermedio</td>
                 <td>@comp.Avanzado</td>
