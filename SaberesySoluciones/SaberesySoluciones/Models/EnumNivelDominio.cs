@@ -5,15 +5,10 @@ using System.Web;
 
 namespace SaberesySoluciones.Models
 {
-    enum EnumNivelDominio
+    public enum EnumNivelDominio
     {
         Basico,
         Intermedio,
         Avanzado
-    }
-
-    public class EnumNivelDominio
-    {
-
     }
 }

@@ -5,14 +5,10 @@ using System.Web;
 
 namespace SaberesySoluciones.Models
 {
-    enum Estado
+    public enum EnumEstado
     {
         Habilitado,
         Deshabilitado
-    }
-
-    public class EnumEstado
-    {
     }
 
 }
