@@ -5,10 +5,13 @@ using System.Web;
 
 namespace SaberesSyllabus.Models
 {
-    public enum EnumLogros
+    enum logros
     {
         Saber,
         SaberSer,
         SaberHacer
     };
+    public class EnumLogro
+    {
+    }
 }
