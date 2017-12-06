@@ -16,7 +16,18 @@
         </tr>
     </thead>
     <tbody>
-       
+        @foreach (var aprendizaje in Model.aprendizajes)
+        {
+            <tr>
+                <td>@aprendizaje.codigo</td>
+                <td>@aprendizaje.categoria</td>
+                <td style="text-align:justify">@aprendizaje.descripcion</td>
+                <td style="vertical-align: middle; white-space: nowrap;text-align:right">
+                    <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
+                    <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>                
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

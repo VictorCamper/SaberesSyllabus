@@ -8,8 +8,8 @@ namespace SaberesySoluciones.Models
 {
     public class Encargado
     {
-        public string nombre { get; set; }
-        public string rut { get; set; }
-        public EnumCargo cargo { get; set; }
+        public string Nombre { get; set; }
+        public string Rut { get; set; }
+        public EnumCargo Cargo { get; set; }
     }
 }
