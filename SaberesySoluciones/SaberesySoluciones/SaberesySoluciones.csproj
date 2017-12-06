@@ -168,6 +168,7 @@
     <Compile Include="Controllers\CompetenciasController.cs" />
     <Compile Include="Controllers\EvaluacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\SaberesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -183,6 +184,7 @@
     <Compile Include="Models\EnumTipoClase.cs" />
     <Compile Include="Models\EnumTipoEvaluacion.cs" />
     <Compile Include="Models\Evaluacion.cs" />
+    <Compile Include="Models\Principal.cs" />
     <Compile Include="Models\Saber.cs" />
     <Compile Include="Models\Unidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,6 +217,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\alumnos_curico_utalca.jpg" />
+    <Content Include="Imagenes\facultad_ingenieria.jpg" />
+    <Content Include="Imagenes\ingenieriaa.jpg" />
+    <Content Include="Imagenes\Utalca.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -251,6 +257,8 @@
     <Content Include="Views\Evaluacion\Index.cshtml" />
     <Content Include="Views\Clases\Index.cshtml" />
     <Content Include="Views\Clases\Crear.cshtml" />
+    <Content Include="Views\Principal\Index.cshtml" />
+    <Content Include="Views\Principal\CrearPrincipal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
