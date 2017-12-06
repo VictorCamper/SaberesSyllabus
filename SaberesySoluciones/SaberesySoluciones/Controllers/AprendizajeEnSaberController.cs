@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SaberesSyllabus.Models;
+using SaberesySoluciones.Models;
+using SaberesySoluciones.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +14,16 @@ namespace SaberesySoluciones.Controllers
         // GET: AprendizajeEnSaber
         public ActionResult Index()
         {
-            return View();
+            AprendizajeEnSaberesController aprendizajeSaber = new AprendizajeEnSaberesController();
+
+            return View(aprendizajeSaber);
+        }
+
+        [HttpPost]
+        public ActionResult CargarSaberes(String codigo)
+        {
+
+            return RedirectToAction("Index", "AprendizajeEnSaberController");
         }
     }
 }
