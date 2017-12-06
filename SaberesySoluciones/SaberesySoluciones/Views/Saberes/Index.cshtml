@@ -1,4 +1,6 @@
-﻿﻿﻿@model List<SaberesySoluciones.Models.Saber>
+﻿
+@using SaberesySoluciones.Models
+@model List<SaberesSyllabus.Models.Saber>
 @{
     ViewBag.Title = "Saberes";
 }
@@ -39,11 +41,11 @@
                 <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Codigo', '@sabe.Descripcion', '@sabe.Logro')">Modificar</a>
             </td>
             <td style="vertical-align: middle">
-                @if (@sabe.Estado == "Habilitado")
+                @if (@sabe.Estado == EnumEstado.Habilitado)
                 {
                     <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@sabe.Codigo')">Deshabilitar</a>
                 }
-                @if (@sabe.Estado == "Deshabilitado")
+                @if (@sabe.Estado == EnumEstado.Deshabilitado)
                 {
                     <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@sabe.Codigo')">Habilitar</a>
                 }
