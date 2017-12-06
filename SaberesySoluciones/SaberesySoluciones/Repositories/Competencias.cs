@@ -128,17 +128,21 @@ namespace SaberesySoluciones.Repositories
                     foreach (System.Data.DataRow row in datos.Tables[0].Rows)
                     {
                         var prodData = row;
+                        Enum.TryParse(prodData["nivel_dominio"].ToString(), out EnumNivelDominio Dom);
+
                         var comp = new Competencia()
                         {
                             Codigo = Convert.ToInt32(prodData["codigo"]),
+                            Nombre = prodData["nombre"].ToString(),
                             Descripcion = prodData["descripcion"].ToString(),
-                            Nivel = prodData["nivel_dominio"].ToString(),
+                            Dominio = Dom,
                             Basico = prodData["basico"].ToString(),
                             Intermedio = prodData["intermedio"].ToString(),
                             Avanzado = prodData["avanzado"].ToString(),
                             TiempoDesarrollo = prodData["tiempoDesarrollo"].ToString(),
                             Estado = prodData["estado"].ToString()
                         };
+
                         comps.Add(comp);
                     }
                 }
