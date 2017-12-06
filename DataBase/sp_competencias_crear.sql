@@ -13,7 +13,7 @@ CREATE PROCEDURE sp_competencias_crear
 )
 BEGIN
 
-	INSERT INTO competencia(descripcion, nivel_dominio, basico, intermedio, avanzado, tiempoDesarollo, estado)
+	INSERT INTO competencia(descripcion, nivel_dominio, basico, intermedio, avanzado, tiempoDesarrollo, estado)
 	VALUES (in_descripcion, in_nivel_dominio, in_basico, in_intermedio, in_avanzado, in_tiempoDesarrollo, in_estado);
 
 	SET out_codigo = LAST_INSERT_ID();
