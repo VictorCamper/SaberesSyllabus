@@ -14,6 +14,7 @@ namespace SaberesySoluciones.Repositories
         {
             try
             {
+                competencia.Estado = "Habilitado";
                 var command = new MySqlCommand() { CommandText = "sp_competencias_crear", CommandType = System.Data.CommandType.StoredProcedure };
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = competencia.Descripcion });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivel_dominio", Direction = System.Data.ParameterDirection.Input, Value = competencia.Nivel });
@@ -25,7 +26,7 @@ namespace SaberesySoluciones.Repositories
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
                 var datos = DataSource.ExecuteProcedure(command);
 
-                competencia.Codigo = Convert.ToInt32(datos.Parameters["out_id"].Value);
+                competencia.Codigo = Convert.ToInt32(datos.Parameters["out_codigo"].Value);
                 return competencia;
             }
             catch (Exception ex)
@@ -80,13 +81,16 @@ namespace SaberesySoluciones.Repositories
         public static bool Editar(Competencia competencia)
         {
             Boolean estadoConsulta;
+            int codigoAnterior;
 
             try
             {
+                codigoAnterior = competencia.Codigo;
+
                 competencia = Crear(competencia);
                 if (competencia.Codigo != (-1))
                 {
-                    estadoConsulta = Deshabilitar(competencia.Codigo);
+                    estadoConsulta = Deshabilitar(codigoAnterior);
                     if (estadoConsulta == true)
                     {
                         return true;
