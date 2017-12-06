@@ -22,10 +22,10 @@ namespace SaberesSyllabus.Models
             this.saberes = new List<Saber>();
             this.evaluaciones = new List<Evaluacion>();
         }
-
+        
         public bool Crear()
         {
-            using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["Syllabus"].ConnectionString))
+            using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
             {
                 conn.Open();
                 var sqlTran = conn.BeginTransaction();
@@ -56,7 +56,7 @@ namespace SaberesSyllabus.Models
             try
             {
                 var ds = new System.Data.DataSet();
-                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["Syllabus"].ConnectionString))
+                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
                 {
                     var command = new MySqlCommand() { CommandText = "getTitulo", CommandType = CommandType.StoredProcedure };
                     conn.Open();
@@ -84,7 +84,7 @@ namespace SaberesSyllabus.Models
             try
             {
                 var ds = new DataSet();
-                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["Syllabus"].ConnectionString))
+                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
                 {
                     var command = new MySqlCommand() { CommandText = "getTitulo", CommandType = CommandType.StoredProcedure };
                     command.Parameters.AddWithValue("titulo", titulo);

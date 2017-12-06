@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SaberesSyllabus.Models.Unidad>
+﻿﻿@model IEnumerable<SaberesSyllabus.Models.Unidad>
 
 @{
     ViewBag.Title = "Unidades";
@@ -10,31 +10,32 @@
 <table class="table table-hover table-bordered">
     <thead class="thead-light">
         <tr>
-            <th> @Html.DisplayNameFor(model => model.titulo) </th>
+            <th> titulo </th>
             <th>Lista de Clases</th>
             <th>Lista de Saberes</th>
             <th><button type="button" data-toggle="modal" data-target="#miModal" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Añadir</button></th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) { 
-        <tr>
-            <td style="text-align:center"> @Html.DisplayFor(modelItem => item.titulo) </td>
+        
+        {
+            <tr>
+                <td style="text-align:center"> Unidad 1 </td>
 
-            <td style="vertical-align: middle;white-space: nowrap">
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalClases"> Ver Lista de Clases </button>
-            </td>
-            <td style="vertical-align: middle;white-space: nowrap">
+                <td style="vertical-align: middle;white-space: nowrap">
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalClases"> Ver Lista de Clases </button>
+                </td>
+                <td style="vertical-align: middle;white-space: nowrap">
 
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalSaberes"> Ver Lista de Saberes </button>
-            </td>
-            <td style="vertical-align: middle;white-space: nowrap">
-                <button type="button" data-toggle="modal" data-target="#ModalModificar" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
-                <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
-            </td>
-        </tr>
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalSaberes"> Ver Lista de Saberes </button>
+                </td>
+                <td style="vertical-align: middle;white-space: nowrap">
+                    <button type="button" data-toggle="modal" data-target="#ModalModificar" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
+                    <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
+                </td>
+            </tr>
 
-    } <!--    
+       
         <tr>
             <td style="text-align:center">Unidad 2</td>
             <td style="vertical-align: middle;white-space: nowrap">
@@ -47,12 +48,9 @@
                 <button type="button" data-toggle="modal" data-target="#ModalModificar" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
                 <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
             </td>
-        </tr>  -->
-           
+        </tr> 
     </tbody>
 </table>
-
-
 
 <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -73,7 +71,6 @@
                                 <label for="nombre">Nombre</label>
                                 <input type="Nombre" class="form-control" id="nombreid" placeholder="Nombre">
                             </div>
-
                             <div class="form-group">
                                 <label for="exampleSelect2">Seleccione las clases</label>
                                 <select multiple="" class="form-control" id="exampleSelect2">
@@ -146,7 +143,6 @@
                                     <option>Saber 5</option>
                                 </select>
                             </div>
-
                         </fieldset>
                     </form>
                 </p>
@@ -158,9 +154,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="modal fade" id="modalDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -228,7 +221,6 @@
                                 <td>Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</td>
                                 <td>Saber, Saber Hacer, Saber Ser</td>
                             </tr>
-
                         </tbody>
                     </table>
                 </p>
@@ -237,7 +229,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="ModalClases" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -300,3 +291,4 @@
         </div>
     </div>
 </div>
+
