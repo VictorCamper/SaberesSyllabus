@@ -174,11 +174,13 @@
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Models\Aprendizaje.cs" />
     <Compile Include="Models\Clase.cs" />
+    <Compile Include="Models\EnumEstado.cs" />
     <Compile Include="Models\Competencia.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Encargado.cs" />
     <Compile Include="Models\EnumCargo.cs" />
     <Compile Include="Models\EnumLogro.cs" />
+    <Compile Include="Models\EnumNivelDominio.cs" />
     <Compile Include="Models\EnumTipoClase.cs" />
     <Compile Include="Models\EnumTipoEvaluacion.cs" />
     <Compile Include="Models\Evaluacion.cs" />
@@ -193,7 +195,7 @@
     <Compile Include="Repositories\DataSource.cs" />
     <Compile Include="Repositories\Encargado.cs" />
     <Compile Include="Repositories\Evaluacion.cs" />
-    <Compile Include="Repositories\Saber.cs" />
+    <Compile Include="Repositories\Saberes.cs" />
     <Compile Include="Repositories\Unidad.cs" />
     <Compile Include="ViewModel\AprendizajeEnSaberesController.cs" />
     <Compile Include="ViewModel\AprendizajesViewController.cs" />
