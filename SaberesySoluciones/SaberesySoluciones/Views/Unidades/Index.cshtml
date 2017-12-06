@@ -17,10 +17,10 @@
         </tr>
     </thead>
     <tbody>
-        
+        @foreach (var comp in Model)
         {
             <tr>
-                <td style="text-align:center"> Unidad 1 </td>
+                <td style="text-align:center"> @comp.titulo </td>
 
                 <td style="vertical-align: middle;white-space: nowrap">
                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalClases"> Ver Lista de Clases </button>
@@ -34,8 +34,8 @@
                     <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
                 </td>
             </tr>
-
-       
+        }
+       <!--
         <tr>
             <td style="text-align:center">Unidad 2</td>
             <td style="vertical-align: middle;white-space: nowrap">
@@ -48,7 +48,7 @@
                 <button type="button" data-toggle="modal" data-target="#ModalModificar" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
                 <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
             </td>
-        </tr> 
+        </tr> -->
     </tbody>
 </table>
 
@@ -244,8 +244,11 @@
                     <table class="table table-striped table-hover table-bordered">
                         <thead class="thead-dark">
                             <tr>
+                               
+                                <th>Saber</th>
                                 <th>Fecha</th>
-                                <th>Horario</th>
+                                <th>Hora Inicio</th>
+                                <th>Hora Termino</th>
                                 <th>Tema</th>
                                 <th>Descripcion</th>
 
@@ -253,34 +256,40 @@
                         </thead>
                         <tbody>
                             <tr>
+                                
+                                <td> </td>
                                 <td>04/04/2018</td>
-                                <td>Bloque 3-4</td>
+                                <td> </td>
+                                <td> </td>
                                 <td>Tema 1</td>
-                                <td>Etiam porta sem malesuada magna mollis euismod.</td>
+                                <td>Etiam porta sem malesuada magna</td>
                             </tr>
                             <tr>
+                                
+                                <td> </td>
                                 <td>11/06/2018</td>
-                                <td>Bloque 3-4</td>
+                                <td> </td>
+                                <td> </td>
                                 <td>Tema 2</td>
-                                <td>Maecenas sed diam eget risus varius blandit sit amet non magna.</td>
+                                <td>Maecenas sed diam eget risus varius blandit </td>
                             </tr>
                             <tr>
+                              
+                                <td> </td>
                                 <td>18/04/2018</td>
-                                <td>Bloque 3-4</td>
+                                <td> </td>
+                                <td> </td>
                                 <td>Tema 3</td>
-                                <td>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</td>
+                                <td>Duis mollis, est non commodo luctus, nisi </td>
                             </tr>
                             <tr>
+                                
+                                <td> </td>
                                 <td>25/04/2018</td>
-                                <td>Bloque 3-4</td>
+                                <td> </td>
+                                <td> </td>
                                 <td>Tema 4</td>
                                 <td>Nullam id dolor id nibh ultricies vehicula ut id elit.</td>
-                            </tr>
-                            <tr>
-                                <td>05/02/2018</td>
-                                <td>Bloque 3-4</td>
-                                <td>Tema 5</td>
-                                <td>Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</td>
                             </tr>
 
                         </tbody>
