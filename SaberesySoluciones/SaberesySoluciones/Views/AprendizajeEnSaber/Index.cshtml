@@ -15,7 +15,7 @@
                     {
                         foreach (var aprendizaje in Model.aprendizajes)
                         {
-                            <option value="@aprendizaje.codigo">@aprendizaje.descripcion</option>
+                            <option value="@aprendizaje.Codigo">@aprendizaje.Descripcion</option>
                         }
                         <option value="Nada">...</option>
                     }
@@ -42,13 +42,17 @@
                                 <th>Código</th>
                                 <th>Descripción</th>
                                 <th>Añadir a Aprendizaje</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
+                                @foreach (var saber in Model.saberes)
+                                {
+                                <td>@saber.Codigo</td>
+                                <td>@saber.Descripcion</td>
+                                <td><a href="" id="btn-primary" class="btn btn-primary" data-title="desh" data-toggle="modal" data-target="#desh" onclick="">Añadir a Aprendizaje</a></td>
+                                }
                             </tr>
                         </tbody>
                     </table> 

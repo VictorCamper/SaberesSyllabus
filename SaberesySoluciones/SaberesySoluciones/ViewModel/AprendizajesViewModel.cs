@@ -6,7 +6,7 @@ using SaberesySoluciones.Models;
 
 namespace SaberesySoluciones.ViewModel
 {
-    public class AprendizajesViewController
+    public class AprendizajesViewModel
     {
         public List<Aprendizaje> aprendizajes { get; set; }
     }

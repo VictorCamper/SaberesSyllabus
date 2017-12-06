@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages;
 using SaberesySoluciones.Models;
-using SaberesySoluciones.Repositories;
 using SaberesSyllabus.Models;
+using SaberesySoluciones.Repositories;
 
-namespace SaberesSyllabus.Repositories
+namespace SaberesySoluciones.Repositories
+
 {
     public class Saberes
     {
@@ -15,15 +17,16 @@ namespace SaberesSyllabus.Repositories
         {
             try
             {
-                var command = new MySqlCommand() { CommandText = "sp_saber_crear", CommandType = System.Data.CommandType.StoredProcedure };
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = saber.codigo });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = saber.descripcion });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivelLogro", Direction = System.Data.ParameterDirection.Input, Value = saber.nivelLogro });
+                Enum.TryParse("Habilitado", out EnumEstado EEstado);
+                saber.Estado = EEstado;
+                var command = new MySqlCommand() { CommandText = "sp_saberes_crear", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = saber.Descripcion });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivel_logro", Direction = System.Data.ParameterDirection.Input, Value = saber.Logro });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = saber.Estado });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
                 var datos = DataSource.ExecuteProcedure(command);
 
-                saber.codigo = Convert.ToInt32(datos.Parameters["out_id"].Value);
+                saber.Codigo = Convert.ToString(datos.Parameters["out_codigo"].Value);
                 return saber;
             }
             catch (Exception ex)
@@ -33,43 +36,115 @@ namespace SaberesSyllabus.Repositories
             }
         }
 
+        public static bool Deshabilitar(string codigo)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_saberes_habilitar_deshabilitar", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = codigo });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = "Deshabilitado" });
+                var datos = DataSource.ExecuteProcedure(command);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            finally
+            {
+
+            }
+        }
+
+        public static bool Habilitar(string codigo)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_saberes_habilitar_deshabilitar", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = codigo });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = "Habilitado" });
+                var datos = DataSource.ExecuteProcedure(command);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            finally
+            {
+
+            }
+        }
+
+
         public static bool Editar(Saber saber)
         {
-            return false;
-        }
+            Boolean estadoConsulta;
+            string codigoAnterior;
 
-        public static bool Eliminar(Saber saber)
-        {
-            return false;
-        }
+            try
+            {
+                codigoAnterior = saber.Codigo;
 
-        public static Saber Leer(int codigo)
-        {
-            return null;
+                saber = Crear(saber);
+                if (!saber.Codigo.IsEmpty())
+                {
+                    estadoConsulta = Deshabilitar(codigoAnterior);
+                    if (estadoConsulta == true)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            finally
+            {
+
+            }
         }
 
         public static List<Saber> LeerTodo()
         {
-            var command = new MySqlCommand() { CommandText = "sp_saber_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
-            var datos = DataSource.GetDataSet(command);
-
-            List<Saber> sabs = new List<Saber>();
-            if (datos.Tables[0].Rows.Count > 0)
+            try
             {
-                foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                var command = new MySqlCommand() { CommandText = "sp_saberes_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
+                var datos = DataSource.GetDataSet(command);
+
+                List<Saber> comps = new List<Saber>();
+                if (datos.Tables[0].Rows.Count > 0)
                 {
-                    var prodData = row;
-                    var sab = new Saber()
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
                     {
-                        codigo = Convert.ToInt32(prodData["codigo"]),
-                        descripcion = prodData["descripcion"].ToString(),
-                        nivelLogro = prodData["nivelLogro"].ToString(),
-                        estado = prodData["estado"].ToString()
-                    };
-                    sabs.Add(sab);
+                        var prodData = row;
+                        
+                        Enum.TryParse(prodData["nivel_logro"].ToString(), out EnumLogros ELogro);
+                        Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
+                        var sabe = new Saber()
+                        {
+                            Codigo = Convert.ToString(prodData["codigo"]),
+                            Descripcion = prodData["descripcion"].ToString(),
+                            Logro = ELogro,
+                            Estado = EEstado
+                        };
+                        comps.Add(sabe);
+                    }
                 }
+                return comps;
             }
-            return sabs;
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
@@ -81,5 +156,6 @@ namespace SaberesSyllabus.Repositories
             return null;
 
         }
+
     }
 }
