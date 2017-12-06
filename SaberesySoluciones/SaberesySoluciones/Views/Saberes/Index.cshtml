@@ -1,39 +1,202 @@
 ﻿
+@using SaberesySoluciones.Models
+@model List<SaberesSyllabus.Models.Saber>
 @{
     ViewBag.Title = "Saberes";
 }
 
 <h2>@ViewBag.Title</h2>
 
-<a class="btn btn-primary" style="margin-bottom:10px">Agregar</a>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn-add").click(function () {
+            $("#add").modal({ show: true });
+        });
+        $("#btn-edit").click(function () {
+            $("#edit").modal({ show: true });
+        });
+        $("#btn-delete").click(function () {
+            $("#delete").modal({ show: true });
+        });
+    });
+</script>
+
+<a href="" id="btn-add" class="btn btn-primary" data-title="add" data-toggle="modal" data-target="#add" style="margin-bottom:10px">Agregar</a>
 
 <table class="table table-hover ">
     <tr>
         <th>Código</th>
         <th>Descripción</th>
-        <th>Nivel de logro</th>
+        <th>Nivel de Saber</th>
+        <th></th>
         <th></th>
     </tr>
-    <tr>
-        <td style="text-align:center">1</td>
-        <td style="text-align:justify">Repellat cupiditate corporis explicabo impedit dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum illo corrupti delectus sit, dolore molestiae adipisci. Facilis, temporibus. Amet, possimus. Quos neque accusamus iure animi tempora, mollitia facere quam similique!</td>
-        <td>Saber Hacer</td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-warning ">Modificar</a>
-        </td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-danger">Eliminar</a>
-        </td>
-    </tr>
-    <tr>
-        <td style="text-align:center">2</td>
-        <td style="text-align:justify">Exercitationem repellat harum vel distinctio esse labore eaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa ea dolorem quae consectetur vitae nihil in, recusandae delectus non animi unde qui tenetur temporibus odio dicta libero! Quae, sed.</td>
-        <td>Saber Ser</td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-warning">Modificar</a>
-        </td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-danger">Eliminar</a>
-        </td>
-    </tr>
+    @foreach (var sabe in Model)
+    {
+        <tr>
+            <td style="text-align:center">@sabe.Codigo</td>
+            <td style="text-align:justify">@sabe.Descripcion</td>
+            <td>@sabe.Logro</td>
+            <td style="vertical-align: middle">
+                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Codigo', '@sabe.Descripcion', '@sabe.Logro')">Modificar</a>
+            </td>
+            <td style="vertical-align: middle">
+                @if (@sabe.Estado == EnumEstado.Habilitado)
+                {
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@sabe.Codigo')">Deshabilitar</a>
+                }
+                @if (@sabe.Estado == EnumEstado.Deshabilitado)
+                {
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@sabe.Codigo')">Habilitar</a>
+                }
+            </td>
+
+        </tr>
+    }
 </table>
+
+<script type="text/javascript">
+    deshmsj = function (idSaber) {
+        document.getElementById("deletesaber").setAttribute("value", idSaber);
+    }
+    habmsj = function (idSaber) {
+        document.getElementById("habsaber").setAttribute("value", idSaber);
+    }
+
+    editmsj = function (idcod, descrp, nivel) {
+        document.getElementById("editcomp").setAttribute("value", idcod);
+        document.getElementById("editdescripcion").setAttribute("value", descrp);
+        $("#nivelid").append(nivel);
+    }
+</script>
+
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Agregar un nuevo Saber</h4>
+            </div>
+            @using (Html.BeginForm("Crear", "Saberes", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:none", @class = "col-offset-2" }))
+            {
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="CodigoSaber">Codigo del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el codigo del Saber." name="CodigoSaber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Nombre">Descripción del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción del Saber." name="Descripcion" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Nombre">Nivel de logro:</label>
+                            <select id="Nivel" name="nivel" required>
+                                <option value="Saber">Saber</option>
+                                <option value="SaberHacer">Saber Hacer</option>
+                                <option value="SaberSer">Saber Ser</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="Codigo" value="-1">
+                    <input type="hidden" name="Estado" value="Habilitado">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Editar Saber</h4>
+            </div>
+            @using (Html.BeginForm("Editar", "Saberes", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:none", @class = "col-offset-2" }))
+            {
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="CodigoSaber">Codigo del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el codigo del Saber." name="CodigoSaber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Nombre">Descripción del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción del Saber." name="descripcion" id="editdescripcion" value="" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Nombre">Nivel de logre:</label>
+                            <p>Usted seleccionó: <span id="nivelid"></span></p>
+                            <select id="Nivel" name="Nivel" id="Nivel" required>
+                                <option value="Saber">Saber</option>
+                                <option value="SaberHacer">Saber Hacer</option>
+                                <option value="SaberSer">Saber Ser</option>
+                            </select>
+                        </div>
+                        <p>Al modificar esto, usted está aceptando que el Saber anterior será deshabilitada para dar paso a un nuevo Saber</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="editcomp" name="codigo" value="" />
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="desh" tabindex="-1" role="dialog" aria-labelledby="desh" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Deshabilitar Competencia</h4>
+            </div>
+            @using (Html.BeginForm("Deshabilitar", "Saberes", FormMethod.Post, new { @style = "border:none" }))
+            {
+                <div class="modal-body">
+                    <p id="message">¿Estás seguro de que quieres Deshabilitar el Saber?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="deletecomp" name="codigo" value="" />
+                    <button type="submit" class="btn btn-primary">Deshabilitar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="hab" tabindex="-1" role="dialog" aria-labelledby="hab" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Habilitar Competencia</h4>
+            </div>
+            @using (Html.BeginForm("Habilitar", "Saberes", FormMethod.Post, new { @style = "border:none" }))
+            {
+                <div class="modal-body">
+                    <p id="message">¿Estás seguro de que quieres Habilitar la Competencia?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="habcomp" name="codigo" value="" />
+                    <button type="submit" class="btn btn-primary">Habilitar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
