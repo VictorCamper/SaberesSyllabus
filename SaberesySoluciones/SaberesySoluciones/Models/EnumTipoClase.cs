@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
 namespace SaberesSyllabus.Models
 {
-    enum tipoClase
+    public enum TipoClase
     {
+        [Description("Clase")]
         Clase,
+        [Description("Laboratorio")]
         Laboratorio,
-        Ayudantia
-    };
+        [Description("Ayudantia")]
+        Ayudantia,
+    }
+
     public class EnumTipoClase
     {
+
     }
 }
