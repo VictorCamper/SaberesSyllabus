@@ -194,7 +194,7 @@
     <Compile Include="Repositories\DataSource.cs" />
     <Compile Include="Repositories\Encargado.cs" />
     <Compile Include="Repositories\Evaluacion.cs" />
-    <Compile Include="Repositories\Saber.cs" />
+    <Compile Include="Repositories\Saberes.cs" />
     <Compile Include="Repositories\Unidad.cs" />
     <Compile Include="ViewModel\AprendizajesViewController.cs" />
   </ItemGroup>

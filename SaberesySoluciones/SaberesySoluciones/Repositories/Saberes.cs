@@ -1,10 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
-using SaberesySoluciones.Models;
-using SaberesySoluciones.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SaberesySoluciones.Models;
+using SaberesySoluciones.Repositories;
+using SaberesSyllabus.Models;
 
 namespace SaberesSyllabus.Repositories
 {
@@ -22,7 +23,7 @@ namespace SaberesSyllabus.Repositories
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
                 var datos = DataSource.ExecuteProcedure(command);
 
-                saber.Codigo = Convert.ToInt32(datos.Parameters["out_id"].Value);
+                saber.codigo = Convert.ToInt32(datos.Parameters["out_id"].Value);
                 return saber;
             }
             catch (Exception ex)
@@ -49,31 +50,36 @@ namespace SaberesSyllabus.Repositories
 
         public static List<Saber> LeerTodo()
         {
-            var saberes = new List<Saber>();
-            try
+            var command = new MySqlCommand() { CommandText = "sp_saber_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
+            var datos = DataSource.GetDataSet(command);
+
+            List<Saber> sabs = new List<Saber>();
+            if (datos.Tables[0].Rows.Count > 0)
             {
-                var ds = new DataSet();
-                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["Syllabus"].ConnectionString))
+                foreach (System.Data.DataRow row in datos.Tables[0].Rows)
                 {
-                    var command = new MySqlCommand() { CommandText = "getSaberes", CommandType = CommandType.StoredProcedure };
-                    conn.Open();
-                    command.Connection = conn;
-                    var sqlda = new MySqlDataAdapter(command);
-                    sqlda.Fill(ds);
-                    conn.Close();
-                }
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    Saber s = new Saber();
-                    s.CargarDatos(dr);
-                    saberes.Add(s);
+                    var prodData = row;
+                    var sab = new Saber()
+                    {
+                        codigo = Convert.ToInt32(prodData["codigo"]),
+                        descripcion = prodData["descripcion"].ToString(),
+                        nivelLogro = prodData["nivelLogro"].ToString(),
+                        estado = prodData["estado"].ToString()
+                    };
+                    sabs.Add(sab);
                 }
             }
+            return sabs;
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex.ToString());
             }
-            return saberes;
+            finally
+            {
+
+            }
+            return null;
+
         }
     }
 }
