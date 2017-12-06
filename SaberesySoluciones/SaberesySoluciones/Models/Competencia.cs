@@ -7,21 +7,21 @@ namespace SaberesySoluciones.Models
 {
     public class Competencia
     {
-        private int codigo { get; set; }
-        private string nombre { get; set;}
-        private string descripcion { get; set; }
-        private EnumNivelDominio dominio { get; set;}
-        private string basico { get; set; }
-        private string intermedio { get; set; }
-        private string avanzado { get; set; }
-        private string tiempoDesarrollo { get; set; }
-        private List<Aprendizaje> aprendizajes { get; set; }
-        private EnumEstado estado { get; set; }
-        private int porcentajeLogro { get; set; }
+        public int Codigo { get; set; }
+        public string Nombre { get; set;}
+        public string descripcion { get; set; }
+        public EnumNivelDominio Dominio { get; set;}
+        public string Basico { get; set; }
+        public string Intermedio { get; set; }
+        public string Avanzado { get; set; }
+        public string TiempoDesarrollo { get; set; }
+        public List<Aprendizaje> Aprendizajes { get; set; }
+        public EnumEstado Estado { get; set; }
+        public int PorcentajeLogro { get; set; }
 
         public Competencia()
         {
-            this.aprendizajes = new List<Aprendizaje>();
+            this.Aprendizajes = new List<Aprendizaje>();
         }
     }
 }

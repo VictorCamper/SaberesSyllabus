@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaberesySoluciones.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,10 +8,10 @@ namespace SaberesSyllabus.Models
 {
     public class Saber
     {
-        private string codigo { get; set; }
-        private string descripcion { get; set; }
-        private EnumLogro logro { get; set; }
-        private EnumEstado estado { get; set; }
-        private int porcentajeLogro { get; set; }
+        public string Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public EnumLogro Logro { get; set; }
+        public EnumEstado Estado { get; set; }
+        public int PorcentajeLogro { get; set; }
     }
 }
