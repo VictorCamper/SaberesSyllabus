@@ -185,7 +185,7 @@
     <Compile Include="Models\Unidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Alumno.cs" />
-    <Compile Include="Repositories\Aprendizaje.cs" />
+    <Compile Include="Repositories\Aprendizajes.cs" />
     <Compile Include="Repositories\Clase.cs" />
     <Compile Include="Repositories\Competencias.cs" />
     <Compile Include="Repositories\Curso.cs" />
