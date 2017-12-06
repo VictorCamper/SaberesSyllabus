@@ -2,8 +2,8 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_competencias_crear $$
 CREATE PROCEDURE sp_competencias_crear
 (
-    in_nombre TEXT NOT NULL,
-    in_descripcion VARCHAR(256),
+    in_nombre TEXT,
+    in_descripcion TEXT,
   	in_dominio VARCHAR(256),
   	in_basico TEXT,
   	in_intermedio TEXT,

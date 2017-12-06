@@ -44,7 +44,7 @@ CREATE TABLE Competencia (
 	codigo INTEGER AUTO_INCREMENT,
 	nombre TEXT NOT NULL,
 	descripcion TEXT NOT NULL,
-	dominio TEXT NOT NULL,
+	dominio VARCHAR(256) NOT NULL,
 	basico TEXT NOT NULL,
 	intermedio TEXT NOT NULL,
 	avanzado TEXT NOT NULL,
