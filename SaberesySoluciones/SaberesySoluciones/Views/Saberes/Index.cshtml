@@ -5,35 +5,35 @@
 
 <h2>@ViewBag.Title</h2>
 
-<a class="btn btn-primary" style="margin-bottom:10px">Agregar</a>
 
-<table class="table table-hover ">
-    <tr>
-        <th>Código</th>
-        <th>Descripción</th>
-        <th>Nivel de logro</th>
-        <th></th>
-    </tr>
-    <tr>
-        <td style="text-align:center">1</td>
-        <td style="text-align:justify">Repellat cupiditate corporis explicabo impedit dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum illo corrupti delectus sit, dolore molestiae adipisci. Facilis, temporibus. Amet, possimus. Quos neque accusamus iure animi tempora, mollitia facere quam similique!</td>
-        <td>Saber Hacer</td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-warning ">Modificar</a>
-        </td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-danger">Eliminar</a>
-        </td>
-    </tr>
-    <tr>
-        <td style="text-align:center">2</td>
-        <td style="text-align:justify">Exercitationem repellat harum vel distinctio esse labore eaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa ea dolorem quae consectetur vitae nihil in, recusandae delectus non animi unde qui tenetur temporibus odio dicta libero! Quae, sed.</td>
-        <td>Saber Ser</td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-warning">Modificar</a>
-        </td>
-        <td style="vertical-align: middle">
-            <a class="btn btn-danger">Eliminar</a>
-        </td>
-    </tr>
+<table class="table table-hover table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th style=" white-space: nowrap">Nivel de logro</th>
+            <th><button type="button" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Añadir</button></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align:center">1</td>
+            <td style="text-align:justify">Repellat cupiditate corporis explicabo impedit dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum illo corrupti delectus sit, dolore molestiae adipisci. Facilis, temporibus. Amet, possimus. Quos neque accusamus iure animi tempora, mollitia facere quam similique!</td>
+            <td>Saber Hacer</td>
+            <td style="vertical-align: middle; white-space: nowrap">
+                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
+                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">2</td>
+            <td style="text-align:justify">Exercitationem repellat harum vel distinctio esse labore eaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ipsa ea dolorem quae consectetur vitae nihil in, recusandae delectus non animi unde qui tenetur temporibus odio dicta libero! Quae, sed.</td>
+            <td>Saber Ser</td>
+            <td style="vertical-align: middle; white-space: nowrap">
+                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
+                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabiltiar</button>
+            </td>
+        </tr>
+    </tbody>
+    
 </table>
