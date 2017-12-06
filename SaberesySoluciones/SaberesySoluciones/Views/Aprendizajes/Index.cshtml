@@ -1,9 +1,10 @@
-﻿
+﻿@using SaberesySoluciones.Models
+@model List<SaberesySoluciones.Models.Aprendizaje>
 @{
     ViewBag.Title = "Aprendizajes";
 }
 
-<!--h2>@ViewBag.Title</!--h2>
+<h2>@ViewBag.Title</h2>
 
 
 <table class="table table-hover">
@@ -11,17 +12,19 @@
         <tr>
             <th>Código</th>
             <th>Categoría</th>
+            <th>Sub Categoría</th>
             <th>Descripción</th>
             <th><button type="button" data-toggle="modal" data-target="#modalAdd" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Añadir</button></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var aprendizaje in Model.aprendizajes)
+        @foreach (var aprendizaje in Model)
         {
             <tr>
-                <td>@aprendizaje.codigo</td>
-                <td>@aprendizaje.categoria</td>
-                <td style="text-align:justify">@aprendizaje.descripcion</td>
+                <td>@aprendizaje.Codigo</td>
+                <td>@aprendizaje.Categoria</td>
+                <td>@aprendizaje.SubCategoria</td>
+                <td style="text-align:justify">@aprendizaje.Descripcion</td>
                 <td style="vertical-align: middle; white-space: nowrap;text-align:right">
                     <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Modificar</button>
                     <button type="button" data-toggle="modal" data-target="#modalDisable" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Deshabilitar</button>                
@@ -124,4 +127,4 @@
             </div>
         </div>
     </div>
-</div-->
+</div>

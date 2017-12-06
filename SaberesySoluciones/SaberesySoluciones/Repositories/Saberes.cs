@@ -24,9 +24,7 @@ namespace SaberesySoluciones.Repositories
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivel_logro", Direction = System.Data.ParameterDirection.Input, Value = saber.Logro });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = saber.Estado });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
-                var datos = DataSource.ExecuteProcedure(command);
-
-                saber.Codigo = Convert.ToString(datos.Parameters["out_codigo"].Value);
+                DataSource.ExecuteProcedure(command);
                 return saber;
             }
             catch (Exception ex)
