@@ -130,7 +130,7 @@ namespace SaberesSyllabus.Repositories
                         Enum.TryParse("Habilitado", out EnumEstado EEstado);
                         var appr = new Aprendizaje()
                         {
-                            Codigo = Convert.ToInt32(prodData["codigo"]),
+                            Codigo = prodData["codigo"].ToString(),
                             Categoria = prodData["categoria"].ToString(),
                             SubCategoria = prodData["subCategoria"].ToString(),
                             Descripcion = prodData["descripcion"].ToString(),
