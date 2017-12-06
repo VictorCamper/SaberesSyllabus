@@ -43,8 +43,9 @@ namespace SaberesSyllabus.Models
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    //throw ex;
                     sqlTran.Rollback();
+                    throw ex;
                 }
             }
             return true;
