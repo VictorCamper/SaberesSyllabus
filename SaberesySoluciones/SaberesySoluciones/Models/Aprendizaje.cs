@@ -8,13 +8,10 @@ namespace SaberesySoluciones.Models
 {
     public class Aprendizaje
     {
-        private int codigo { get; set; }
-        private string categoria { get; set; }
-        private string subCategoria { get; set; }
-        private string descripcion { get; set; }
-        private List<Saber> saberes { get; set; }
-        private EnumEstado estado { get; set;}
-        private int porcentajeLogro { get; set;}
+        public string codigo { get; set; }
+        public string categoria { get; set; }
+        public string descripcion { get; set; }
+        public List<Saber> saberes { get; set; }
 
         public Aprendizaje()
         {
