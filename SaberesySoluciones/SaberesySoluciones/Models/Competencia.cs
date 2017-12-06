@@ -16,7 +16,7 @@ namespace SaberesySoluciones.Models
         public string Avanzado { get; set; }
         public string TiempoDesarrollo { get; set; }
         public List<Aprendizaje> Aprendizajes { get; set; }
-        public EnumEstado Estado { get; set; }
+        public String Estado { get; set; }
         public int PorcentajeLogro { get; set; }
 
         public Competencia()
