@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AprendizajeEnSaberController.cs" />
     <Compile Include="Controllers\AprendizajesController.cs" />
     <Compile Include="Controllers\CompetenciasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Repositories\Evaluacion.cs" />
     <Compile Include="Repositories\Saber.cs" />
     <Compile Include="Repositories\Unidad.cs" />
+    <Compile Include="ViewModel\AprendizajeEnSaberesController.cs" />
     <Compile Include="ViewModel\AprendizajesViewController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +252,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AprendizajeEnSaber\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

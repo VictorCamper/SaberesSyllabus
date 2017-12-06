@@ -26,19 +26,22 @@ namespace SaberesySoluciones.Controllers
         [HttpPost]
         public ActionResult Crear(Competencia competencia)
         {
-            
+            competencia = Competencias.Crear(competencia);
             return RedirectToAction("Index", "Competencias");
         }
 
         public ActionResult Editar(Competencia competencia)
         {
-
+            
+            Boolean result = Competencias.Editar(competencia);
             return RedirectToAction("Index", "Competencias");
         }
 
         [HttpPost]
         public ActionResult Deshabilitar(int codigo)
         {
+            Boolean resultadoConsulta;
+            resultadoConsulta = Competencias.Deshabilitar(codigo);
 
             return RedirectToAction("Index", "Competencias");
         }
@@ -46,7 +49,8 @@ namespace SaberesySoluciones.Controllers
         [HttpPost]
         public ActionResult Habilitar(int codigo)
         {
-
+            Boolean resultadoConsulta;
+            resultadoConsulta = Competencias.Habilitar(codigo);
             return RedirectToAction("Index", "Competencias");
         }
     }
