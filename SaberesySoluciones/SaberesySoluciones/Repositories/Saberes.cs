@@ -21,7 +21,7 @@ namespace SaberesySoluciones.Repositories
                 saber.Estado = EEstado;
                 var command = new MySqlCommand() { CommandText = "sp_saberes_crear", CommandType = System.Data.CommandType.StoredProcedure };
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = saber.Descripcion });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivel_logro", Direction = System.Data.ParameterDirection.Input, Value = saber.Logro });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivelLogro", Direction = System.Data.ParameterDirection.Input, Value = saber.Logro });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = saber.Estado });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
                 var datos = DataSource.ExecuteProcedure(command);
@@ -131,7 +131,7 @@ namespace SaberesySoluciones.Repositories
                     {
                         var prodData = row;
                         
-                        Enum.TryParse(prodData["nivel_logro"].ToString(), out EnumLogros ELogro);
+                        Enum.TryParse(prodData["nivelLogro"].ToString(), out EnumLogros ELogro);
                         Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
                         var sabe = new Saber()
                         {
@@ -157,5 +157,46 @@ namespace SaberesySoluciones.Repositories
 
         }
 
+        public static List<Saber> LeerHabilitado()
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_saber_leerHabilitados", CommandType = System.Data.CommandType.StoredProcedure };
+                var datos = DataSource.GetDataSet(command);
+
+                List<Saber> comps = new List<Saber>();
+                if (datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                    {
+                        var prodData = row;
+
+                        Enum.TryParse(prodData["nivelLogro"].ToString(), out EnumLogros ELogro);
+                        Enum.TryParse("Habilitado", out EnumEstado EEstado);
+                        var sabe = new Saber()
+                        {
+                            Codigo = Convert.ToString(prodData["codigo"]),
+                            Descripcion = prodData["descripcion"].ToString(),
+                            Logro = ELogro,
+                            Estado = EEstado
+                        };
+                        comps.Add(sabe);
+                    }
+                }
+                return comps;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+
+            }
+            return null;
+
+        }
+
+        
     }
 }

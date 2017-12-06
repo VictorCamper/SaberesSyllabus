@@ -55,5 +55,45 @@ namespace SaberesSyllabus.Repositories
         {
             return null;
         }
+
+        public static List<Aprendizaje> LeerHabilitados() {
+
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_leerHabilitados", CommandType = System.Data.CommandType.StoredProcedure };
+                var datos = DataSource.GetDataSet(command);
+
+                List<Aprendizaje> apr = new List<Aprendizaje>();
+                if (datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                    {
+                        var prodData = row;
+                        Enum.TryParse("Habilitado", out EnumEstado EEstado);
+                        var appr = new Aprendizaje()
+                        {
+                            Codigo = Convert.ToInt32(prodData["codigo"]),
+                            Categoria = prodData["categoria"].ToString(),
+                            SubCategoria = prodData["subCategoria"].ToString(),
+                            Descripcion = prodData["descripcion"].ToString(),
+                            PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
+                            Estado = EEstado
+                        };
+
+                        apr.Add(appr);
+                    }
+                }
+                return apr;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+
+            }
+            return null;
+        }
     }
 }
