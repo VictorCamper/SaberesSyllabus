@@ -14,7 +14,7 @@ namespace SaberesySoluciones.Controllers
         // GET: Aprendizajes
         public ActionResult Index()
         {
-            AprendizajesViewController aprendizajes = new AprendizajesViewController()
+           /* AprendizajesViewModel aprendizajes = new AprendizajesViewModel()
             {
                 aprendizajes = new List<Aprendizaje>
                 {
@@ -31,10 +31,10 @@ namespace SaberesySoluciones.Controllers
                         new Saber(){codigo = "1.3", descripcion = "Determina de manera informal la complejidad de tiempo y espacio de algoritmos simples", logro = EnumLogros.SaberHacer}
 
                     }}
-                }
-            };
+                
+            };*/
             
-            return View(aprendizajes);
+            return View(/*aprendizajes*/);
         }
     }
 }

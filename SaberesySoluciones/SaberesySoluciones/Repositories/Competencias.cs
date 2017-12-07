@@ -14,10 +14,12 @@ namespace SaberesySoluciones.Repositories
         {
             try
             {
+                //Enum.TryParse("Habilitado", out EnumEstado EEstado);
                 competencia.Estado = "Habilitado";
                 var command = new MySqlCommand() { CommandText = "sp_competencias_crear", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nombre", Direction = System.Data.ParameterDirection.Input, Value = competencia.Nombre });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = competencia.Descripcion });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivel_dominio", Direction = System.Data.ParameterDirection.Input, Value = competencia.Nivel });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_dominio", Direction = System.Data.ParameterDirection.Input, Value = competencia.Dominio });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_basico", Direction = System.Data.ParameterDirection.Input, Value = competencia.Basico });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_intermedio", Direction = System.Data.ParameterDirection.Input, Value = competencia.Intermedio });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_avanzado", Direction = System.Data.ParameterDirection.Input, Value = competencia.Avanzado });
@@ -128,17 +130,21 @@ namespace SaberesySoluciones.Repositories
                     foreach (System.Data.DataRow row in datos.Tables[0].Rows)
                     {
                         var prodData = row;
+                        //Enum.TryParse(prodData["dominio"].ToString(), out EnumNivelDominio EDominio);
+                        //Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
                         var comp = new Competencia()
                         {
                             Codigo = Convert.ToInt32(prodData["codigo"]),
+                            Nombre = prodData["nombre"].ToString(),
                             Descripcion = prodData["descripcion"].ToString(),
-                            Nivel = prodData["nivel_dominio"].ToString(),
+                            Dominio = prodData["dominio"].ToString(),
                             Basico = prodData["basico"].ToString(),
                             Intermedio = prodData["intermedio"].ToString(),
                             Avanzado = prodData["avanzado"].ToString(),
                             TiempoDesarrollo = prodData["tiempoDesarrollo"].ToString(),
                             Estado = prodData["estado"].ToString()
                         };
+
                         comps.Add(comp);
                     }
                 }

@@ -163,7 +163,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AprendizajeEnSaberController.cs" />
     <Compile Include="Controllers\AprendizajesController.cs" />
+    <Compile Include="Controllers\CompetenciaEnAprendizajeController.cs" />
     <Compile Include="Controllers\CompetenciasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SaberesController.cs" />
@@ -196,7 +198,9 @@
     <Compile Include="Repositories\Evaluacion.cs" />
     <Compile Include="Repositories\Saberes.cs" />
     <Compile Include="Repositories\Unidad.cs" />
-    <Compile Include="ViewModel\AprendizajesViewController.cs" />
+    <Compile Include="ViewModel\AprendizajeEnSaberesController.cs" />
+    <Compile Include="ViewModel\AprendizajesViewModel.cs" />
+    <Compile Include="ViewModel\CompetenciaEnAprendizajeController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -249,6 +253,8 @@
     <Content Include="Views\Saberes\Index.cshtml" />
     <Content Include="Views\Aprendizajes\Index.cshtml" />
     <Content Include="Views\Competencias\Index.cshtml" />
+    <Content Include="Views\AprendizajeEnSaber\Index.cshtml" />
+    <Content Include="Views\CompetenciaEnAprendizaje\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
