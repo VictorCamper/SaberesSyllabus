@@ -5,10 +5,10 @@ using System.Web;
 
 namespace SaberesSyllabus.Models
 {
-    public enum EnumLogro
+    public enum EnumEstado
     {
-        Saber,
-        SaberSer,
-        SaberHacer
-    };
+        Habilitado,
+        Deshabilitado
+    }
+
 }

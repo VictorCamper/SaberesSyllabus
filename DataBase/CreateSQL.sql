@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS syllabus;
+CREATE DATABASE syllabus;
+
 use syllabus;
 
 DROP TABLE IF EXISTS Curso;
@@ -38,10 +41,10 @@ CREATE TABLE Unidad (
 );
 
 CREATE TABLE Competencia (
-	codigo INTEGER NOT NULL,
+	codigo INTEGER AUTO_INCREMENT,
 	nombre TEXT NOT NULL,
 	descripcion TEXT NOT NULL,
-	dominio TEXT NOT NULL,
+	dominio VARCHAR(256) NOT NULL,
 	basico TEXT NOT NULL,
 	intermedio TEXT NOT NULL,
 	avanzado TEXT NOT NULL,
@@ -56,8 +59,8 @@ CREATE TABLE Aprendizaje (
 	categoria TEXT NOT NULL,
 	subCategoria TEXT NOT NULL,
 	descripcion TEXT NOT NULL,
-	estado TEXT NOT NULL,
 	porcentajeLogro INTEGER NOT NULL,
+	estado TEXT NOT NULL,
 	PRIMARY KEY (codigo)
 );
 
@@ -78,13 +81,13 @@ CREATE TABLE Encargado (
 );
 
 CREATE TABLE Evaluacion (
-	id INTEGER NOT NULL,
+	id INTEGER AUTO_INCREMENT,
 	tipoEvaluacion TEXT NOT NULL,
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE Clase (
-	id INTEGER NOT NULL,
+	id INTEGER AUTO_INCREMENT,
 	fecha DATE NOT NULL,
 	tema TEXT NOT NULL,
 	descripcion TEXT NOT NULL,

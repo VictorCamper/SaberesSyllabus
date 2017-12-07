@@ -1,18 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SaberesySoluciones.Models;
 
-namespace SaberesySoluciones.Models
+namespace SaberesSyllabus.Models
 {
     public class Saber
     {
-        public int CodigoSaber { get; set; }
-        public int Codigo { get; set; }
-        public String Descripcion { get; set; }
-        public String Logro { get; set; }
-        public String Estado { get; set; }
-        public List<Saber> Saberes { get; set; }
+        public string Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public EnumLogro Logro { get; set; }
+        public EnumEstado Estado { get; set; }
+        public string PorcentajeLogro { get; set; }
     }
-
 }

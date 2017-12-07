@@ -1,4 +1,6 @@
-﻿﻿﻿@model List<SaberesySoluciones.Models.Saber>
+﻿
+@using SaberesSyllabus.Models
+@model List<SaberesSyllabus.Models.Saber>
 @{
     ViewBag.Title = "Saberes";
 }
@@ -26,7 +28,7 @@
         <th>Código</th>
         <th>Descripción</th>
         <th>Nivel de Saber</th>
-        <th></th>
+        <th>Porcentaje Logro</th>
         <th></th>
     </tr>
     @foreach (var sabe in Model)
@@ -35,15 +37,16 @@
             <td style="text-align:center">@sabe.Codigo</td>
             <td style="text-align:justify">@sabe.Descripcion</td>
             <td>@sabe.Logro</td>
+            <td style="text-align:justify">@sabe.PorcentajeLogro</td>
             <td style="vertical-align: middle">
-                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Codigo', '@sabe.Descripcion', '@sabe.Logro')">Modificar</a>
+                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Codigo', '@sabe.Descripcion', '@sabe.Logro', '@sabe.PorcentajeLogro')">Modificar</a>
             </td>
             <td style="vertical-align: middle">
-                @if (@sabe.Estado == "Habilitado")
+                @if (@sabe.Estado == EnumEstado.Habilitado)
                 {
                     <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@sabe.Codigo')">Deshabilitar</a>
                 }
-                @if (@sabe.Estado == "Deshabilitado")
+                @if (@sabe.Estado == EnumEstado.Deshabilitado)
                 {
                     <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@sabe.Codigo')">Habilitar</a>
                 }
@@ -80,8 +83,8 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="CodigoSaber">Codigo del Saber:</label>
-                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el codigo del Saber." name="CodigoSaber" required>
+                            <label for="Codigo">Codigo del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el codigo del Saber." name="Codigo" required>
                         </div>
                         <div class="form-group">
                             <label for="Nombre">Descripción del Saber:</label>
@@ -89,14 +92,18 @@
                         </div>
                         <div class="form-group">
                             <label for="Nombre">Nivel de logro:</label>
-                            <select id="Nivel" name="nivel" required>
+                            <select class="form-control" id="Logro" name="Logro" required>
                                 <option value="Saber">Saber</option>
                                 <option value="SaberHacer">Saber Hacer</option>
                                 <option value="SaberSer">Saber Ser</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="Porcentaje">Porcentaje del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el porcentaje del Saber." name="PorcentajeLogro" required>
+                        </div>
                     </div>
-                    <input type="hidden" name="Codigo" value="-1">
+                    
                     <input type="hidden" name="Estado" value="Habilitado">
                 </div>
 
@@ -120,28 +127,30 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="CodigoSaber">Codigo del Saber:</label>
-                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el codigo del Saber." name="CodigoSaber" required>
+                            <label for="Codigo">Codigo del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el codigo del Saber." name="Codigo" required>
                         </div>
                         <div class="form-group">
                             <label for="Nombre">Descripción del Saber:</label>
-                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción del Saber." name="descripcion" id="editdescripcion" value="" required>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción del Saber." name="Descripcion" id="Descripcion" value="" required>
                         </div>
 
+                        <div class="form-group">                            
+                            @{ List<SelectListItem> lista = new List<SelectListItem>();
+                                lista.Add(new SelectListItem { Text = "Saber", Value ="Saber"});
+                                lista.Add(new SelectListItem { Text = "SaberSer", Value = "SaberSer" });
+                                lista.Add(new SelectListItem { Text = "SaberHacer", Value = "SaberHacer" });
+                                }    
+                            @Html.DropDownList("Logro", lista, new { @class = "form-control" })
+                        </div>
                         <div class="form-group">
-                            <label for="Nombre">Nivel de logre:</label>
-                            <p>Usted seleccionó: <span id="nivelid"></span></p>
-                            <select id="Nivel" name="Nivel" id="Nivel" required>
-                                <option value="Saber">Saber</option>
-                                <option value="SaberHacer">Saber Hacer</option>
-                                <option value="SaberSer">Saber Ser</option>
-                            </select>
+                            <label for="Porcentaje">Porcentaje del Saber:</label>
+                            <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el porcentaje del Saber." name="PorcentajeLogro" id="editporcentaje" value="" required>
                         </div>
                         <p>Al modificar esto, usted está aceptando que el Saber anterior será deshabilitada para dar paso a un nuevo Saber</p>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="editcomp" name="codigo" value="" />
                     <button type="submit" class="btn btn-primary">Modificar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -163,7 +172,7 @@
                     <p id="message">¿Estás seguro de que quieres Deshabilitar el Saber?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="deletecomp" name="codigo" value="" />
+                    <input type="hidden" id="deletesaber" name="Codigo" value=Codigo />
                     <button type="submit" class="btn btn-primary">Deshabilitar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -185,7 +194,7 @@
                     <p id="message">¿Estás seguro de que quieres Habilitar la Competencia?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="habcomp" name="codigo" value="" />
+                    <input type="hidden" id="habsaber" name="codigo" value="" />
                     <button type="submit" class="btn btn-primary">Habilitar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
