@@ -6,8 +6,8 @@ CREATE PROCEDURE sp_saber_crear
   	in_descripcion VARCHAR(256),
   	in_nivelLogro VARCHAR(256),
   	in_estado VARCHAR(256),
-  	in_porcentajeLogro INTEGER,
-	OUT out_codigo INTEGER
+  	in_porcentajeLogro INTEGER
+	
 )
 BEGIN
 
