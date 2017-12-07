@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaberesSyllabus.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,16 +8,16 @@ namespace SaberesySoluciones.Models
 {
     public class Clase
     {
-        public DateTime fecha { get; set; }
-        public TimeZone horario { get; set; }
-        public string tema { get; set; }
-        public string descripcion { get; set; }
-        public List<Saber> saberes { get; set; }
-        public EnumTipoClase tipo { get; set; }
+        public DateTime Fecha { get; set; }
+        public TimeZone Horario { get; set; }
+        public string Tema { get; set; }
+        public string Descripcion { get; set; }
+        public List<Saber> Saberes { get; set; }
+        public EnumTipoClase Tipo { get; set; }
 
         public Clase()
         {
-            this.saberes = new List<Saber>();
+            this.Saberes = new List<Saber>();
         }
     }
 }

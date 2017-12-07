@@ -10,7 +10,8 @@ namespace SaberesySoluciones.Repositories
 {
     public class DataSource
     {
-        private static string connStr = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+        //private static string connStr = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+        private static string connStr = "SERVER=localhost;DATABASE=syllabus;UID=root;PASSWORD=";
 
         public static DataSet GetDataSet(MySqlCommand command)
         {
