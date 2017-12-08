@@ -56,7 +56,7 @@ CREATE TABLE Competencia (
 
 CREATE TABLE Aprendizaje (
 	codigo INTEGER AUTO_INCREMENT,
-	subCategoria VARCHAR(1024) NOT NULL,
+	subCategoria VARCHAR(512) NOT NULL,
 	descripcion TEXT NOT NULL,
 	porcentajeLogro INTEGER NOT NULL,
 	estado TEXT NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE Aprendizaje (
 );
 
 CREATE TABLE Subcategoria (
-	subCategoria VARCHAR(1024),
+	subCategoria VARCHAR(512),
 	codigo INTEGER,
 	categoria VARCHAR(256),
 	PRIMARY KEY (subCategoria),

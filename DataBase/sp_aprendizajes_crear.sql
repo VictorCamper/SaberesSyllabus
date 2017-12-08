@@ -3,7 +3,7 @@ DROP PROCEDURE IF EXISTS sp_aprendizajes_crear $$
 CREATE PROCEDURE sp_aprendizajes_crear
 (
 	in_codigo INTEGER,
-  	in_subCategoria VARCHAR(1024),
+  	in_subCategoria VARCHAR(512),
   	in_descripcion VARCHAR(256),
   	in_porcentajeLogro INTEGER,
   	in_estado VARCHAR(256),

@@ -7477,7 +7477,7 @@
 									},
 									"name": "subCategoria",
 									"type": "VARCHAR",
-									"length": "1024",
+									"length": "512",
 									"primaryKey": false,
 									"foreignKey": true,
 									"referenceTo": {
@@ -8808,7 +8808,7 @@
 									},
 									"name": "subcategoria",
 									"type": "VARCHAR",
-									"length": "1024",
+									"length": "512",
 									"primaryKey": true,
 									"foreignKey": false,
 									"nullable": false,
