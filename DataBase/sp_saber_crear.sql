@@ -6,14 +6,13 @@ CREATE PROCEDURE sp_saber_crear
   	in_descripcion VARCHAR(256),
   	in_nivelLogro VARCHAR(256),
   	in_estado VARCHAR(256),
-  	in_porcentajeLogro INTEGER,
-	OUT out_codigo INTEGER
+  	in_porcentajeLogro INTEGER
+	
 )
 BEGIN
 
 	INSERT INTO saber(codigo, descripcion, nivelLogro, estado, porcentajeLogro)
 	VALUES (in_codigo, in_descripcion, in_nivelLogro, in_estado, in_porcentajeLogro);
 
-	SET out_codigo = LAST_INSERT_ID();
 END
 $$

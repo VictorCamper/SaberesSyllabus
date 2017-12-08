@@ -47,14 +47,14 @@ $(document).ready(function() {
                 <td>@comp.Intermedio</td>
                 <td>@comp.Avanzado</td>
                 <td style="vertical-align: middle">
-                    <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Descripcion', '@comp.Dominio', '@comp.Basico', '@comp.Intermedio', '@comp.Avanzado', '@comp.TiempoDesarrollo')">Modificar</a>
+                    <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Nombre', '@comp.Descripcion', '@comp.Dominio', '@comp.Basico', '@comp.Intermedio', '@comp.Avanzado', '@comp.TiempoDesarrollo')">Modificar</a>
                 </td>
                 <td style="vertical-align: middle">
-                    @if (@comp.Estado == EnumEstado.Habilitado)
+                    @if (@comp.Estado == "Habilitado")
                     {
                         <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@comp.Codigo')">Deshabilitar</a>
                     }
-                    @if (@comp.Estado == EnumEstado.Deshabilitado)
+                    @if (@comp.Estado == "Deshabilitado")
                     {
                         <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@comp.Codigo')">Habilitar</a>
                     }
@@ -73,8 +73,9 @@ $(document).ready(function() {
         document.getElementById("habcomp").setAttribute("value", idcomp);
     }
 
-    editmsj = function (idcod, descrp, nivel, basico, intermedio, avanzado, tiempod) {
+    editmsj = function (idcod, nom, descrp, nivel, basico, intermedio, avanzado, tiempod) {
         document.getElementById("editcomp").setAttribute("value", idcod);
+        document.getElementById("editnombre").setAttribute("value", nom);
         document.getElementById("editdescripcion").setAttribute("value", descrp);
         $("#nivelid").append(nivel);
         document.getElementById("editbasica").setAttribute("value", basico);
@@ -96,13 +97,17 @@ $(document).ready(function() {
             <div class="modal-body">
                 <div class="col-md-12">
                     <div class="form-group">
+                        <label for="Nombre">Nombre de la Competencia:</label>
+                        <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="Nombre" required>
+                    </div>
+                    <div class="form-group">
                         <label for="Nombre">Descripción de la Competencia:</label>
                         <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="Descripcion" required>
                     </div>
 
                     <div class="form-group">
                         <label for="Nombre">Nivel de la Competencia:</label>
-                        <select id="Nivel" name="nivel" required>
+                        <select id="Dominio" name="Dominio" required>
                             <option value="Basico">Basico</option>
                             <option value="Intermedio">Intermedio</option>
                             <option value="Avanzado">Avanzado</option>
@@ -151,14 +156,19 @@ $(document).ready(function() {
             <div class="modal-body">
                 <div class="col-md-12">
                     <div class="form-group">
+                        <label for="Nombre">Nombre de la Competencia:</label>
+                        <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="Nombre" id="editnombre" value="" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="Nombre">Descripción de la Competencia:</label>
-                        <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="descripcion" id="editdescripcion" value="" required>
+                        <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción de la Competencia." name="Descripcion" id="editdescripcion" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label for="Nombre">Nivel de la Competencia:</label>
                         <p>Usted seleccionó: <span id="nivelid"></span></p>
-                        <select id="Nivel" name="Nivel" id="Nivel" required>
+                        <select id="Dominio" name="Dominio" required>
                             <option value="Basico">Basico</option>
                             <option value="Intermedio">Intermedio</option>
                             <option value="Avanzado">Avanzado</option>
@@ -185,7 +195,7 @@ $(document).ready(function() {
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" id="editcomp" name="codigo" value="" />
+                <input type="hidden" id="editcomp" name="Codigo" value="" />
                 <button type="submit" class="btn btn-primary">Modificar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
