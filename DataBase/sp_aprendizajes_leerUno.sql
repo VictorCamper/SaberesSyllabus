@@ -1,10 +1,10 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_aprendizajes_leerUno $$
 CREATE PROCEDURE sp_aprendizajes_leerUno(
-	in_codigo VARCHAR(256)
+	in_codigo INTEGER
 )
 BEGIN
-	SELECT codigo, categoria, subCategoria, descripcion, porcentajeLogro, estado
+	SELECT codigo, subCategoria, descripcion, porcentajeLogro, estado
 	FROM aprendizaje
 	WHERE codigo = in_codigo;
 END

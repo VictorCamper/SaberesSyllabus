@@ -55,13 +55,26 @@ CREATE TABLE Competencia (
 );
 
 CREATE TABLE Aprendizaje (
-	codigo VARCHAR(256) NOT NULL,
-	categoria TEXT NOT NULL,
-	subCategoria TEXT NOT NULL,
+	codigo INTEGER AUTO_INCREMENT,
+	subCategoria VARCHAR(1024) NOT NULL,
 	descripcion TEXT NOT NULL,
 	porcentajeLogro INTEGER NOT NULL,
 	estado TEXT NOT NULL,
-	PRIMARY KEY (codigo)
+	PRIMARY KEY (codigo),
+	FOREIGN KEY (subCategoria) REFERENCES Subcategoria(subCategoria) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Subcategoria (
+	subCategoria VARCHAR(1024),
+	codigo INTEGER,
+	categoria VARCHAR(256),
+	PRIMARY KEY (subCategoria),
+	FOREIGN KEY (categoria) REFERENCES Categoria(categoria) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Categoria (
+	categoria VARCHAR(256),
+	PRIMARY KEY (categoria)
 );
 
 CREATE TABLE Saber (
@@ -160,7 +173,7 @@ CREATE TABLE Competencia_Curso (
 
 CREATE TABLE Competencia_Aprendizaje (
 	codigoCompetencia INTEGER NOT NULL,
-	codigoAprendizaje VARCHAR(256) NOT NULL,
+	codigoAprendizaje INTEGER NOT NULL,
 	FOREIGN KEY (codigoCompetencia) REFERENCES Competencia(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (codigoAprendizaje) REFERENCES Aprendizaje(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
