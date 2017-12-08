@@ -33,9 +33,9 @@ namespace SaberesySoluciones.Controllers
             return RedirectToAction("Index", "Saberes");
         }
 
+        [HttpPost]
         public ActionResult Editar(Saber saber)
         {
-
             Boolean result = Saberes.Editar(saber);
             return RedirectToAction("Index", "Saberes");
         }

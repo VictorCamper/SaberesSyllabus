@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages;
 using MySql.Data.MySqlClient;
 using SaberesSyllabus.Models;
 using SaberesySoluciones.Repositories;
@@ -15,15 +16,13 @@ namespace SaberesSyllabus.Repositories
         {
             try
             {
-                Enum.TryParse("Habilitado", out EnumEstado EEstado);
-                aprendizaje.Estado = EEstado;
                 var command = new MySqlCommand() { CommandText = "sp_aprendizajes_crear", CommandType = System.Data.CommandType.StoredProcedure };
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Codigo });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoria", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Categoria });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subCategoria", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.SubCategoria });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Descripcion });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_porcentajeLogro", Direction = System.Data.ParameterDirection.Input, Value = 0 });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Estado.ToString() });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = "Habilitado" });
                 DataSource.ExecuteProcedure(command);
 
                 return aprendizaje;
@@ -37,7 +36,40 @@ namespace SaberesSyllabus.Repositories
 
         public static bool Editar(Aprendizaje aprendizaje)
         {
-            return false;
+            Boolean estadoConsulta;
+            string codigoAnterior;
+
+            try
+            {
+                codigoAnterior = aprendizaje.Codigo;
+
+                aprendizaje = Crear(aprendizaje);
+                if (!aprendizaje.Codigo.IsEmpty())
+                {
+                    estadoConsulta = Deshabilitar(codigoAnterior);
+                    if (estadoConsulta == true)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            finally
+            {
+
+            }
         }
 
         public static bool Habilitar(string codigo)

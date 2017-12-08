@@ -252,6 +252,10 @@
     <Content Include="Views\Aprendizajes\Index.cshtml" />
     <Content Include="Views\Competencias\Index.cshtml" />
     <Content Include="Views\AprendizajeEnSaber\Index.cshtml" />
+    <Content Include="Views\Aprendizajes\_EditAprendizaje.cshtml" />
+    <Content Include="Views\Aprendizajes\_AddAprendizaje.cshtml" />
+    <Content Include="Views\Aprendizajes\_DisableAprendizaje.cshtml" />
+    <Content Include="Views\Aprendizajes\_EnableAprendizaje.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

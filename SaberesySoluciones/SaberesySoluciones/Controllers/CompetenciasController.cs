@@ -30,9 +30,9 @@ namespace SaberesySoluciones.Controllers
             return RedirectToAction("Index", "Competencias");
         }
 
+        [HttpPost]
         public ActionResult Editar(Competencia competencia)
         {
-            
             Boolean result = Competencias.Editar(competencia);
             return RedirectToAction("Index", "Competencias");
         }
