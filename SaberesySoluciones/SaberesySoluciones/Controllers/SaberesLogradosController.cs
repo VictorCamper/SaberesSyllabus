@@ -1,4 +1,5 @@
-﻿using SaberesySoluciones.Models;
+﻿using SaberesSyllabus.Models;
+using SaberesySoluciones.Models;
 using SaberesySoluciones.Repositories;
 using SaberesySoluciones.ViewModel;
 using System;
