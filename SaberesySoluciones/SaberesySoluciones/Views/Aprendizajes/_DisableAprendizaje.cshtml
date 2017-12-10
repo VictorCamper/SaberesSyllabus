@@ -1,23 +1,29 @@
-﻿<div class="modal fade" id="modalDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+﻿<div class="modal fade" id="modalDisableApren" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Deshabilitar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Deshabilitar Aprendizaje</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ¿Esta seguro de deshabilitar este aprendizaje?
+                ¿Está seguro de deshabilitar este aprendizaje?
             </div>
             <div class="modal-footer">
-            @using (Html.BeginForm("Deshabilitar", "Aprendizajes"))
-            {
-                <input type="hidden" id="disableapren" name="codigo" value="" />
-                <button type="submit" class="btn btn-primary">Deshabilitar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            }
+                @using (Html.BeginForm("Deshabilitar", "Aprendizajes"))
+                {
+                    <input type="hidden" id="disableapren" name="codigo" value="" />
+                    <button type="submit" class="btn btn-primary">Deshabilitar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                }
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    disable = function (idapren) {
+        document.getElementById("disableapren").setAttribute("value", idapren);
+    }
+</script>

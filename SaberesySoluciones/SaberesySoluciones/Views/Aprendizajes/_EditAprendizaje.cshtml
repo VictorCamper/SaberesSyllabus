@@ -1,35 +1,34 @@
-﻿<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+﻿@using SaberesSyllabus.Repositories
+@using SaberesySoluciones.Models
+<div class="modal fade" id="modalEditApren" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Aprendizaje</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            @using (Html.BeginForm("Editar", "Aprendizajes"))
+            @using (Html.BeginForm("EditarAprendizaje", "Aprendizajes"))
             {
                 <div class="modal-body">
-
+                    
+                    @{
+                        List<Categoria> cats = Aprendizajes.LeerCategorias();
+                    }
                     <div class="form-group">
-                        <label for="editcod">Código:</label>
-                        <input id="editcod" maxlength="255" type="text" min="0" class="form-control" name="Codigo" value="" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editcat">Categoría:</label>
-                        <input id="editcat" maxlength="255" type="text" min="0" class="form-control" name="Categoria" value="" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editsubcat">Subcategoría:</label>
-                        <input id="editsubcat" maxlength="255" type="text" min="0" class="form-control" name="Subcategoria" value="" required>
+                        <select class="form-control" id="Aprendizajes" name="Aprendizajes" onchange="catselected()" required>
+                            @foreach (Categoria c in cats)
+                            {
+                                <option value="@c.Nombre">@c.Nombre</option>
+                            }
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="editdesc">Descripción:</label>
-                        <textarea id="editdesc" class="form-control" name="Descripcion" value="" rows="3"  required></textarea>
+                        <textarea id="editdesc" class="form-control" name="Descripcion" value="" rows="3" required></textarea>
 
                     </div>
 
@@ -42,3 +41,15 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    editApren = function (cod, desc) {
+        document.getElementById("editaprencod").setAttribute("value", cod);
+        document.getElementById("editaprendesc").setAttribute("value", desc);
+    }
+
+    catselected()
+    {
+        document.getElementById("Aprendizajes").getAttribute();
+    }
+</script>

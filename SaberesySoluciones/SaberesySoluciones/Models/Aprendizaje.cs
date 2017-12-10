@@ -8,9 +8,7 @@ namespace SaberesySoluciones.Models
 {
     public class Aprendizaje
     {
-        public string Codigo { get; set; }
-        public string Categoria { get; set; }
-        public string SubCategoria { get; set; }
+        public int Codigo { get; set; }
         public string Descripcion { get; set; }
         public List<Saber> Saberes { get; set; }
         public EnumEstado Estado { get; set;}

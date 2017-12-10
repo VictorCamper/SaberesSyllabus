@@ -4,7 +4,7 @@ CREATE PROCEDURE sp_aprendizajes_leerUno(
 	in_codigo INTEGER
 )
 BEGIN
-	SELECT codigo, subCategoria, descripcion, porcentajeLogro, estado
+	SELECT codigo, ref_subCategoria, descripcion, porcentajeLogro, estado
 	FROM aprendizaje
 	WHERE codigo = in_codigo;
 END

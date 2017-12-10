@@ -15,27 +15,76 @@ namespace SaberesySoluciones.Controllers
         // GET: Aprendizajes
         public ActionResult Index()
         {
-            List<Aprendizaje> aprendizajes = Aprendizajes.LeerTodo();
-
-            if (aprendizajes == null)
+            List<Categoria> categorias = Aprendizajes.LeerCategorias();
+            if (categorias == null)
             {
-                aprendizajes = new List<Aprendizaje>();
+                categorias = new List<Categoria>();
             }
+            foreach (Categoria cat in categorias)
+            {
+                cat.Subcategorias = Aprendizajes.LeerSubCategorias(cat.Nombre);
+                
+                //Ordenar las subcategorias según el codigo para evitar que se vean desordenadas :)
+                cat.Subcategorias.Sort((x,y)=>x.Codigo.CompareTo(y.Codigo));
 
-            return View(aprendizajes);
+                if (cat.Subcategorias == null)
+                {
+                    cat.Subcategorias = new List<Subcategoria>();
+                }
+                foreach (Subcategoria subcat in cat.Subcategorias)
+                {
+                    subcat.Aprendizajes = Aprendizajes.LeerAprendizajes(subcat.Nombre);
+                    if (subcat.Aprendizajes == null)
+                    {
+                        subcat.Aprendizajes = new List<Aprendizaje>();
+                    }
+                }
+            }
+            
+            
+
+            return View(categorias);
         }
 
         [HttpPost]
-        public ActionResult Crear(Aprendizaje aprendizaje)
+        public ActionResult CrearAprendizaje(Aprendizaje aprendizaje, string subcategoria)
         {
-            aprendizaje = Aprendizajes.Crear(aprendizaje);
+            aprendizaje = Aprendizajes.Crear(aprendizaje, subcategoria);
             return RedirectToAction("Index", "Aprendizajes");
         }
 
         [HttpPost]
-        public ActionResult Editar(Aprendizaje aprendizaje)
+        public ActionResult CrearSubcategoria(Subcategoria subcategoria, string categoria)
         {
-            Boolean result = Aprendizajes.Editar(aprendizaje);
+            subcategoria = Aprendizajes.CrearSubcategoria(subcategoria, categoria);
+            return RedirectToAction("Index", "Aprendizajes");
+        }
+
+        [HttpPost]
+        public ActionResult CrearCategoria(Categoria categoria)
+        {
+            categoria = Aprendizajes.CrearCategoria(categoria);
+            return RedirectToAction("Index", "Aprendizajes");
+        }
+
+        [HttpPost]
+        public ActionResult EditarAprendizaje(Aprendizaje aprendizaje, string subcategoria)
+        {
+            Boolean result = Aprendizajes.Editar(aprendizaje, subcategoria);
+            return RedirectToAction("Index", "Aprendizajes");
+        }
+
+        [HttpPost]
+        public ActionResult EditarCategoria(Categoria categoria, string categoriaprev)
+        {
+            Boolean result = Aprendizajes.EditarCategoria(categoria, categoriaprev);
+            return RedirectToAction("Index", "Aprendizajes");
+        }
+
+        [HttpPost]
+        public ActionResult EditarSubcategoria(Subcategoria subcategoria, string subcategoriaprev)
+        {
+            Boolean result = Aprendizajes.EditarSubcategoria(subcategoria, subcategoriaprev);
             return RedirectToAction("Index", "Aprendizajes");
         }
 
@@ -43,7 +92,6 @@ namespace SaberesySoluciones.Controllers
         public ActionResult Deshabilitar(Aprendizaje aprendizaje)
         {
             Boolean resultadoConsulta = Aprendizajes.Deshabilitar(aprendizaje.Codigo);
-
             return RedirectToAction("Index", "Aprendizajes");
         }
 
@@ -52,6 +100,22 @@ namespace SaberesySoluciones.Controllers
         {
             Boolean resultadoConsulta = Aprendizajes.Habilitar(aprendizaje.Codigo);
             return RedirectToAction("Index", "Aprendizajes");
+        }
+
+        public JsonResult GetListSubcategorias(string selection)
+        {
+            List<Categoria> categorias = Aprendizajes.LeerCategorias();
+            List<Subcategoria> list = new List<Subcategoria>();
+            foreach (Categoria categoria in categorias)
+            {
+                if (categoria.Nombre == selection)
+                {
+                    list = Aprendizajes.LeerSubCategorias(categoria.Nombre);
+                    break;
+                }
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

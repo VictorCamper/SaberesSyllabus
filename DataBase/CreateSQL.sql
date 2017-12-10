@@ -54,27 +54,27 @@ CREATE TABLE Competencia (
 	PRIMARY KEY (codigo)
 );
 
+CREATE TABLE Categoria (
+	categoria VARCHAR(256) NOT NULL,
+	PRIMARY KEY (categoria)
+);
+
+CREATE TABLE Subcategoria (
+	subcategoria VARCHAR(512) NOT NULL,
+	ref_categoria VARCHAR(256) NOT NULL,
+	codigo INTEGER NOT NULL,	
+	PRIMARY KEY (subcategoria),
+	FOREIGN KEY (ref_categoria) REFERENCES Categoria(categoria) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE Aprendizaje (
 	codigo INTEGER AUTO_INCREMENT,
-	subCategoria VARCHAR(512) NOT NULL,
+	ref_subcategoria VARCHAR(512) NOT NULL,
 	descripcion TEXT NOT NULL,
 	porcentajeLogro INTEGER NOT NULL,
 	estado TEXT NOT NULL,
 	PRIMARY KEY (codigo),
-	FOREIGN KEY (subCategoria) REFERENCES Subcategoria(subCategoria) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE Subcategoria (
-	subCategoria VARCHAR(512),
-	codigo INTEGER,
-	categoria VARCHAR(256),
-	PRIMARY KEY (subCategoria),
-	FOREIGN KEY (categoria) REFERENCES Categoria(categoria) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE Categoria (
-	categoria VARCHAR(256),
-	PRIMARY KEY (categoria)
+	FOREIGN KEY (ref_subcategoria) REFERENCES Subcategoria(subcategoria) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Saber (
@@ -115,7 +115,7 @@ CREATE TABLE Alumno (
 );
 
 CREATE TABLE Aprendizaje_Saber (
-	codigoAprendizaje VARCHAR(256) NOT NULL,
+	codigoAprendizaje INTEGER NOT NULL,
 	codigoSaber VARCHAR(256) NOT NULL,
 	FOREIGN KEY (codigoAprendizaje) REFERENCES Aprendizaje(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (codigoSaber) REFERENCES Saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
