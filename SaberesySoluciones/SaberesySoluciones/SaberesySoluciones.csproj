@@ -251,6 +251,7 @@
     <Content Include="Views\Evaluacion\Index.cshtml" />
     <Content Include="Views\Clases\Index.cshtml" />
     <Content Include="Views\Clases\Crear.cshtml" />
+    <Content Include="Views\Clases\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

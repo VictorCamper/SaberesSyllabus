@@ -46,5 +46,20 @@ namespace SaberesySoluciones.Controllers
             c.EliminarSucursal(c.codigo);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Editar(long id)
+        {
+            Clase clase = new Clase();
+            clase.Seleccionar(id);
+            return View(clase);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Clase clase)
+        {
+            //clase.GuardarCambios();
+            return RedirectToAction("Index");
+        }
     }
 }
