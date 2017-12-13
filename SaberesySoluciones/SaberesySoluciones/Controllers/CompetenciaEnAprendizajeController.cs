@@ -14,7 +14,7 @@ namespace SaberesySoluciones.Controllers
         // GET: CompetenciaEnAprendizaje
         public ActionResult Index()
         {
-            CompetenciaEnAprendizajeController competenciaAprendizaje = new CompetenciaEnAprendizajeController();
+            CompetenciaEnAprendizajesController competenciaAprendizaje = new CompetenciaEnAprendizajesController();
 
             return View(competenciaAprendizaje);
         }

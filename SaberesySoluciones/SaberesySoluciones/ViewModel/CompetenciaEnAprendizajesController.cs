@@ -7,13 +7,13 @@ using SaberesSyllabus.Models;
 
 namespace SaberesySoluciones.ViewModel
 {
-    public class CompetenciaEnAprendizajeController 
+    public class CompetenciaEnAprendizajesController
     {
         public List<Competencia> competencias { get; set; }
         public List<Aprendizaje> aprendizajes { get; set; }
         public List<Aprendizaje> aprendizajeDeCompentencia { get; set; }
 
-        public CompetenciaEnAprendizajeController()
+        public CompetenciaEnAprendizajesController()
         {
             this.competencias = new List<Competencia>();
             this.aprendizajes = new List<Aprendizaje>();

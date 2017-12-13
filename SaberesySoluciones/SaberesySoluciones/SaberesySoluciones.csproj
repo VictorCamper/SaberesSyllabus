@@ -200,7 +200,7 @@
     <Compile Include="Repositories\Unidad.cs" />
     <Compile Include="ViewModel\AprendizajeEnSaberesController.cs" />
     <Compile Include="ViewModel\AprendizajesViewModel.cs" />
-    <Compile Include="ViewModel\CompetenciaEnAprendizajeController.cs" />
+    <Compile Include="ViewModel\CompetenciaEnAprendizajesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
