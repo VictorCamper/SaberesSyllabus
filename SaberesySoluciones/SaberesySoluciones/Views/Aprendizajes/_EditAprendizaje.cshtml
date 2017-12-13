@@ -18,7 +18,7 @@
                         List<Categoria> cats = Aprendizajes.LeerCategorias();
                     }
                     <div class="form-group">
-                        <select class="form-control" id="Aprendizajes" name="Aprendizajes" onchange="catselected()" required>
+                        <select class="form-control" id="Aprendizajes" name="Aprendizajes" onchange="getsubcatgorias()" required>
                             @foreach (Categoria c in cats)
                             {
                                 <option value="@c.Nombre">@c.Nombre</option>
@@ -48,8 +48,5 @@
         document.getElementById("editaprendesc").setAttribute("value", desc);
     }
 
-    catselected()
-    {
-        document.getElementById("Aprendizajes").getAttribute();
-    }
+   
 </script>
