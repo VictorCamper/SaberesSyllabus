@@ -25,6 +25,7 @@ namespace SaberesySoluciones.Repositories
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_avanzado", Direction = System.Data.ParameterDirection.Input, Value = competencia.Avanzado });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_tiempoDesarrollo", Direction = System.Data.ParameterDirection.Input, Value = competencia.TiempoDesarrollo });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = competencia.Estado });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_porcentajeLogro", Direction = System.Data.ParameterDirection.Input, Value = 0 });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
                 var datos = DataSource.ExecuteProcedure(command);
 

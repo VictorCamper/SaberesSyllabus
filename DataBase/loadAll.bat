@@ -1,9 +1,9 @@
 SETLOCAL
 SET directory=.
-SET mysqldir="directory here
+SET mysqldir="C:\wamp\bin\mysql\mysql5.7.19\bin
 SET user=root
 SET pwd=
-SET dbname=
+SET dbname=syllabus
 SET server=localhost
 
 for %%f in (.\*.sql) do %mysqldir%\mysql" --user=%user% --password=%pwd% --host=%server% %dbname% < %%f
