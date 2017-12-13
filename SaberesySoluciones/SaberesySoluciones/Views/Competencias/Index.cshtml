@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
 </script>
 
-<a href="" id="btn-add" class="btn btn-primary" data-title="add" data-toggle="modal" data-target="#add" style="margin-bottom:10px">Agregar</a>
+<a href="" id="btn-add" class="btn btn-primary btn-sm" data-title="add" data-toggle="modal" data-target="#add" style="margin-bottom:10px">Agregar</a>
 
 <table class="table table-striped table-hover table-bordered">
     <thead class="thead-dark">
@@ -47,16 +47,16 @@ $(document).ready(function() {
                 <td>@comp.Intermedio</td>
                 <td>@comp.Avanzado</td>
                 <td style="vertical-align: middle">
-                    <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Nombre', '@comp.Descripcion', '@comp.Dominio', '@comp.Basico', '@comp.Intermedio', '@comp.Avanzado', '@comp.TiempoDesarrollo')">Modificar</a>
+                    <a href="" id="btn-edit" class="btn btn-warning btn-sm" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@comp.Codigo', '@comp.Nombre', '@comp.Descripcion', '@comp.Dominio', '@comp.Basico', '@comp.Intermedio', '@comp.Avanzado', '@comp.TiempoDesarrollo')">Modificar</a>
                 </td>
                 <td style="vertical-align: middle">
                     @if (@comp.Estado == "Habilitado")
                     {
-                        <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@comp.Codigo')">Deshabilitar</a>
+                        <a href="" id="btn-delete" class="btn btn-danger btn-sm" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@comp.Codigo')">Deshabilitar</a>
                     }
                     @if (@comp.Estado == "Deshabilitado")
                     {
-                        <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@comp.Codigo')">Habilitar</a>
+                        <a href="" id="btn-delete" class="btn btn-danger btn-sm" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@comp.Codigo')">Habilitar</a>
                     }
                 </td>
 
@@ -168,7 +168,7 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="Nombre">Nivel de la Competencia:</label>
                         <p>Usted seleccionó: <span id="nivelid"></span></p>
-                        <select id="Nivel" name="Nivel" required>
+                        <select id="Dominio" name="Dominio" required>
                             <option value="Basico">Basico</option>
                             <option value="Intermedio">Intermedio</option>
                             <option value="Avanzado">Avanzado</option>

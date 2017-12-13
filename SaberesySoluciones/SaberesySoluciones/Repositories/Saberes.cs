@@ -19,14 +19,15 @@ namespace SaberesySoluciones.Repositories
             {
                 Enum.TryParse("Habilitado", out EnumEstado EEstado);
                 saber.Estado = EEstado;
-                var command = new MySqlCommand() { CommandText = "sp_saberes_crear", CommandType = System.Data.CommandType.StoredProcedure };
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = saber.Descripcion });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivelLogro", Direction = System.Data.ParameterDirection.Input, Value = saber.Logro });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = saber.Estado });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
-                var datos = DataSource.ExecuteProcedure(command);
 
-                saber.Codigo = Convert.ToString(datos.Parameters["out_codigo"].Value);
+                var command = new MySqlCommand() { CommandText = "sp_saber_crear", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = saber.Codigo });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = saber.Descripcion });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_nivelLogro", Direction = System.Data.ParameterDirection.Input, Value = saber.Logro.ToString() });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = saber.Estado.ToString() });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_porcentajeLogro", Direction = System.Data.ParameterDirection.Input, Value = saber.PorcentajeLogro });
+                DataSource.ExecuteProcedure(command);
+                
                 return saber;
             }
             catch (Exception ex)
@@ -121,7 +122,7 @@ namespace SaberesySoluciones.Repositories
         {
             try
             {
-                var command = new MySqlCommand() { CommandText = "sp_saberes_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
+                var command = new MySqlCommand() { CommandText = "sp_saber_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
                 var datos = DataSource.GetDataSet(command);
 
                 List<Saber> comps = new List<Saber>();
@@ -131,14 +132,15 @@ namespace SaberesySoluciones.Repositories
                     {
                         var prodData = row;
                         
-                        Enum.TryParse(prodData["nivelLogro"].ToString(), out EnumLogros ELogro);
+                        Enum.TryParse(prodData["nivelLogro"].ToString(), out EnumLogro ELogro);
                         Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
                         var sabe = new Saber()
                         {
                             Codigo = Convert.ToString(prodData["codigo"]),
                             Descripcion = prodData["descripcion"].ToString(),
                             Logro = ELogro,
-                            Estado = EEstado
+                            Estado = EEstado,
+                            PorcentajeLogro = prodData["porcentajeLogro"].ToString()
                         };
                         comps.Add(sabe);
                     }
@@ -171,14 +173,16 @@ namespace SaberesySoluciones.Repositories
                     {
                         var prodData = row;
 
-                        Enum.TryParse(prodData["nivelLogro"].ToString(), out EnumLogros ELogro);
+                        Enum.TryParse(prodData["nivelLogro"].ToString(), out EnumLogro ELogro);
                         Enum.TryParse("Habilitado", out EnumEstado EEstado);
                         var sabe = new Saber()
                         {
                             Codigo = Convert.ToString(prodData["codigo"]),
                             Descripcion = prodData["descripcion"].ToString(),
                             Logro = ELogro,
-                            Estado = EEstado
+                            Estado = EEstado,
+                            PorcentajeLogro = prodData["porcentajeLogro"].ToString()
+
                         };
                         comps.Add(sabe);
                     }
