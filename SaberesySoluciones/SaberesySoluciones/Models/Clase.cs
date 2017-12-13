@@ -121,6 +121,13 @@ namespace SaberesySoluciones.Models
                 this.tipoClase = "Ayudantia";
             }
 
+            HorariosString();
+
+            this.codigo = Convert.ToInt64(dr["codigo"].ToString());
+        }
+
+        public void HorariosString()
+        {
             //horas
             if (this.horaInicioText.Equals("1"))
             {
@@ -130,9 +137,89 @@ namespace SaberesySoluciones.Models
             {
                 this.horaTerminoText = "09:30:00";
             }
+            if (this.horaInicioText.Equals("2"))
+            {
+                this.horaInicioText = "09:40:00";
+            }
+            if (this.horaTerminoText.Equals("2"))
+            {
+                this.horaTerminoText = "10:40:00";
+            }
+            if (this.horaInicioText.Equals("3"))
+            {
+                this.horaInicioText = "10:50:00";
+            }
+            if (this.horaTerminoText.Equals("3"))
+            {
+                this.horaTerminoText = "11:50:00";
+            }
+            if (this.horaInicioText.Equals("4"))
+            {
+                this.horaInicioText = "12:00:00";
+            }
+            if (this.horaTerminoText.Equals("4"))
+            {
+                this.horaTerminoText = "13:00:00";
+            }
+            if (this.horaInicioText.Equals("5"))
+            {
+                this.horaInicioText = "13:10:00";
+            }
+            if (this.horaTerminoText.Equals("5"))
+            {
+                this.horaTerminoText = "14:10:00";
+            }
+            if (this.horaInicioText.Equals("6"))
+            {
+                this.horaInicioText = "14:20:00";
+            }
+            if (this.horaTerminoText.Equals("6"))
+            {
+                this.horaTerminoText = "15:20:00";
+            }
+            if (this.horaInicioText.Equals("7"))
+            {
+                this.horaInicioText = "15:30:00";
+            }
+            if (this.horaTerminoText.Equals("7"))
+            {
+                this.horaTerminoText = "16:30:00";
+            }
+            if (this.horaInicioText.Equals("8"))
+            {
+                this.horaInicioText = "16:40:00";
+            }
+            if (this.horaTerminoText.Equals("8"))
+            {
+                this.horaTerminoText = "17:40:00";
+            }
+            if (this.horaInicioText.Equals("9"))
+            {
+                this.horaInicioText = "17:50:00";
+            }
+            if (this.horaTerminoText.Equals("1"))
+            {
+                this.horaTerminoText = "18:50:00";
+            }
+            if (this.horaInicioText.Equals("10"))
+            {
+                this.horaInicioText = "19:00:00";
+            }
+            if (this.horaTerminoText.Equals("10"))
+            {
+                this.horaTerminoText = "20:00:00";
+            }
+            if (this.horaInicioText.Equals("11"))
+            {
+                this.horaInicioText = "20:10:00";
+            }
+            if (this.horaTerminoText.Equals("11"))
+            {
+                this.horaTerminoText = "21:10:00";
+            }
 
-            this.codigo = Convert.ToInt64(dr["codigo"].ToString());
         }
+
 
         public void Seleccionar(long id)
         {
@@ -224,12 +311,6 @@ namespace SaberesySoluciones.Models
 
     public enum BloquesHoras
     {
-        //[Description("Clase")]
-        //Clase,
-        //[Description("Laboratorio")]
-        //Laboratorio,
-        //[Description("Ayudantia")]
-        //Ayudantia,
         Bloque1 = 1,
         Bloque2 = 2,
         Bloque3 = 3,
@@ -238,7 +319,9 @@ namespace SaberesySoluciones.Models
         Bloque6 = 6,
         Bloque7 = 7,
         Bloque8 = 8,
-        Bloque9 = 9
+        Bloque9 = 9,
+        Bloque10 = 10,
+        Bloque11 = 11
 
     }
 }
