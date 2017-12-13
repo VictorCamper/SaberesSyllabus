@@ -48,7 +48,7 @@ namespace SaberesySoluciones.Repositories
                 var command = new MySqlCommand() { CommandText = "sp_saberes_habilitar_deshabilitar", CommandType = System.Data.CommandType.StoredProcedure };
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_id", Direction = System.Data.ParameterDirection.Input, Value = id });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = "Deshabilitado" });
-                var datos = DataSource.ExecuteProcedure(command);
+                DataSource.ExecuteProcedure(command);
                 return true;
             }
             catch (Exception ex)
@@ -129,7 +129,7 @@ namespace SaberesySoluciones.Repositories
                 var command = new MySqlCommand() { CommandText = "sp_saber_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
                 var datos = DataSource.GetDataSet(command);
 
-                List<Saber> comps = new List<Saber>();
+                List<Saber> sabers = new List<Saber>();
                 if (datos.Tables[0].Rows.Count > 0)
                 {
                     foreach (System.Data.DataRow row in datos.Tables[0].Rows)
@@ -144,12 +144,13 @@ namespace SaberesySoluciones.Repositories
                             Descripcion = prodData["descripcion"].ToString(),
                             Logro = ELogro,
                             Estado = EEstado,
-                            PorcentajeLogro = prodData["porcentajeLogro"].ToString()
+                            PorcentajeLogro = prodData["porcentajeLogro"].ToString(),
+                            Id = Convert.ToInt32(prodData["id"])
                         };
-                        comps.Add(sabe);
+                        sabers.Add(sabe);
                     }
                 }
-                return comps;
+                return sabers;
             }
             catch (Exception ex)
             {
@@ -170,7 +171,7 @@ namespace SaberesySoluciones.Repositories
                 var command = new MySqlCommand() { CommandText = "sp_saber_leerHabilitados", CommandType = System.Data.CommandType.StoredProcedure };
                 var datos = DataSource.GetDataSet(command);
 
-                List<Saber> comps = new List<Saber>();
+                List<Saber> sabers = new List<Saber>();
                 if (datos.Tables[0].Rows.Count > 0)
                 {
                     foreach (System.Data.DataRow row in datos.Tables[0].Rows)
@@ -185,13 +186,14 @@ namespace SaberesySoluciones.Repositories
                             Descripcion = prodData["descripcion"].ToString(),
                             Logro = ELogro,
                             Estado = EEstado,
-                            PorcentajeLogro = prodData["porcentajeLogro"].ToString()
+                            PorcentajeLogro = prodData["porcentajeLogro"].ToString(),
+                            Id = Convert.ToInt32(prodData["id"])
 
                         };
-                        comps.Add(sabe);
+                        sabers.Add(sabe);
                     }
                 }
-                return comps;
+                return sabers;
             }
             catch (Exception ex)
             {

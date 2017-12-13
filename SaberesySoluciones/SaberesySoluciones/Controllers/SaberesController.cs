@@ -41,19 +41,19 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult Deshabilitar(int id)
+        public ActionResult Deshabilitar(int Id)
         {
             Boolean resultadoConsulta;
-            resultadoConsulta = Saberes.Deshabilitar(id);
+            resultadoConsulta = Saberes.Deshabilitar(Id);
 
             return RedirectToAction("Index", "Saberes");
         }
 
         [HttpPost]
-        public ActionResult Habilitar(int id)
+        public ActionResult Habilitar(int Id)
         {
             Boolean resultadoConsulta;
-            resultadoConsulta = Saberes.Habilitar(id);
+            resultadoConsulta = Saberes.Habilitar(Id);
             return RedirectToAction("Index", "Saberes");
         }
     }
