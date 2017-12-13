@@ -13,5 +13,6 @@ namespace SaberesSyllabus.Models
         public EnumLogro Logro { get; set; }
         public EnumEstado Estado { get; set; }
         public string PorcentajeLogro { get; set; }
+        public int Id { get; set; }
     }
 }
