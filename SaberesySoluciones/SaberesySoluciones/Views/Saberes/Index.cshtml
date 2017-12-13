@@ -39,16 +39,16 @@
             <td>@sabe.Logro</td>
             <td style="text-align:justify">@sabe.PorcentajeLogro</td>
             <td style="vertical-align: middle">
-                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Codigo', '@sabe.Descripcion', '@sabe.Logro', '@sabe.PorcentajeLogro')">Modificar</a>
+                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Id', '@sabe.Descripcion', '@sabe.Logro', '@sabe.PorcentajeLogro')">Modificar</a>
             </td>
             <td style="vertical-align: middle">
                 @if (@sabe.Estado == EnumEstado.Habilitado)
                 {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@sabe.Codigo')">Deshabilitar</a>
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@sabe.Id')">Deshabilitar</a>
                 }
                 @if (@sabe.Estado == EnumEstado.Deshabilitado)
                 {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@sabe.Codigo')">Habilitar</a>
+                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@sabe.Id')">Habilitar</a>
                 }
             </td>
 
@@ -64,8 +64,8 @@
         document.getElementById("habsaber").setAttribute("value", idSaber);
     }
 
-    editmsj = function (idcod, descrp, nivel) {
-        document.getElementById("editcomp").setAttribute("value", idcod);
+    editmsj = function (Id, descrp, nivel) {
+        document.getElementById("editsaber").setAttribute("value", Id);
         document.getElementById("editdescripcion").setAttribute("value", descrp);
         $("#nivelid").append(nivel);
     }
@@ -103,7 +103,7 @@
                             <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el porcentaje del Saber." name="PorcentajeLogro" required>
                         </div>
                     </div>
-                    
+                    <input type="hidden" name="Id" value="-1">
                     <input type="hidden" name="Estado" value="Habilitado">
                 </div>
 
@@ -151,6 +151,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" id="editsaber" name="Id" value="" />
                     <button type="submit" class="btn btn-primary">Modificar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -172,7 +173,7 @@
                     <p id="message">¿Estás seguro de que quieres Deshabilitar el Saber?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="deletesaber" name="Codigo" value=Codigo />
+                    <input type="hidden" id="deletesaber" name="Id" value="" />
                     <button type="submit" class="btn btn-primary">Deshabilitar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -194,7 +195,7 @@
                     <p id="message">¿Estás seguro de que quieres Habilitar la Competencia?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="habsaber" name="codigo" value="" />
+                    <input type="hidden" id="habsaber" name="Id" value="" />
                     <button type="submit" class="btn btn-primary">Habilitar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
