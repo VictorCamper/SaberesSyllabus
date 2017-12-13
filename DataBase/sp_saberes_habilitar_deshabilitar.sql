@@ -2,8 +2,8 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_saberes_habilitar_deshabilitar $$ 
 CREATE PROCEDURE sp_saberes_habilitar_deshabilitar 
 ( 
-  in_codigo VARCHAR(256), 
-  in_estado VARCHAR(256) 
+  in_codigo VARCHAR(250), 
+  in_estado VARCHAR(250) 
    
 ) 
 BEGIN 
