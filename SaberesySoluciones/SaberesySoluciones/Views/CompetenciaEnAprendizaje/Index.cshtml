@@ -1,4 +1,6 @@
-﻿@model SaberesySoluciones.ViewModel.CompetenciaEnAprendizajesController
+﻿@using SaberesySoluciones.Models
+@model SaberesySoluciones.ViewModel.CompetenciaEnAprendizajesController
+
 @{
     ViewBag.Title = "Agregar Aprendizajes a una Competencia";
 }
@@ -11,19 +13,18 @@
         <div class="row">
             <div class="col">
                 <select id="Competencia" name="Competencia" required>
-                    @if (Model.competencias != null)
-                    {
-                        foreach (var competencia in Model.competencias)
+
+                        @foreach (Competencia competencia in Model.ListaCompetencias)
                         {
-                            <option value="@competencia.Codigo">@competencia.Descripcion</option>
+                            <option value="@competencia.Codigo"> @competencia.Descripcion</option>
                         }
                         <option value="Nada">...</option>
-                    }
+
                 </select>
 
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-primary">Cargar Competencia</button>
+                <button type="submit" class="btn btn-primary btn-sm" >Cargar Competencia</button>
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var aprendizaje in Model.aprendizajes)
+                            @foreach (Aprendizaje aprendizaje in Model.ListaAprendizajes)
                             {
                                 <tr>
                                     <td>@aprendizaje.Codigo</td>
@@ -71,7 +72,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            @foreach (var aprendizaje in Model.aprendizajeDeCompentencia)
+                            @foreach (Aprendizaje aprendizaje in Model.ListaAprendizajeDeCompentencia)
                             {
                                 <tr>
                                     <td>@aprendizaje.Codigo</td>

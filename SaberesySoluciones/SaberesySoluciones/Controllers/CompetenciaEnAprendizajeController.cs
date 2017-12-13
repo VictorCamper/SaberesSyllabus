@@ -1,6 +1,7 @@
 ﻿using SaberesSyllabus.Models;
 using SaberesySoluciones.Models;
 using SaberesySoluciones.ViewModel;
+using SaberesySoluciones.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,6 @@ namespace SaberesySoluciones.Controllers
         public ActionResult Index()
         {
             CompetenciaEnAprendizajesController competenciaAprendizaje = new CompetenciaEnAprendizajesController();
-
             return View(competenciaAprendizaje);
         }
 
