@@ -35,5 +35,7 @@ namespace SaberesySoluciones.ViewModel
             //this.ListaAprendizajeDeCompentencia = Aprendizajes.LeerAprendizajesDeCompetencia(Codigo);
         }
 
+        
+
     }
 }
