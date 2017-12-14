@@ -20,10 +20,20 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult CargarAprendizajes(String codigo)
+        public ActionResult AgregarAprendizajeCompetencia(int Competencia, string Aprendizaje)
         {
+            CompetenciaEnAprendizajesController competenciaAprendizajes = new CompetenciaEnAprendizajesController();
 
-            return RedirectToAction("Index", "CompetenciaEnAprendizajeController ");
+            return View("Index", competenciaAprendizajes);
+        }
+
+        [HttpPost]
+        public ActionResult SeleccionarCompetencia(int Competencia) {
+
+            CompetenciaEnAprendizajesController competenciaAprendizaje = new CompetenciaEnAprendizajesController(Competencia);
+            return View("Index",competenciaAprendizaje);
         }
     }
+
+
 }

@@ -22,8 +22,18 @@ namespace SaberesySoluciones.ViewModel
             this.ListaAprendizajeDeCompentencia = new List<Aprendizaje>();
             ListaCompetencias = Competencias.LeerTodo();
             ListaAprendizajes = Aprendizajes.LeerHabilitados();
+            
         }
 
+        public CompetenciaEnAprendizajesController(int Codigo)
+        {
+            this.ListaCompetencias = new List<Competencia>();
+            this.ListaAprendizajes = new List<Aprendizaje>();
+            this.ListaAprendizajeDeCompentencia = new List<Aprendizaje>();
+            ListaCompetencias = Competencias.LeerTodo();
+            ListaAprendizajes = Aprendizajes.LeerHabilitados();
+            //this.ListaAprendizajeDeCompentencia = Aprendizajes.LeerAprendizajesDeCompetencia(Codigo);
+        }
 
     }
 }

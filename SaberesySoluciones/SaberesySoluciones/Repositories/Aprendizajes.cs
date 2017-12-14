@@ -154,6 +154,25 @@ namespace SaberesSyllabus.Repositories
             return null;
         }
 
+        public static bool CrearCompetenciaAprendizaje(int Codigo, string CodAprendizaje)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizaje_crearrelacion()", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigoCompetencia", Direction = System.Data.ParameterDirection.Input, Value = Codigo });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigoAprendizaje", Direction = System.Data.ParameterDirection.Input, Value = CodAprendizaje });
+                DataSource.ExecuteProcedure(command);
+                return true;
+            }   
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            
+            
+        }
+
         public static List<Aprendizaje> LeerAprendizajesDeCompetencia(int Codigo)
         {
             try

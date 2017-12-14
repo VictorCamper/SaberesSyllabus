@@ -7,13 +7,14 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Crear", "CompetenciaEnAprendizaje", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:none", @class = "col-offset-2" }))
+@using (Html.BeginForm("SeleccionarCompetencia", "CompetenciaEnAprendizaje", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:none", @class = "col-offset-2" }))
 {
+
     <div class="container">
         <div class="row">
             <div class="col">
                 <select id="Competencia" name="Competencia" required>
-
+                        
                         @foreach (Competencia competencia in Model.ListaCompetencias)
                         {
                             <option value="@competencia.Codigo"> @competencia.Descripcion</option>
@@ -24,14 +25,15 @@
 
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-primary btn-sm" >Cargar Competencia</button>
+                <button type="submit" class="btn btn-primary btn-sm" >
+                Cargar Competencia</button>
             </div>
         </div>
     </div>
  }
 <br />
 
-
+ 
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -53,10 +55,11 @@
                                     <td>@aprendizaje.Descripcion</td>
                                     <td><a href="" id="btn-primary" class="btn btn-primary btn-sm" data-title="desh" data-toggle="modal" data-target="#desh" onclick="">Añadir a Competencia</a></td>
                             </tr>
-                            }
+                             }
                         </tbody>
                     </table> 
                 </div>
+
                 <div class="col">
                     <h2>Aprendizajes Agregados</h2>
 
@@ -85,3 +88,4 @@
                 </div>
             </div>
         </div>
+
