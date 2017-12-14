@@ -153,5 +153,63 @@ namespace SaberesSyllabus.Repositories
             }
             return null;
         }
+
+        public static List<Aprendizaje> LeerAprendizajesDeCompetencia(int Codigo)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_en_competencia()", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(Codigo);
+                var datos = DataSource.GetDataSet(command);
+
+                List<Aprendizaje> apr = new List<Aprendizaje>();
+                if (datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                    {
+                        var prodData = row;
+                        var CodigoAprendizaje = prodData["codigoAprendizaje"].ToString();
+
+                        var command2 = new MySqlCommand() { CommandText = "sp_aprendizajes_leerUno()", CommandType = System.Data.CommandType.StoredProcedure };
+                        command2.Parameters.Add(CodigoAprendizaje);
+                        var datos2 = DataSource.GetDataSet(command2);
+
+                        if(datos2.Tables[0].Rows.Count > 0)
+                        {
+                            foreach (System.Data.DataRow row2 in datos2.Tables[0].Rows)
+                            {
+                                var prodDat = row2;
+                                Enum.TryParse("Habilitado", out EnumEstado EEstado);
+                                var appr = new Aprendizaje()
+                                {
+                                    Codigo = prodData["codigo"].ToString(),
+                                    Categoria = prodData["categoria"].ToString(),
+                                    SubCategoria = prodData["subCategoria"].ToString(),
+                                    Descripcion = prodData["descripcion"].ToString(),
+                                    PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
+                                    Estado = EEstado
+                                };
+
+                                apr.Add(appr);
+
+                            }
+                        }
+                    }
+                }
+                return apr;
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+
+            }
+
+
+            return null;
+        }
     }
 }

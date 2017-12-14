@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using SaberesySoluciones.Models;
 using SaberesSyllabus.Models;
+using SaberesSyllabus.Repositories;
 
 namespace SaberesySoluciones.ViewModel
 {
@@ -20,6 +21,7 @@ namespace SaberesySoluciones.ViewModel
             this.ListaAprendizajes = new List<Aprendizaje>();
             this.ListaAprendizajeDeCompentencia = new List<Aprendizaje>();
             ListaCompetencias = Competencias.LeerTodo();
+            ListaAprendizajes = Aprendizajes.LeerHabilitados();
         }
 
 
