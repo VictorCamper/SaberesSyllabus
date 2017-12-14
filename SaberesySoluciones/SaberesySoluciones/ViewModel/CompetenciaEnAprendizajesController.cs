@@ -32,7 +32,7 @@ namespace SaberesySoluciones.ViewModel
             this.ListaAprendizajeDeCompentencia = new List<Aprendizaje>();
             ListaCompetencias = Competencias.LeerTodo();
             ListaAprendizajes = Aprendizajes.LeerHabilitados();
-            //this.ListaAprendizajeDeCompentencia = Aprendizajes.LeerAprendizajesDeCompetencia(Codigo);
+            this.ListaAprendizajeDeCompentencia = Aprendizajes.LeerAprendizajesDeCompetencia(Codigo);
         }
 
         

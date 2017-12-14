@@ -178,7 +178,7 @@ namespace SaberesSyllabus.Repositories
             try
             {
                 var command = new MySqlCommand() { CommandText = "sp_aprendizajes_en_competencia()", CommandType = System.Data.CommandType.StoredProcedure };
-                command.Parameters.Add(Codigo);
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigoCompetencia", Direction = System.Data.ParameterDirection.Input, Value = Codigo });
                 var datos = DataSource.GetDataSet(command);
 
                 List<Aprendizaje> apr = new List<Aprendizaje>();
@@ -190,7 +190,7 @@ namespace SaberesSyllabus.Repositories
                         var CodigoAprendizaje = prodData["codigoAprendizaje"].ToString();
 
                         var command2 = new MySqlCommand() { CommandText = "sp_aprendizajes_leerUno()", CommandType = System.Data.CommandType.StoredProcedure };
-                        command2.Parameters.Add(CodigoAprendizaje);
+                        command2.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigoAprendizaje", Direction = System.Data.ParameterDirection.Input, Value = CodigoAprendizaje });
                         var datos2 = DataSource.GetDataSet(command2);
 
                         if(datos2.Tables[0].Rows.Count > 0)
