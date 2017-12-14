@@ -2,8 +2,8 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_saber_crearrelacion $$
 CREATE PROCEDURE sp_saber_crearrelacion
 (
-	in_codigoAprendizaje VARCHAR(256),
-	in_codigoSaber VARCHAR(256)
+	in_codigoAprendizaje VARCHAR(250),
+	in_codigoSaber VARCHAR(250)
 )
 BEGIN
 
