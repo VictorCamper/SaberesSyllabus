@@ -13,11 +13,15 @@ namespace SaberesySoluciones.Models
 {
     public class Clase
     {
-        public long codigo { get; }
+        public long id { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime fecha { get; set; }
-        public string horario { get; set; }
+        //public BloquesHoras horaInicio { get; set; }
+        //public BloquesHoras horaTermino { get; set; }
+        //public string horaInicioText { get; set; }
+        //public string horaTerminoText { get; set; }
+        //public string horario { get; set; }
         public string tema { get; set; }
         public string descripcion { get; set; }
         public List<Saber> saberes { get; set; }
@@ -39,10 +43,10 @@ namespace SaberesySoluciones.Models
                 {
                     var command = new MySqlCommand() { CommandText = "crearClase", CommandType = CommandType.StoredProcedure };
                     //Setea el valor de los atributos del SP (procedimiento almacenado)
-                    command.Parameters.AddWithValue("fecha", this.fecha);
+                    command.Parameters.AddWithValue("fecha", this.fecha); ;
                     command.Parameters.AddWithValue("tema", this.tema);
                     command.Parameters.AddWithValue("descripcion", this.descripcion);
-                    command.Parameters.AddWithValue("tipoClase", this.tipoClase);
+                    command.Parameters.AddWithValue("tipoClase", this.tipo);
                     command.Connection = conn;
                     command.Transaction = sqlTran;
                     command.ExecuteNonQuery();
@@ -63,7 +67,7 @@ namespace SaberesySoluciones.Models
             var clases = new List<Clase>();
             try
             {
-                var ds = new System.Data.DataSet();
+                var ds = new DataSet();
                 using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["Syllabus"].ConnectionString))
                 {
                     var command = new MySqlCommand()
@@ -91,17 +95,36 @@ namespace SaberesySoluciones.Models
             return clases;
         }
 
+
         public void CargarDatos(DataRow dr)
         {
+            this.id = Convert.ToInt64(dr["id"].ToString());
             this.fecha = (DateTime)dr["fecha"];
-            //this.horario = dr["nombre"].ToString();
-            //this.horario = String.Concat(dr["horaInicio"].ToString(), " - ", dr["horaTermino"]);
+            //this.horaInicioText = dr["horaInicio"].ToString();
+            //this.horaTerminoText = dr["horaTermino"].ToString();
             this.tema = dr["tema"].ToString();
             this.descripcion = dr["descripcion"].ToString();
-            //this.tipo = (TipoClase)Convert.ToInt32(dr["tipoClase"].ToString());
             this.tipoClase = dr["tipoClase"].ToString();
 
+            if (this.tipoClase.Equals("1"))
+            {
+                this.tipoClase = "Clase";
+            }
+            if (this.tipoClase.Equals("2"))
+            {
+                this.tipoClase = "Laboratorio";
+            }
+            if (this.tipoClase.Equals("3"))
+            {
+                this.tipoClase = "Ayudantia";
+            }
+
+            //HorariosString();
+
         }
+
+
+
 
         public void Seleccionar(long id)
         {
@@ -117,7 +140,7 @@ namespace SaberesySoluciones.Models
                         CommandType =
                     CommandType.StoredProcedure
                     };
-                    command.Parameters.AddWithValue("id", this.codigo);
+                    command.Parameters.AddWithValue("id", this.id);
                     conn.Open();
                     command.Connection = conn;
                     var sqlda = new MySqlDataAdapter(command);
@@ -144,7 +167,8 @@ namespace SaberesySoluciones.Models
                 throw ex;
             }
         }
-    
+
+
 
         public void EliminarSucursal(long codigo)
         {
@@ -159,7 +183,7 @@ namespace SaberesySoluciones.Models
                         CommandType = CommandType.StoredProcedure
                     };
 
-                    command.Parameters.AddWithValue("id", this.codigo);
+                    command.Parameters.AddWithValue("id", this.id);
                     command.Connection = conn;
                     conn.Open();
                     command.ExecuteNonQuery();
@@ -173,17 +197,31 @@ namespace SaberesySoluciones.Models
                 throw ex;
             }
         }
-
-
     }
 
     public enum TipoClase
     {
-        [Description("Clase")]
-        Clase,
-        [Description("Laboratorio")]
-        Laboratorio,
-        [Description("Ayudantia")]
-        Ayudantia,
+        //[Description("Clase")]
+        Clase=1,
+        //[Description("Laboratorio")]
+        Laboratorio=2,
+        //[Description("Ayudantia")]
+        Ayudantia=3,
     }
+
+    public enum BloquesHoras
+    {
+        Bloque1 = 1,
+        Bloque2 = 2,
+        Bloque3 = 3,
+        Bloque4 = 4,
+        Bloque5 = 5,
+        Bloque6 = 6,
+        Bloque7 = 7,
+        Bloque8 = 8,
+        Bloque9 = 9,
+        Bloque10 = 10,
+        Bloque11 = 11
+
+    }
 }

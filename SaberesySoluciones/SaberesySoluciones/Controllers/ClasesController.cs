@@ -33,7 +33,7 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpGet]
-        public ActionResult Eliminar(long id)
+        public ActionResult Eliminar(int id)
         {
             Clase clase = new Clase();
             clase.Seleccionar(id);
@@ -43,12 +43,12 @@ namespace SaberesySoluciones.Controllers
         [HttpPost]
         public ActionResult Eliminar(Clase c)
         {
-            c.EliminarSucursal(c.codigo);
+            c.EliminarSucursal(c.id);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ActionResult Editar(long id)
+        public ActionResult Editar(int id)
         {
             Clase clase = new Clase();
             clase.Seleccionar(id);
