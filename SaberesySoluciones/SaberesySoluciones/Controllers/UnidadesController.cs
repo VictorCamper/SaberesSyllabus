@@ -16,10 +16,9 @@ namespace SaberesySoluciones.Controllers
         {
             //Para agregar un nuevo atributo a ViewBag basta con crearlo y asignarlo. No es necesaria acciones adicionales
             List<Unidad> Unidades = new Unidad().ListarTodos();
-            if (Unidades == null)
-            {
-                Unidades = new List<Unidad>();
-            }
+            
+            //Unidades = new List<Unidad>();
+            
 
             return View(Unidades);
         }
@@ -40,8 +39,9 @@ namespace SaberesySoluciones.Controllers
 
         public ActionResult ListarTodos()
         {
-            var unidad = new Unidad().ListarTodos();
-            return View(unidad);
+            var unidades = new Unidad().ListarTodos();
+            //List<Unidad> Unidades = new Unidad().ListarTodos();
+            return View(unidades);
         }
 
         //localhost/Sucursal/Detalle/idValue
