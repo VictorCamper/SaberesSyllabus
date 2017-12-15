@@ -2,12 +2,12 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_aprendizajes_crear $$
 CREATE PROCEDURE sp_aprendizajes_crear
 (
-	in_codigo VARCHAR(256),
-  	in_categoria VARCHAR(256),
-  	in_subCategoria VARCHAR(256),
-  	in_descripcion VARCHAR(256),
+	in_codigo VARCHAR(250),
+  	in_categoria VARCHAR(250),
+  	in_subCategoria VARCHAR(250),
+  	in_descripcion VARCHAR(250),
   	in_porcentajeLogro INTEGER,
-  	in_estado VARCHAR(256)
+  	in_estado VARCHAR(250)
 )
 BEGIN
 

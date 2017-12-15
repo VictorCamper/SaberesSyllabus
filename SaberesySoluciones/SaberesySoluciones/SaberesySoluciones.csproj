@@ -257,10 +257,10 @@
     <Content Include="Views\Competencias\Index.cshtml" />
     <Content Include="Views\AprendizajeEnSaber\Index.cshtml" />
     <Content Include="Views\CompetenciaEnAprendizaje\Index.cshtml" />
+    <Content Include="Views\SaberesLogrados\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SaberesLogrados\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
