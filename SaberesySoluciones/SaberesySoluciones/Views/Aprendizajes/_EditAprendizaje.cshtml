@@ -1,0 +1,54 @@
+﻿@using System.Web.UI.WebControls
+@using SaberesSyllabus.Repositories
+@using SaberesySoluciones.Models
+@model List<SaberesySoluciones.Models.Categoria>
+<div class="modal fade" id="modalEditApren" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Aprendizaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @using (Html.BeginForm("EditarAprendizaje", "Aprendizajes"))
+            {
+                <div class="modal-body">
+                    
+                    
+                    <div class="form-group">
+                        <select class="form-control" id="Aprendizajes" name="subcategoria" required>
+
+                            @foreach (Categoria categoria in Model)
+                            {
+                                foreach (Subcategoria subcategoria in categoria.Subcategorias)
+                                {
+                                    <option value=@subcategoria.Id>@categoria.Nombre @subcategoria.Codigo - @subcategoria.Nombre</option>
+                                }
+                            }
+                                
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editdesc">Descripción:</label>
+                        <textarea id="editdesc" class="form-control" name="Descripcion" value="" rows="3" required></textarea>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="editaprencod" name="aprendizajeanterior" value="" />
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+   
+</script>
