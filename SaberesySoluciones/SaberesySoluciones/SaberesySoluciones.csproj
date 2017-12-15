@@ -166,11 +166,14 @@
     <Compile Include="Controllers\AprendizajeEnSaberController.cs" />
     <Compile Include="Controllers\AprendizajesController.cs" />
     <Compile Include="Controllers\CompetenciaEnAprendizajeController.cs" />
+    <Compile Include="Controllers\ClasesController.cs" />
     <Compile Include="Controllers\CompetenciasController.cs" />
     <Compile Include="Controllers\EvaluacionUnidadController.cs" />
+    <Compile Include="Controllers\EvaluacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SaberesController.cs" />
     <Compile Include="Controllers\SaberesLogradosController.cs" />
+    <Compile Include="Controllers\UnidadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +187,7 @@
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Encargado.cs" />
     <Compile Include="Models\EnumCargo.cs" />
+    <Compile Include="Models\EnumEstado.cs" />
     <Compile Include="Models\EnumLogro.cs" />
     <Compile Include="Models\EnumNivelDominio.cs" />
     <Compile Include="Models\EnumTipoClase.cs" />
@@ -260,6 +264,10 @@
     <Content Include="Views\Saberes\Index.cshtml" />
     <Content Include="Views\Aprendizajes\Index.cshtml" />
     <Content Include="Views\Competencias\Index.cshtml" />
+    <Content Include="Views\Evaluacion\Index.cshtml" />
+    <Content Include="Views\Clases\Index.cshtml" />
+    <Content Include="Views\Clases\Crear.cshtml" />
+    <Content Include="Views\Clases\Editar.cshtml" />
     <Content Include="Views\AprendizajeEnSaber\Index.cshtml" />
     <Content Include="Views\Aprendizajes\_EditAprendizaje.cshtml" />
     <Content Include="Views\Aprendizajes\_AddAprendizaje.cshtml" />

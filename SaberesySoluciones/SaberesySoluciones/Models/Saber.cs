@@ -1,3 +1,4 @@
+﻿using SaberesySoluciones.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,12 @@ namespace SaberesSyllabus.Models
 {
     public class Saber
     {
+        /*
+        public int codigo { get; set; }
+        public string descripcion { get; set; }
+        public EnumLogro logro { get; set; }
+        */
+
         public string Codigo { get; set; }
         public string Descripcion { get; set; }
         public EnumLogro Logro { get; set; }
