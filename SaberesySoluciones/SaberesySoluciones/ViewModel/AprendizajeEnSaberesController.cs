@@ -9,15 +9,16 @@ namespace SaberesySoluciones.ViewModel
 {
     public class AprendizajeEnSaberesController
     {
-        public List<Aprendizaje> aprendizajes { get; set; }
-        public List<Saber> saberes { get; set; }
-        public List<Saber> saberDeAprendizaje { get; set; }
+        public List<Aprendizaje> Aprendizajes { get; set; }
+        public List<Saber> Saberes { get; set; }
+        public List<Saber> SaberDeAprendizaje { get; set; }
+        public string CodigoAprendizaje { get; set; }
 
         public AprendizajeEnSaberesController()
         {
-            this.aprendizajes = new List<Aprendizaje>();
-            this.saberes = new List<Saber>();
-            this.saberDeAprendizaje = new List<Saber>();
+            this.Aprendizajes = new List<Aprendizaje>();
+            this.Saberes = new List<Saber>();
+            this.SaberDeAprendizaje = new List<Saber>();
         }
     }
 }
