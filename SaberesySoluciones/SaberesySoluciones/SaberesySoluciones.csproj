@@ -202,7 +202,6 @@
     <Compile Include="Repositories\Saberes.cs" />
     <Compile Include="Repositories\Unidad.cs" />
     <Compile Include="ViewModel\AprendizajeEnSaberesController.cs" />
-    <Compile Include="ViewModel\AprendizajesViewModel.cs" />
     <Compile Include="ViewModel\CompetenciaEnAprendizajeController.cs" />
     <Compile Include="ViewModel\SaberesLogrados.cs" />
   </ItemGroup>

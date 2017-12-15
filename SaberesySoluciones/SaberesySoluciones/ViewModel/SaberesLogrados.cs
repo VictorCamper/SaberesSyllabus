@@ -25,7 +25,7 @@ namespace SaberesySoluciones.ViewModel
                     {
                         var prodData = row;
 
-                        Enum.TryParse(prodData["nivel_logro"].ToString(), out EnumLogros ELogro);
+                        Enum.TryParse(prodData["nivel_logro"].ToString(), out EnumLogro ELogro);
                         Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
                         var sabe = new Saber()
                         {
@@ -33,7 +33,7 @@ namespace SaberesySoluciones.ViewModel
                             Descripcion = prodData["descripcion"].ToString(),
                             Logro = ELogro,
                             Estado = EEstado,
-                            PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"])
+                            PorcentajeLogro = prodData["porcentajeLogro"].ToString()
                         };
                         comps.Add(sabe);
                     }
