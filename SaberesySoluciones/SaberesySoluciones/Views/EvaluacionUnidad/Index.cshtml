@@ -1,4 +1,5 @@
 ﻿@model SaberesySoluciones.ViewModel.UnionEvaluacionUnidad
+@using SaberesSyllabus.Models
 
 @{
     ViewBag.Title = "Agregar Evaluaciones a Unidades";
@@ -6,36 +7,12 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Crear", "Evaluacion", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:none", @class = "col-offset-2" }))
+@foreach (Unidad unidad in Model.Unidades)
 {
-    
-    <div class="container">
-        <div class="row">
-            
-        </div>
-    </div>
+    <h3>@unidad.Titulo</h3>
+    <button type="button" data-toggle="modal" data-target="#modalAdd" class="btn btn-success btn-sm" onclick="addUnidad('@unidad.Titulo')">
+        <i class="fa fa-plus"></i> Agregar Evaluación
+    </button>
+    <br />
+    <br />
 }
-<br />
-
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>Saberes</h2>
-
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Código</th>
-                        <th>Descripción</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
-        </div>
-        <
-    </div>
-</div>
