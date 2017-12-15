@@ -1,6 +1,7 @@
 ﻿
 @using SaberesySoluciones.Models
-@model List<SaberesSyllabus.Models.Saber>
+@using SaberesySoluciones.ViewModel
+@model  SaberesySoluciones.ViewModel.SaberesLogrados
 @{
     ViewBag.Title = "Saberes Logrados";
 }
@@ -31,27 +32,43 @@
         <th></th>
         <th></th>
     </tr>
-    @foreach (var saber in Model)
+    @if (Model.competencias != null)
+                    {
+    foreach (var saber in Model.competencias)
     {
         <tr>
+
             <td style="text-align:center">@saber.Codigo</td>
-            <td style="text-align:justify">@saber.Descripcion</td>
-            <td>@saber.Logro</td>
-            <td style="vertical-align: middle">
-                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@saber.Codigo', '@saber.Descripcion', '@saber.Logro')">Modificar</a>
-            </td>
-            <td style="vertical-align: middle">
-                @if (@saber.Estado == EnumEstado.Habilitado)
-                {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@saber.Codigo')">Deshabilitar</a>
-                }
-                @if (@saber.Estado == EnumEstado.Deshabilitado)
-                {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@saber.Codigo')">Habilitar</a>
-                }
-            </td>
+            <td style="text-align:justify">@saber.Codigo</td>
+            <td>@saber.Codigo</td>
+            <td style="vertical-align: middle"></td>
 
         </tr>
+    }
+    }
+</table>
+
+<table class="table table-hover ">
+    <tr>
+        <th>Código</th>
+        <th>Descripción</th>
+        <th>Nivel de Saber</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @if (Model.resultados != null)
+                    {
+    foreach (var saber in Model.resultados)
+    {
+        <tr>
+
+            <td style="text-align:center">@saber[0]</td>
+            <td style="text-align:justify">@saber[0]</td>
+            <td>@saber[0]</td>
+            <td style="vertical-align: middle"></td>
+
+        </tr>
+    }
     }
 </table>
 
