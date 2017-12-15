@@ -1,4 +1,5 @@
 ﻿using SaberesSyllabus.Models;
+using SaberesSyllabus.Repositories;
 using SaberesySoluciones.Models;
 using SaberesySoluciones.Repositories;
 using SaberesySoluciones.ViewModel;
@@ -8,20 +9,53 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace SaberesySoluciones.Controllers
 {
     public class SaberesLogradosController : Controller
     {
+
         // GET: SaberesLogrados
         public ActionResult Index()
         {
-            List<Saber> finalsaberes= SaberesLogrados.LeerTodo();
+            List<Competencia> finalcompetencias = Competencias.LeerTodo();
+            if (finalcompetencias == null)
+            {
+                finalcompetencias = new List<Competencia>();
+            }
+
+            return View(finalcompetencias);
+        }
+
+        public ActionResult SubTablaAprendizaje()
+        {
+            List<Aprendizaje> aprendizajes = Aprendizajes.LeerTodo();
+            if (aprendizajes == null)
+            {
+                aprendizajes = new List<Aprendizaje>();
+            }
+            return PartialView(aprendizajes);
+        }
+
+        public ActionResult SubTablaSaberes()
+        {
+            List<Saber> finalsaberes = Saberes.LeerTodo();
             if (finalsaberes == null)
             {
                 finalsaberes = new List<Saber>();
             }
 
             return View(finalsaberes);
+        }
+
+        public ActionResult SubTablaSaber(int aprendizajeID)
+        {
+            List<Aprendizaje> aprendizajes = Aprendizajes.LeerTodo();
+            if (aprendizajes == null)
+            {
+                aprendizajes = new List<Aprendizaje>();
+            }
+            return PartialView(aprendizajes);
         }
 
         // GET: SaberesLogrados/Details/5

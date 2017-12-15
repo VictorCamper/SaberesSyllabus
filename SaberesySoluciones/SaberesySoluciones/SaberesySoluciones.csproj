@@ -208,6 +208,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\add.png" />
+    <Content Include="Content\img\remove.png" />
     <Content Include="docs\MySqlCommand.xml" />
     <Content Include="docs\MySqlCommandBuilder.xml" />
     <Content Include="docs\MySqlConnection.xml" />
@@ -267,6 +269,9 @@
     <Content Include="Views\Aprendizajes\_EditSubcategoria.cshtml" />
     <Content Include="Views\CompetenciaEnAprendizaje\Index.cshtml" />
     <Content Include="Views\SaberesLogrados\Index.cshtml" />
+    <Content Include="Views\SaberesLogrados\SubTabla.cshtml" />
+    <Content Include="Views\SaberesLogrados\SubTablaAprendizaje.cshtml" />
+    <Content Include="Views\SaberesLogrados\SubTablaSaberes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
