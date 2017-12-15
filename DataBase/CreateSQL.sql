@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS Curso_Unidad;
 DROP TABLE IF EXISTS Unidad_Evaluacion;
 
 CREATE TABLE Curso (
-	id VARCHAR(256) NOT NULL,
+	id VARCHAR(250) NOT NULL,
 	nombre TEXT NOT NULL,
 	horasPresenciales INTEGER NOT NULL,
 	horasAutonomas INTEGER NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE Competencia (
 	codigo INTEGER AUTO_INCREMENT,
 	nombre TEXT NOT NULL,
 	descripcion TEXT NOT NULL,
-	dominio VARCHAR(256) NOT NULL,
+	dominio VARCHAR(250) NOT NULL,
 	basico TEXT NOT NULL,
 	intermedio TEXT NOT NULL,
 	avanzado TEXT NOT NULL,
@@ -55,30 +55,31 @@ CREATE TABLE Competencia (
 );
 
 CREATE TABLE Categoria (
-	categoria VARCHAR(256) NOT NULL,
+	categoria VARCHAR(250) NOT NULL,
 	PRIMARY KEY (categoria)
 );
 
 CREATE TABLE Subcategoria (
-	subcategoria VARCHAR(512) NOT NULL,
-	ref_categoria VARCHAR(256) NOT NULL,
+	id INTEGER AUTO_INCREMENT,
+	subcategoria TEXT NOT NULL,
+	ref_categoria VARCHAR(250) NOT NULL,
 	codigo INTEGER NOT NULL,	
-	PRIMARY KEY (subcategoria),
+	PRIMARY KEY (id),
 	FOREIGN KEY (ref_categoria) REFERENCES Categoria(categoria) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Aprendizaje (
 	codigo INTEGER AUTO_INCREMENT,
-	ref_subcategoria VARCHAR(512) NOT NULL,
+	ref_subcategoria INTEGER NOT NULL,
 	descripcion TEXT NOT NULL,
 	porcentajeLogro INTEGER NOT NULL,
 	estado TEXT NOT NULL,
 	PRIMARY KEY (codigo),
-	FOREIGN KEY (ref_subcategoria) REFERENCES Subcategoria(subcategoria) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (ref_subcategoria) REFERENCES Subcategoria(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Saber (
-	codigo VARCHAR(256) NOT NULL,
+	codigo VARCHAR(250) NOT NULL,
 	descripcion TEXT NOT NULL,
 	nivelLogro TEXT NOT NULL,
 	estado TEXT NOT NULL,
@@ -88,7 +89,7 @@ CREATE TABLE Saber (
 
 CREATE TABLE Encargado (
 	nombre TEXT NOT NULL,
-	rut VARCHAR(256) NOT NULL,
+	rut VARCHAR(250) NOT NULL,
 	cargo TEXT NOT NULL,
 	PRIMARY KEY (rut)
 );
@@ -110,13 +111,13 @@ CREATE TABLE Clase (
 
 CREATE TABLE Alumno (
 	nombre TEXT NOT NULL,
-	matricula VARCHAR(256) NOT NULL,
+	matricula VARCHAR(250) NOT NULL,
 	PRIMARY KEY (matricula)
 );
 
 CREATE TABLE Aprendizaje_Saber (
 	codigoAprendizaje INTEGER NOT NULL,
-	codigoSaber VARCHAR(256) NOT NULL,
+	codigoSaber VARCHAR(250) NOT NULL,
 	FOREIGN KEY (codigoAprendizaje) REFERENCES Aprendizaje(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (codigoSaber) REFERENCES Saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -124,7 +125,7 @@ CREATE TABLE Aprendizaje_Saber (
 
 CREATE TABLE Clase_Saber (
 	idClase INTEGER NOT NULL,
-	codigoSaber VARCHAR(256) NOT NULL,
+	codigoSaber VARCHAR(250) NOT NULL,
 	FOREIGN KEY (codigoSaber) REFERENCES Saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (idClase) REFERENCES Clase(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -132,7 +133,7 @@ CREATE TABLE Clase_Saber (
 
 CREATE TABLE Evaluacion_Saber (
 	idEvaluacion INTEGER NOT NULL,
-	codigoSaber VARCHAR(256) NOT NULL,
+	codigoSaber VARCHAR(250) NOT NULL,
 	FOREIGN KEY (codigoSaber) REFERENCES Saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -140,15 +141,15 @@ CREATE TABLE Evaluacion_Saber (
 
 CREATE TABLE Unidad_Saber (
 	idUnidad INTEGER NOT NULL,
-	codigoSaber VARCHAR(256) NOT NULL,
+	codigoSaber VARCHAR(250) NOT NULL,
 	FOREIGN KEY (idUnidad) REFERENCES Unidad(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (codigoSaber) REFERENCES Saber(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
 CREATE TABLE Alumno_Curso (
-	idCurso VARCHAR(256) NOT NULL,
-	matriculaAlumno VARCHAR(256) NOT NULL,
+	idCurso VARCHAR(250) NOT NULL,
+	matriculaAlumno VARCHAR(250) NOT NULL,
 	FOREIGN KEY (idCurso) REFERENCES Curso(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (matriculaAlumno) REFERENCES Alumno(matricula) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -156,8 +157,8 @@ CREATE TABLE Alumno_Curso (
 
 
 CREATE TABLE Curso_Encargado (
-	idCurso VARCHAR(256) NOT NULL,
-	rutEncargado VARCHAR(256) NOT NULL,
+	idCurso VARCHAR(250) NOT NULL,
+	rutEncargado VARCHAR(250) NOT NULL,
 	FOREIGN KEY (idCurso) REFERENCES Curso(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (rutEncargado) REFERENCES Encargado(rut) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -165,7 +166,7 @@ CREATE TABLE Curso_Encargado (
 
 CREATE TABLE Competencia_Curso (
 	codigoCompetencia INTEGER NOT NULL,
-	idCurso VARCHAR(256) NOT NULL,
+	idCurso VARCHAR(250) NOT NULL,
 	FOREIGN KEY (idCurso) REFERENCES Curso(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (codigoCompetencia) REFERENCES Competencia(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -188,7 +189,7 @@ CREATE TABLE Unidad_Clase (
 
 
 CREATE TABLE Curso_Unidad (
-	idCurso VARCHAR(256) NOT NULL,
+	idCurso VARCHAR(250) NOT NULL,
 	idUnidad INTEGER NOT NULL,
 	FOREIGN KEY (idCurso) REFERENCES Curso(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (idUnidad) REFERENCES Unidad(id) ON DELETE CASCADE ON UPDATE CASCADE

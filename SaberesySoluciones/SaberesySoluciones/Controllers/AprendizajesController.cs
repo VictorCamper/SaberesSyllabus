@@ -33,7 +33,7 @@ namespace SaberesySoluciones.Controllers
                 }
                 foreach (Subcategoria subcat in cat.Subcategorias)
                 {
-                    subcat.Aprendizajes = Aprendizajes.LeerAprendizajes(subcat.Nombre);
+                    subcat.Aprendizajes = Aprendizajes.LeerAprendizajes(subcat.Id);
                     if (subcat.Aprendizajes == null)
                     {
                         subcat.Aprendizajes = new List<Aprendizaje>();
@@ -47,7 +47,7 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearAprendizaje(Aprendizaje aprendizaje, string subcategoria)
+        public ActionResult CrearAprendizaje(Aprendizaje aprendizaje, int subcategoria)
         {
             aprendizaje = Aprendizajes.Crear(aprendizaje, subcategoria);
             return RedirectToAction("Index", "Aprendizajes");
@@ -68,9 +68,9 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarAprendizaje(Aprendizaje aprendizaje, string subcategoria)
+        public ActionResult EditarAprendizaje(Aprendizaje aprendizaje, int subcategoria, int aprendizajeanterior)
         {
-            Boolean result = Aprendizajes.Editar(aprendizaje, subcategoria);
+            Boolean result = Aprendizajes.Editar(aprendizaje, subcategoria, aprendizajeanterior);
             return RedirectToAction("Index", "Aprendizajes");
         }
 
@@ -82,7 +82,7 @@ namespace SaberesySoluciones.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarSubcategoria(Subcategoria subcategoria, string subcategoriaprev)
+        public ActionResult EditarSubcategoria(Subcategoria subcategoria, int subcategoriaprev)
         {
             Boolean result = Aprendizajes.EditarSubcategoria(subcategoria, subcategoriaprev);
             return RedirectToAction("Index", "Aprendizajes");

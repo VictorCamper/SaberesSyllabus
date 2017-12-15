@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_aprendizajes_leeraprendizajes $$
 CREATE PROCEDURE sp_aprendizajes_leeraprendizajes(
-	in_subcategoria VARCHAR(512)
+	in_subcategoria INTEGER
 )
 BEGIN
 	SELECT codigo, descripcion, porcentajeLogro, estado

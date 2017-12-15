@@ -2,10 +2,10 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_aprendizajes_crear $$
 CREATE PROCEDURE sp_aprendizajes_crear
 (
-	in_subCategoria VARCHAR(512),
-  	in_descripcion VARCHAR(256),
+	in_subCategoria INTEGER,
+  	in_descripcion VARCHAR(250),
   	in_porcentajeLogro INTEGER,
-  	in_estado VARCHAR(256),
+  	in_estado VARCHAR(250),
   	OUT out_codigo INTEGER
 
 )

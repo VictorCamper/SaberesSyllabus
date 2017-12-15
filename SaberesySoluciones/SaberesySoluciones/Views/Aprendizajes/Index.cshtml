@@ -28,12 +28,12 @@
     {
         <br />
         <h4>@catergoria.Nombre @subcategoria.Codigo - @subcategoria.Nombre
-            <button type="button" data-toggle="modal" data-target="#modalEditSubcat" class="btn btn-warning btn-sm" style="float: right" onclick="editSubcat('@subcategoria.Nombre')">
+            <button type="button" data-toggle="modal" data-target="#modalEditSubcat" class="btn btn-warning btn-sm" style="float: right" onclick="editSubcat('@subcategoria.Id')">
                 <i class="fa fa-edit"></i> Modificar Subcategoría
             </button>
         </h4>
 
-        <button type="button" data-toggle="modal" data-target="#modalAddApren" class="btn btn-success btn-sm" onclick="addApren('@subcategoria.Nombre')">
+        <button type="button" data-toggle="modal" data-target="#modalAddApren" class="btn btn-success btn-sm" onclick="addApren('@subcategoria.Id')">
             <i class="fa fa-plus"></i> Agregar Aprendizaje
         </button>
         <br />
@@ -106,12 +106,17 @@
     addApren = function (subcat) {
         document.getElementById("subcategoria").setAttribute("value", subcat);
     }
+    editApren = function (cod, desc) {
+        document.getElementById("editaprencod").setAttribute("value", cod);
+        document.getElementById("editaprendesc").setAttribute("value", desc);
+    }
+
 </script>
 
 <!--Modals-->
 @Html.Partial("_AddAprendizaje")
 
-@Html.Partial("_EditAprendizaje")
+@Html.Partial("_EditAprendizaje", Model)
 
 @Html.Partial("_EnableAprendizaje")
 

@@ -4,12 +4,12 @@ CREATE PROCEDURE sp_competencias_crear
 (
     in_nombre TEXT,
     in_descripcion TEXT,
-  	in_dominio VARCHAR(256),
+  	in_dominio VARCHAR(250),
   	in_basico TEXT,
   	in_intermedio TEXT,
   	in_avanzado TEXT,
-  	in_tiempoDesarrollo VARCHAR(256),
-  	in_estado VARCHAR(256),
+  	in_tiempoDesarrollo VARCHAR(250),
+  	in_estado VARCHAR(250),
     in_porcentajeLogro INTEGER,
 	OUT out_codigo INTEGER
 )

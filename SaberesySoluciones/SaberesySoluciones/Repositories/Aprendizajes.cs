@@ -12,7 +12,7 @@ namespace SaberesSyllabus.Repositories
 {
     public class Aprendizajes
     {
-        public static Aprendizaje Crear(Aprendizaje aprendizaje, string subcategoria)
+        public static Aprendizaje Crear(Aprendizaje aprendizaje, int subcategoria)
         {
             try
             {
@@ -59,7 +59,9 @@ namespace SaberesSyllabus.Repositories
                 var command = new MySqlCommand() { CommandText = "sp_aprendizajes_crearsubcategoria", CommandType = System.Data.CommandType.StoredProcedure };
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoria", Direction = System.Data.ParameterDirection.Input, Value = subcategoria.Nombre });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoria", Direction = System.Data.ParameterDirection.Input, Value = categoria });
-                DataSource.ExecuteProcedure(command);
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "out_subcategoriaid", Direction = System.Data.ParameterDirection.Input, Value = -1 });
+                var datos = DataSource.ExecuteProcedure(command);
+                subcategoria.Id = Convert.ToInt32(datos.Parameters["out_subcategoriaid"].Value);
 
                 return subcategoria;
             }
@@ -70,14 +72,14 @@ namespace SaberesSyllabus.Repositories
             }
         }
 
-        public static bool Editar(Aprendizaje aprendizaje, string subcategoria)
+        public static bool Editar(Aprendizaje aprendizaje, int subcategoria, int aprendizajeanterior)
         {
             Boolean estadoConsulta;
             int codigoAnterior;
 
             try
             {
-                codigoAnterior = aprendizaje.Codigo;
+                codigoAnterior = aprendizajeanterior;
 
                 aprendizaje = Crear(aprendizaje, subcategoria);
                 if (aprendizaje.Codigo != -1)
@@ -126,13 +128,13 @@ namespace SaberesSyllabus.Repositories
             }
         }
 
-        public static bool EditarSubcategoria(Subcategoria subcategoria, string subcategoriaprev)
+        public static bool EditarSubcategoria(Subcategoria subcategoria, int subcategoriaid)
         {
             try
             {
                 var command = new MySqlCommand() { CommandText = "sp_aprendizajes_editarsubcategoria", CommandType = System.Data.CommandType.StoredProcedure };
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoria", Direction = System.Data.ParameterDirection.Input, Value = subcategoria.Nombre });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoriaprev", Direction = System.Data.ParameterDirection.Input, Value = subcategoriaprev });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoriaid", Direction = System.Data.ParameterDirection.Input, Value = subcategoriaid });
                 DataSource.ExecuteProcedure(command);
                 return true;
             }
@@ -227,6 +229,7 @@ namespace SaberesSyllabus.Repositories
                         var prodData = row;
                         var subcategoria = new Subcategoria()
                         {
+                            Id = Convert.ToInt32(prodData["id"]),
                             Nombre = Convert.ToString(prodData["subCategoria"]),
                             Codigo = Convert.ToInt32(prodData["codigo"]),
                             Aprendizajes = new List<Aprendizaje>()
@@ -248,7 +251,7 @@ namespace SaberesSyllabus.Repositories
         }
 
 
-        public static List<Aprendizaje> LeerAprendizajes(string subcategoria)
+        public static List<Aprendizaje> LeerAprendizajes(int subcategoria)
         {
             try
             {

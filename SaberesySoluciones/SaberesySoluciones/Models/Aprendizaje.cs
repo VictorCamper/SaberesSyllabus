@@ -8,6 +8,7 @@ namespace SaberesySoluciones.Models
 {
     public class Aprendizaje
     {
+        public int Id { get; set; }
         public int Codigo { get; set; }
         public string Descripcion { get; set; }
         public List<Saber> Saberes { get; set; }

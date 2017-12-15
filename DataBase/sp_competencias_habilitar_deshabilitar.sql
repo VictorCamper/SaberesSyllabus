@@ -3,7 +3,7 @@ DROP PROCEDURE IF EXISTS sp_competencias_habilitar_deshabilitar $$
 CREATE PROCEDURE sp_competencias_habilitar_deshabilitar
 (
 	in_codigo int,
-	in_estado VARCHAR(256)
+	in_estado VARCHAR(250)
 	
 )
 BEGIN
