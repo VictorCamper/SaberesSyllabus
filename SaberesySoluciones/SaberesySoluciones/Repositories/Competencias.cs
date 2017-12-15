@@ -10,6 +10,8 @@ namespace SaberesySoluciones.Repositories
 {
     public class Competencias
     {
+
+        
         public static Competencia Crear(Competencia competencia)
         {
             try
@@ -117,6 +119,50 @@ namespace SaberesySoluciones.Repositories
             {
 
             }
+        }
+
+        public static Competencia LeerUna(int Codigo)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_competencias_leerUno", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = Codigo });
+                var datos = DataSource.GetDataSet(command);
+                
+                if (datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                    {
+                        var prodData = row;
+                        //Enum.TryParse(prodData["dominio"].ToString(), out EnumNivelDominio EDominio);
+                        //Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
+                        var comp = new Competencia()
+                        {
+                            Codigo = Convert.ToInt32(prodData["codigo"]),
+                            Nombre = prodData["nombre"].ToString(),
+                            Descripcion = prodData["descripcion"].ToString(),
+                            Dominio = prodData["dominio"].ToString(),
+                            Basico = prodData["basico"].ToString(),
+                            Intermedio = prodData["intermedio"].ToString(),
+                            Avanzado = prodData["avanzado"].ToString(),
+                            TiempoDesarrollo = prodData["tiempoDesarrollo"].ToString(),
+                            Estado = prodData["estado"].ToString()
+                        };
+                        return comp;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+            finally
+            {
+
+            }
+
+            return null;
         }
 
         public static List<Competencia> LeerTodo() {

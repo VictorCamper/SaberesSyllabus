@@ -177,56 +177,38 @@ namespace SaberesSyllabus.Repositories
         {
             try
             {
-                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_en_competencia()", CommandType = System.Data.CommandType.StoredProcedure };
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigoCompetencia", Direction = System.Data.ParameterDirection.Input, Value = Codigo });
+                var command = new MySqlCommand() { CommandText = "sp_aprendizaje_en_competencia()", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigoCompetencia", Direction = System.Data.ParameterDirection.Input, Value = Codigo});
                 var datos = DataSource.GetDataSet(command);
 
-                List<Aprendizaje> apr = new List<Aprendizaje>();
+                List<Aprendizaje> aprendizajes = new List<Aprendizaje>();
                 if (datos.Tables[0].Rows.Count > 0)
                 {
                     foreach (System.Data.DataRow row in datos.Tables[0].Rows)
                     {
                         var prodData = row;
-                        var CodigoAprendizaje = prodData["codigoAprendizaje"].ToString();
-
-                        var command2 = new MySqlCommand() { CommandText = "sp_aprendizajes_leerUno()", CommandType = System.Data.CommandType.StoredProcedure };
-                        command2.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigoAprendizaje", Direction = System.Data.ParameterDirection.Input, Value = CodigoAprendizaje });
-                        var datos2 = DataSource.GetDataSet(command2);
-
-                        if(datos2.Tables[0].Rows.Count > 0)
+                        Enum.TryParse("Habilitado", out EnumEstado EEstado);
+                        var appr = new Aprendizaje()
                         {
-                            foreach (System.Data.DataRow row2 in datos2.Tables[0].Rows)
-                            {
-                                var prodDat = row2;
-                                Enum.TryParse("Habilitado", out EnumEstado EEstado);
-                                var appr = new Aprendizaje()
-                                {
-                                    Codigo = prodData["codigo"].ToString(),
-                                    Categoria = prodData["categoria"].ToString(),
-                                    SubCategoria = prodData["subCategoria"].ToString(),
-                                    Descripcion = prodData["descripcion"].ToString(),
-                                    PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
-                                    Estado = EEstado
-                                };
+                            Codigo = prodData["codigo"].ToString(),
+                            Categoria = prodData["categoria"].ToString(),
+                            SubCategoria = prodData["subCategoria"].ToString(),
+                            Descripcion = prodData["descripcion"].ToString(),
+                            PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
+                            Estado = EEstado
+                        };
 
-                                apr.Add(appr);
-
-                            }
-                        }
+                        aprendizajes.Add(appr);
                     }
                 }
-                return apr;
+                return aprendizajes;
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                return new List<Aprendizaje>();
             }
-            finally
-            {
-
-            }
-
 
             return null;
         }

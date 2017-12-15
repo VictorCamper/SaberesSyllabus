@@ -13,6 +13,8 @@ namespace SaberesySoluciones.Controllers
     public class CompetenciaEnAprendizajeController : Controller
     {
         // GET: CompetenciaEnAprendizaje
+        int CodigoCompetencia = -1;
+
         public ActionResult Index()
         {
             CompetenciaEnAprendizajesController competenciaAprendizaje = new CompetenciaEnAprendizajesController();
@@ -29,9 +31,17 @@ namespace SaberesySoluciones.Controllers
 
         [HttpPost]
         public ActionResult SeleccionarCompetencia(int Competencia) {
-
+            CodigoCompetencia = Competencia;
             CompetenciaEnAprendizajesController competenciaAprendizaje = new CompetenciaEnAprendizajesController(Competencia);
             return View("Index",competenciaAprendizaje);
+        }
+
+        [HttpPost]
+        public ActionResult AgregarAprendizajeCompetencia(string Aprendizaje)
+        {
+
+            CompetenciaEnAprendizajesController competenciaAprendizaje = new CompetenciaEnAprendizajesController(CodigoCompetencia,Aprendizaje);
+            return View("Index", competenciaAprendizaje);
         }
     }
 
