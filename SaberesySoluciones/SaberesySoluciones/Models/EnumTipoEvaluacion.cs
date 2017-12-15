@@ -5,12 +5,10 @@ using System.Web;
 
 namespace SaberesSyllabus.Models
 {
-    enum evaluaciones
+    public enum EnumTipoEvaluacion
     {
         Prueba,
         Tarea
     };
-    public class EnumTipoEvaluacion
-    {
-    }
+    
 }
