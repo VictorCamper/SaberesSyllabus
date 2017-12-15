@@ -21,39 +21,39 @@
     });
 </script>
 
-<a href="" id="btn-add" class="btn btn-primary" data-title="add" data-toggle="modal" data-target="#add" style="margin-bottom:10px">Agregar</a>
-
-<table class="table table-hover ">
-    <tr>
-        <th>Código</th>
-        <th>Descripción</th>
-        <th>Nivel de Saber</th>
-        <th>Porcentaje Logro</th>
-        <th></th>
-    </tr>
-    @foreach (var sabe in Model)
-    {
+<table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
         <tr>
-            <td style="text-align:center">@sabe.Codigo</td>
-            <td style="text-align:justify">@sabe.Descripcion</td>
-            <td>@sabe.Logro</td>
-            <td style="text-align:justify">@sabe.PorcentajeLogro</td>
-            <td style="vertical-align: middle">
-                <a href="" id="btn-edit" class="btn btn-warning" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Codigo', '@sabe.Descripcion', '@sabe.Logro', '@sabe.PorcentajeLogro')">Modificar</a>
-            </td>
-            <td style="vertical-align: middle">
-                @if (@sabe.Estado == EnumEstado.Habilitado)
-                {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@sabe.Codigo')">Deshabilitar</a>
-                }
-                @if (@sabe.Estado == EnumEstado.Deshabilitado)
-                {
-                    <a href="" id="btn-delete" class="btn btn-danger" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@sabe.Codigo')">Habilitar</a>
-                }
-            </td>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Nivel de Saber</th>
+            <th>Porcentaje Logro</th>
+            <th><button type="button" id="btn-add" data-toggle="modal" data-target="#add" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Agregar</button></th>
 
         </tr>
-    }
+        @foreach (var sabe in Model)
+        {
+            <tr>
+                <td style="text-align:center">@sabe.Codigo</td>
+                <td style="text-align:justify">@sabe.Descripcion</td>
+                <td>@sabe.Logro</td>
+                <td style="text-align:justify">@sabe.PorcentajeLogro</td>
+                <td style="vertical-align: middle">
+                    <a href="" id="btn-edit" class="btn btn-warning btn-sm" data-title="edit" data-toggle="modal" data-target="#edit" onclick="editmsj('@sabe.Id', '@sabe.Descripcion', '@sabe.Logro', '@sabe.PorcentajeLogro')"><i class="fa fa-edit"></i> Modificar</a>
+                    @if (@sabe.Estado == EnumEstado.Habilitado)
+                {
+                        <a href="" id="btn-delete" class="btn btn-danger btn-sm" data-title="desh" data-toggle="modal" data-target="#desh" onclick="deshmsj('@sabe.Id')"><i class="fa fa-eye-slash"></i> Deshabilitar</a>
+                    }
+                    @if (@sabe.Estado == EnumEstado.Deshabilitado)
+                {
+                        <a href="" id="btn-delete" class="btn btn-primary btn-sm" data-title="hab" data-toggle="modal" data-target="#hab" onclick="habmsj('@sabe.Id')"><i class="fa fa-eye"></i> Habilitar</a>
+                    }
+                </td>
+
+
+
+            </tr>
+        }
 </table>
 
 <script type="text/javascript">
@@ -64,8 +64,8 @@
         document.getElementById("habsaber").setAttribute("value", idSaber);
     }
 
-    editmsj = function (idcod, descrp, nivel) {
-        document.getElementById("editcomp").setAttribute("value", idcod);
+    editmsj = function (Id, descrp, nivel) {
+        document.getElementById("editsaber").setAttribute("value", Id);
         document.getElementById("editdescripcion").setAttribute("value", descrp);
         $("#nivelid").append(nivel);
     }
@@ -103,13 +103,13 @@
                             <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí el porcentaje del Saber." name="PorcentajeLogro" required>
                         </div>
                     </div>
-                    
+                    <input type="hidden" name="Id" value="-1">
                     <input type="hidden" name="Estado" value="Habilitado">
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
                 </div>
             }
         </div>
@@ -135,12 +135,12 @@
                             <input maxlength="255" type="text" min="0" class="form-control" placeholder="Escriba aquí la descripción del Saber." name="Descripcion" id="Descripcion" value="" required>
                         </div>
 
-                        <div class="form-group">                            
+                        <div class="form-group">
                             @{ List<SelectListItem> lista = new List<SelectListItem>();
-                                lista.Add(new SelectListItem { Text = "Saber", Value ="Saber"});
+                                lista.Add(new SelectListItem { Text = "Saber", Value = "Saber" });
                                 lista.Add(new SelectListItem { Text = "SaberSer", Value = "SaberSer" });
                                 lista.Add(new SelectListItem { Text = "SaberHacer", Value = "SaberHacer" });
-                                }    
+                            }
                             @Html.DropDownList("Logro", lista, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
@@ -151,10 +151,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" id="editsaber" name="Id" value="" />
                     <button type="submit" class="btn btn-primary">Modificar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
-            }
+                                }
         </div>
     </div>
 </div>
@@ -172,7 +173,7 @@
                     <p id="message">¿Estás seguro de que quieres Deshabilitar el Saber?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="deletesaber" name="Codigo" value=Codigo />
+                    <input type="hidden" id="deletesaber" name="id" value="" />
                     <button type="submit" class="btn btn-primary">Deshabilitar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -194,7 +195,7 @@
                     <p id="message">¿Estás seguro de que quieres Habilitar la Competencia?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="habsaber" name="codigo" value="" />
+                    <input type="hidden" id="habsaber" name="id" value="" />
                     <button type="submit" class="btn btn-primary">Habilitar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>

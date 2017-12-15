@@ -1,0 +1,29 @@
+﻿<div class="modal fade" id="modalEditSubcat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Subcategoría</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @using (Html.BeginForm("EditarSubcategoria", "Aprendizajes"))
+            {
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="Nombre">Nombre de la Subcategoría:</label>
+                        <input type="text" id="Nombre" min="0" class="form-control" name="Nombre" value="" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="subcategoriaprev" name="subcategoriaprev" value="" />
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

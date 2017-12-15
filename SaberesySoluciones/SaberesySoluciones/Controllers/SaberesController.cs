@@ -33,27 +33,27 @@ namespace SaberesySoluciones.Controllers
             return RedirectToAction("Index", "Saberes");
         }
 
+        [HttpPost]
         public ActionResult Editar(Saber saber)
         {
-
             Boolean result = Saberes.Editar(saber);
             return RedirectToAction("Index", "Saberes");
         }
 
         [HttpPost]
-        public ActionResult Deshabilitar(string codigo)
+        public ActionResult Deshabilitar(int Id)
         {
             Boolean resultadoConsulta;
-            resultadoConsulta = Saberes.Deshabilitar(codigo);
+            resultadoConsulta = Saberes.Deshabilitar(Id);
 
             return RedirectToAction("Index", "Saberes");
         }
 
         [HttpPost]
-        public ActionResult Habilitar(string codigo)
+        public ActionResult Habilitar(int Id)
         {
             Boolean resultadoConsulta;
-            resultadoConsulta = Saberes.Habilitar(codigo);
+            resultadoConsulta = Saberes.Habilitar(Id);
             return RedirectToAction("Index", "Saberes");
         }
     }
