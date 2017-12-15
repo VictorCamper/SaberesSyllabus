@@ -13,20 +13,20 @@ namespace SaberesySoluciones.Models
 {
     public class Clase
     {
-        public long id { get; set; }
+        public long Id { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
-        public DateTime fecha { get; set; }
+        public DateTime Fecha { get; set; }
         //public BloquesHoras horaInicio { get; set; }
         //public BloquesHoras horaTermino { get; set; }
         //public string horaInicioText { get; set; }
         //public string horaTerminoText { get; set; }
         //public string horario { get; set; }
-        public string tema { get; set; }
-        public string descripcion { get; set; }
-        public List<Saber> saberes { get; set; }
-        public TipoClase tipo { get; set; }
-        public string tipoClase { get; set; }
+        public string Tema { get; set; }
+        public string Descripcion { get; set; }
+        public List<Saber> Saberes { get; set; }
+        public TipoClase Tipo { get; set; }
+        public string TipoClase { get; set; }
 
         public Clase()
         {
@@ -43,10 +43,10 @@ namespace SaberesySoluciones.Models
                 {
                     var command = new MySqlCommand() { CommandText = "crearClase", CommandType = CommandType.StoredProcedure };
                     //Setea el valor de los atributos del SP (procedimiento almacenado)
-                    command.Parameters.AddWithValue("fecha", this.fecha); ;
-                    command.Parameters.AddWithValue("tema", this.tema);
-                    command.Parameters.AddWithValue("descripcion", this.descripcion);
-                    command.Parameters.AddWithValue("tipoClase", this.tipo);
+                    command.Parameters.AddWithValue("fecha", this.Fecha); ;
+                    command.Parameters.AddWithValue("tema", this.Tema);
+                    command.Parameters.AddWithValue("descripcion", this.Descripcion);
+                    command.Parameters.AddWithValue("tipoClase", this.Tipo);
                     command.Connection = conn;
                     command.Transaction = sqlTran;
                     command.ExecuteNonQuery();
@@ -98,25 +98,25 @@ namespace SaberesySoluciones.Models
 
         public void CargarDatos(DataRow dr)
         {
-            this.id = Convert.ToInt64(dr["id"].ToString());
-            this.fecha = (DateTime)dr["fecha"];
+            this.Id = Convert.ToInt64(dr["id"].ToString());
+            this.Fecha = (DateTime)dr["fecha"];
             //this.horaInicioText = dr["horaInicio"].ToString();
             //this.horaTerminoText = dr["horaTermino"].ToString();
-            this.tema = dr["tema"].ToString();
-            this.descripcion = dr["descripcion"].ToString();
-            this.tipoClase = dr["tipoClase"].ToString();
+            this.Tema = dr["tema"].ToString();
+            this.Descripcion = dr["descripcion"].ToString();
+            this.TipoClase = dr["tipoClase"].ToString();
 
-            if (this.tipoClase.Equals("1"))
+            if (this.TipoClase.Equals("1"))
             {
-                this.tipoClase = "Clase";
+                this.TipoClase = "Clase";
             }
-            if (this.tipoClase.Equals("2"))
+            if (this.TipoClase.Equals("2"))
             {
-                this.tipoClase = "Laboratorio";
+                this.TipoClase = "Laboratorio";
             }
-            if (this.tipoClase.Equals("3"))
+            if (this.TipoClase.Equals("3"))
             {
-                this.tipoClase = "Ayudantia";
+                this.TipoClase = "Ayudantia";
             }
 
             //HorariosString();
@@ -140,7 +140,7 @@ namespace SaberesySoluciones.Models
                         CommandType =
                     CommandType.StoredProcedure
                     };
-                    command.Parameters.AddWithValue("id", this.id);
+                    command.Parameters.AddWithValue("id", this.Id);
                     conn.Open();
                     command.Connection = conn;
                     var sqlda = new MySqlDataAdapter(command);
@@ -183,7 +183,7 @@ namespace SaberesySoluciones.Models
                         CommandType = CommandType.StoredProcedure
                     };
 
-                    command.Parameters.AddWithValue("id", this.id);
+                    command.Parameters.AddWithValue("id", this.Id);
                     command.Connection = conn;
                     conn.Open();
                     command.ExecuteNonQuery();

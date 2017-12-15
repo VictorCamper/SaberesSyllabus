@@ -11,16 +11,16 @@ namespace SaberesSyllabus.Models
 {
     public class Unidad
     {
-        public string titulo { get; set; }
-        public List<Clase> clases { get; set; }
-        public List<Saber> saberes { get; set; }
-        public List<Evaluacion> evaluaciones { get; set; }
+        public string Titulo { get; set; }
+        public List<Clase> Clases { get; set; }
+        public List<Saber> Saberes { get; set; }
+        public List<Evaluacion> Evaluaciones { get; set; }
 
         public Unidad()
         {
-            this.clases = new List<Clase>();
-            this.saberes = new List<Saber>();
-            this.evaluaciones = new List<Evaluacion>();
+            this.Clases = new List<Clase>();
+            this.Saberes = new List<Saber>();
+            this.Evaluaciones = new List<Evaluacion>();
         }
         
         public bool Crear()
@@ -33,7 +33,7 @@ namespace SaberesSyllabus.Models
                 {
                     var command = new MySqlCommand() { CommandText = "crearUnidad", CommandType = CommandType.StoredProcedure };
                     //Setea el valor de los atributos del SP (procedimiento almacenado)
-                    command.Parameters.AddWithValue("titulo", this.titulo);
+                    command.Parameters.AddWithValue("Titulo", this.Titulo);
 
                     command.Connection = conn;
                     command.Transaction = sqlTran;
@@ -87,8 +87,8 @@ namespace SaberesSyllabus.Models
                 var ds = new DataSet();
                 using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
                 {
-                    var command = new MySqlCommand() { CommandText = "getTitulo", CommandType = CommandType.StoredProcedure };
-                    command.Parameters.AddWithValue("titulo", titulo);
+                    var command = new MySqlCommand() { CommandText = "gettitulo", CommandType = CommandType.StoredProcedure };
+                    command.Parameters.AddWithValue("titulo", Titulo);
                     conn.Open();
                     command.Connection = conn;
                     var sqlda = new MySqlDataAdapter(command);
@@ -102,7 +102,7 @@ namespace SaberesSyllabus.Models
                 }
                 else
                 {
-                    this.titulo = "Not Found";
+                    this.Titulo = "Not Found";
 
                 }
             }
@@ -116,7 +116,7 @@ namespace SaberesSyllabus.Models
         public void CargarDatos(DataRow dr)
         {
 
-            this.titulo = dr["titulo"].ToString();
+            this.Titulo = dr["titulo"].ToString();
 
         }
 

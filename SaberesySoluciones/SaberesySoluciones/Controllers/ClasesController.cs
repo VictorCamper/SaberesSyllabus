@@ -43,7 +43,7 @@ namespace SaberesySoluciones.Controllers
         [HttpPost]
         public ActionResult Eliminar(Clase c)
         {
-            c.EliminarSucursal(c.id);
+            c.EliminarSucursal(c.Id);
             return RedirectToAction("Index");
         }
 

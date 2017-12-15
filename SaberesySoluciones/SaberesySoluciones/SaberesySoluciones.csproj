@@ -187,7 +187,6 @@
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Encargado.cs" />
     <Compile Include="Models\EnumCargo.cs" />
-    <Compile Include="Models\EnumEstado.cs" />
     <Compile Include="Models\EnumLogro.cs" />
     <Compile Include="Models\EnumNivelDominio.cs" />
     <Compile Include="Models\EnumTipoClase.cs" />
