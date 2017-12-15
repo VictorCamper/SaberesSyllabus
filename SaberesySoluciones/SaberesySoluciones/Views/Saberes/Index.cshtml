@@ -28,7 +28,7 @@
             <th>Descripción</th>
             <th>Nivel de Saber</th>
             <th>Porcentaje Logro</th>
-            <th><button type="button" data-toggle="modal" data-target="#modalAdd" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Agregar</button></th>
+            <th><button type="button" id="btn-add" data-toggle="modal" data-target="#add" class="btn btn-success btn-sm" style="float:right"><i class="fa fa-plus"></i> Agregar</button></th>
 
         </tr>
         @foreach (var sabe in Model)
@@ -108,8 +108,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Añadir</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
                 </div>
             }
         </div>
