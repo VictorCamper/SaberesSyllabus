@@ -169,6 +169,7 @@
     <Compile Include="Controllers\EvaluacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SaberesController.cs" />
+    <Compile Include="Controllers\SaberesEnClasesController.cs" />
     <Compile Include="Controllers\UnidadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,13 +192,16 @@
     <Compile Include="Repositories\Alumno.cs" />
     <Compile Include="Repositories\Aprendizaje.cs" />
     <Compile Include="Repositories\Clase.cs" />
+    <Compile Include="Repositories\ClaseSaber.cs" />
     <Compile Include="Repositories\Competencia.cs" />
     <Compile Include="Repositories\Curso.cs" />
     <Compile Include="Repositories\DataSource.cs" />
     <Compile Include="Repositories\Encargado.cs" />
     <Compile Include="Repositories\Evaluacion.cs" />
     <Compile Include="Repositories\Saber.cs" />
+    <Compile Include="Repositories\Saberes.cs" />
     <Compile Include="Repositories\Unidad.cs" />
+    <Compile Include="ViewModel\SaberesEnClasesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -254,6 +258,8 @@
     <Content Include="Views\Clases\Index.cshtml" />
     <Content Include="Views\Clases\Crear.cshtml" />
     <Content Include="Views\Clases\Editar.cshtml" />
+    <Content Include="Views\SaberesEnClases\Index.cshtml" />
+    <Content Include="Views\Unidades\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
