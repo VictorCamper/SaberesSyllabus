@@ -6,15 +6,29 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Crear", "AprendizajeEnSaber", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:none", @class = "col-offset-2" }))
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn-add").click(function () {
+            $("#add").modal({ show: true });
+        });
+        $("#btn-edit").click(function () {
+            $("#edit").modal({ show: true });
+        });
+        $("#btn-delete").click(function () {
+            $("#delete").modal({ show: true });
+        });
+    });
+</script>
+
+@using (Html.BeginForm("CargarSaberes", "AprendizajeEnSaber", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:none", @class = "col-offset-2" }))
 {
     <div class="container">
         <div class="row">
             <div class="col">
-                <select id="Aprendizaje" name="Aprendizaje" required>
-                    @if (Model.aprendizajes != null)
+                <select id="Aprendizaje" name="codigoAprendizaje" required>
+                    @if (Model.Aprendizajes != null)
                     {
-                        foreach (var aprendizaje in Model.aprendizajes)
+                        foreach (var aprendizaje in Model.Aprendizajes)
                         {
                             <option value="@aprendizaje.Codigo">@aprendizaje.Descripcion</option>
                         }
@@ -46,12 +60,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var saber in Model.saberes)
+                            @foreach (var saber in Model.Saberes)
                             {
                                 <tr>
                                     <td>@saber.Codigo</td>
                                     <td>@saber.Descripcion</td>
-                                    <td><a href="" id="btn-primary" class="btn btn-primary btn-sm" data-title="desh" data-toggle="modal" data-target="#desh" onclick="">Añadir a Aprendizaje</a></td>
+                                    <td><a href="" id="btn-add" class="btn btn-primary btn-sm" data-title="desh" data-toggle="modal" data-target="#add" onclick="addSaber('@saber.Codigo')">Añadir a Aprendizaje</a></td>
                             </tr>
                             }
                         </tbody>
@@ -72,12 +86,12 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            @foreach (var saber in Model.saberDeAprendizaje)
+                            @foreach (var saber in Model.SaberDeAprendizaje)
                             {
                                 <tr>
                                     <td>@saber.Codigo</td>
                                     <td>@saber.Descripcion</td>
-                                    <td><a href="" id="btn-primary" class="btn btn-primary btn-sm" data-title="desh" data-toggle="modal" data-target="#desh" onclick="">Eliminar de Aprendizaje</a></td>
+                                    <td><a href="" id="btn-delete" class="btn btn-primary btn-sm" data-title="desh" data-toggle="modal" data-target="#delete" onclick="delSaber('@saber.Codigo')">Eliminar de Aprendizaje</a></td>
                                 </tr>
                             }
                         </tbody>
@@ -85,3 +99,58 @@
                 </div>
             </div>
         </div>
+
+<script type="text/javascript">
+    delSaber = function (id) {
+        document.getElementById("delsab").setAttribute("value", id);
+    }
+    addSaber = function (id) {
+        document.getElementById("addsab").setAttribute("value", id);
+    }
+
+</script>
+
+
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Agregar a Aprendizaje</h4>
+            </div>
+            @using (Html.BeginForm("AgregarSaber", "AprendizajeEnSaber", FormMethod.Post, new { @style = "border:none" }))
+            {
+                <div class="modal-body">
+                    <p id="message">¿Estás seguro de que quieres agregar este saber al aprendizaje?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="addsab" name="codigo" value="" />
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Agregar a Aprendizaje</h4>
+            </div>
+            @using (Html.BeginForm("EliminarSaber", "AprendizajeEnSaber", FormMethod.Post, new { @style = "border:none" }))
+            {
+                <div class="modal-body">
+                    <p id="message">¿Estás seguro de que quieres eliminar este saber del aprendizaje?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="delsab" name="codigo" value="" />
+                    <button type="submit" class="btn-sm btn btn-primary">Eliminar</button>
+                    <button type="button" class="btn-sm btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

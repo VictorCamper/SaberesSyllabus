@@ -13,29 +13,74 @@ namespace SaberesySoluciones.Controllers
 {
     public class AprendizajeEnSaberController : Controller
     {
+        AprendizajeEnSaberesController aprendizajeSaber = new AprendizajeEnSaberesController();
         // GET: AprendizajeEnSaber
         public ActionResult Index()
         {
-            AprendizajeEnSaberesController aprendizajeSaber = new AprendizajeEnSaberesController();
-            aprendizajeSaber.aprendizajes = Aprendizajes.LeerHabilitados();
-            if (aprendizajeSaber.aprendizajes == null)
+            aprendizajeSaber.Aprendizajes = Aprendizajes.LeerHabilitados();
+            if (aprendizajeSaber.Aprendizajes == null)
             {
-                aprendizajeSaber.aprendizajes = new List<Aprendizaje>();
+                aprendizajeSaber.Aprendizajes = new List<Aprendizaje>();
             }
-            aprendizajeSaber.saberes = Saberes.LeerHabilitado();
-            if (aprendizajeSaber.saberes == null)
+            aprendizajeSaber.Saberes = Saberes.LeerHabilitado();
+            if (aprendizajeSaber.Saberes == null)
             {
-                aprendizajeSaber.saberes = new List<Saber>();
+                aprendizajeSaber.Saberes = new List<Saber>();
+            }
+
+            if (aprendizajeSaber.CodigoAprendizaje != null)
+            {
+                aprendizajeSaber.SaberDeAprendizaje = Saberes.LeerSaberesEnAprendizaje(aprendizajeSaber.CodigoAprendizaje);
+                if (aprendizajeSaber.SaberDeAprendizaje == null)
+                {
+                    aprendizajeSaber.Saberes = new List<Saber>();
+                }
+                else {
+                    foreach (var todoS in aprendizajeSaber.Saberes) {
+                        foreach (var saber in aprendizajeSaber.Saberes) {
+                            if (todoS.Codigo == saber.Codigo)
+                            {
+                                aprendizajeSaber.Saberes.Remove(todoS);
+                            }
+                        }
+                    }
+                }
             }
 
             return View(aprendizajeSaber);
         }
 
         [HttpPost]
-        public ActionResult CargarSaberes(String codigo)
+        public ActionResult CargarSaberes(String codigoAprendizaje)
         {
+            var saberes = Saberes.LeerSaberesEnAprendizaje(codigoAprendizaje);
+            if (saberes != null)
+            {
+                aprendizajeSaber.SaberDeAprendizaje = saberes;
+            }
+            aprendizajeSaber.CodigoAprendizaje = codigoAprendizaje;
 
-            return RedirectToAction("Index", "AprendizajeEnSaberController");
+            return RedirectToAction("Index", "AprendizajeEnSaber");
+        }
+
+        [HttpPost]
+        public ActionResult AgregarSaber(String codigo)
+        {
+            if (aprendizajeSaber.CodigoAprendizaje != null) {
+                var agregar = Saberes.CrearSaberEnAprendizaje(aprendizajeSaber.CodigoAprendizaje, codigo);
+            }
+
+            return RedirectToAction("Index", "AprendizajeEnSaber");
+        }
+
+        [HttpPost]
+        public ActionResult EliminarSaber(String codigo)
+        {
+            if (aprendizajeSaber.CodigoAprendizaje != null)
+            {
+                var agregar = Saberes.EliminarSaberEnAprendizaje(aprendizajeSaber.CodigoAprendizaje, codigo);
+            }
+            return RedirectToAction("Index", "AprendizajeEnSaber");
         }
     }
 }

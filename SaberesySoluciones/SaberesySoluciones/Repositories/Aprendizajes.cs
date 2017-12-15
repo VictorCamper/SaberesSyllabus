@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages;
 using MySql.Data.MySqlClient;
 using SaberesSyllabus.Models;
 using SaberesySoluciones.Repositories;
@@ -11,20 +12,19 @@ namespace SaberesSyllabus.Repositories
 {
     public class Aprendizajes
     {
-        public static Aprendizaje Crear(Aprendizaje aprendizaje)
+        public static Aprendizaje Crear(Aprendizaje aprendizaje, int subcategoria)
         {
             try
             {
-                Enum.TryParse("Habilitado", out EnumEstado EEstado);
-                aprendizaje.Estado = EEstado;
                 var command = new MySqlCommand() { CommandText = "sp_aprendizajes_crear", CommandType = System.Data.CommandType.StoredProcedure };
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Codigo });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoria", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Categoria });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subCategoria", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.SubCategoria });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoria", Direction = System.Data.ParameterDirection.Input, Value = subcategoria });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_descripcion", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Descripcion });
                 command.Parameters.Add(new MySqlParameter() { ParameterName = "in_porcentajeLogro", Direction = System.Data.ParameterDirection.Input, Value = 0 });
-                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Estado.ToString() });
-                DataSource.ExecuteProcedure(command);
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_estado", Direction = System.Data.ParameterDirection.Input, Value = "Habilitado" });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "out_codigo", Direction = System.Data.ParameterDirection.Output, Value = -1 });
+                var datos = DataSource.ExecuteProcedure(command);
+
+                aprendizaje.Codigo = Convert.ToInt32(datos.Parameters["out_codigo"].Value);
 
                 return aprendizaje;
             }
@@ -35,12 +35,117 @@ namespace SaberesSyllabus.Repositories
             }
         }
 
-        public static bool Editar(Aprendizaje aprendizaje)
+        public static Categoria CrearCategoria(Categoria categoria)
         {
-            return false;
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_crearcategoria", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoria", Direction = System.Data.ParameterDirection.Input, Value = categoria.Nombre });
+                DataSource.ExecuteProcedure(command);
+
+                return categoria;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
         }
 
-        public static bool Habilitar(string codigo)
+        public static Subcategoria CrearSubcategoria(Subcategoria subcategoria, string categoria)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_crearsubcategoria", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoria", Direction = System.Data.ParameterDirection.Input, Value = subcategoria.Nombre });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoria", Direction = System.Data.ParameterDirection.Input, Value = categoria });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "out_subcategoriaid", Direction = System.Data.ParameterDirection.Input, Value = -1 });
+                var datos = DataSource.ExecuteProcedure(command);
+                subcategoria.Id = Convert.ToInt32(datos.Parameters["out_subcategoriaid"].Value);
+
+                return subcategoria;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+        }
+
+        public static bool Editar(Aprendizaje aprendizaje, int subcategoria, int aprendizajeanterior)
+        {
+            Boolean estadoConsulta;
+            int codigoAnterior;
+
+            try
+            {
+                codigoAnterior = aprendizajeanterior;
+
+                aprendizaje = Crear(aprendizaje, subcategoria);
+                if (aprendizaje.Codigo != -1)
+                {
+                    estadoConsulta = Deshabilitar(codigoAnterior);
+                    if (estadoConsulta == true)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            finally
+            {
+
+            }
+        }
+
+        public static bool EditarCategoria(Categoria categoria, string categoriaprev)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_editarcategoria", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoria", Direction = System.Data.ParameterDirection.Input, Value = categoria.Nombre });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoriaprev", Direction = System.Data.ParameterDirection.Input, Value = categoriaprev });
+                DataSource.ExecuteProcedure(command);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+
+        public static bool EditarSubcategoria(Subcategoria subcategoria, int subcategoriaid)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_editarsubcategoria", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoria", Direction = System.Data.ParameterDirection.Input, Value = subcategoria.Nombre });
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoriaid", Direction = System.Data.ParameterDirection.Input, Value = subcategoriaid });
+                DataSource.ExecuteProcedure(command);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+
+        public static bool Habilitar(int codigo)
         {
             try
             {
@@ -57,7 +162,7 @@ namespace SaberesSyllabus.Repositories
             }
         }
 
-        public static bool Deshabilitar(string codigo)
+        public static bool Deshabilitar(int codigo)
         {
             try
             {
@@ -74,12 +179,84 @@ namespace SaberesSyllabus.Repositories
             }
         }
 
-
-        public static List<Aprendizaje> LeerTodo()
+        public static List<Categoria> LeerCategorias()
         {
             try
             {
-                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_leercategorias", CommandType = System.Data.CommandType.StoredProcedure };
+                var datos = DataSource.GetDataSet(command);
+
+                List<Categoria> categorias = new List<Categoria>();
+                if (datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                    {
+                        var prodData = row;
+                        var categoria = new Categoria()
+                        {
+                            Nombre = Convert.ToString(prodData["categoria"]),
+                            Subcategorias = new List<Subcategoria>()
+                        };
+                        categorias.Add(categoria);
+                    }
+                }
+                return categorias;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+
+            }
+            return null;
+        }
+
+        public static List<Subcategoria> LeerSubCategorias(string categoria)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_leersubcategorias", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_categoria", Direction = System.Data.ParameterDirection.Input, Value = categoria });
+                var datos = DataSource.GetDataSet(command);
+
+                List<Subcategoria> subcategorias = new List<Subcategoria>();
+                if (datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                    {
+                        var prodData = row;
+                        var subcategoria = new Subcategoria()
+                        {
+                            Id = Convert.ToInt32(prodData["id"]),
+                            Nombre = Convert.ToString(prodData["subCategoria"]),
+                            Codigo = Convert.ToInt32(prodData["codigo"]),
+                            Aprendizajes = new List<Aprendizaje>()
+                        };
+                        subcategorias.Add(subcategoria);
+                    }
+                }
+                return subcategorias;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+
+            }
+            return null;
+        }
+
+
+        public static List<Aprendizaje> LeerAprendizajes(int subcategoria)
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_leeraprendizajes", CommandType = System.Data.CommandType.StoredProcedure };
+                command.Parameters.Add(new MySqlParameter() { ParameterName = "in_subcategoria", Direction = System.Data.ParameterDirection.Input, Value = subcategoria });
                 var datos = DataSource.GetDataSet(command);
 
                 List<Aprendizaje> aprendizajes = new List<Aprendizaje>();
@@ -91,9 +268,7 @@ namespace SaberesSyllabus.Repositories
                         Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
                         var aprendizaje = new Aprendizaje()
                         {
-                            Codigo = Convert.ToString(prodData["codigo"]),
-                            Categoria = prodData["categoria"].ToString(),
-                            SubCategoria = prodData["subCategoria"].ToString(),
+                            Codigo = Convert.ToInt32(prodData["codigo"]),
                             Descripcion = prodData["descripcion"].ToString(),
                             PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
                             Estado = EEstado
@@ -130,9 +305,7 @@ namespace SaberesSyllabus.Repositories
                         Enum.TryParse("Habilitado", out EnumEstado EEstado);
                         var appr = new Aprendizaje()
                         {
-                            Codigo = prodData["codigo"].ToString(),
-                            Categoria = prodData["categoria"].ToString(),
-                            SubCategoria = prodData["subCategoria"].ToString(),
+                            Codigo = Convert.ToInt32(prodData["codigo"]),
                             Descripcion = prodData["descripcion"].ToString(),
                             PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
                             Estado = EEstado
@@ -153,5 +326,6 @@ namespace SaberesSyllabus.Repositories
             }
             return null;
         }
+
     }
 }

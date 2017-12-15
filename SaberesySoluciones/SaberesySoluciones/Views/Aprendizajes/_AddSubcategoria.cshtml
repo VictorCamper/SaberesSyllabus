@@ -1,0 +1,28 @@
+﻿<div class="modal fade" id="modalAddSubcat" tabindex="-1" role="dialog" aria-labelledby="modalAddLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddLabel">Agregar Subcategoría</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("CrearSubcategoria", "Aprendizajes"))
+            {
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="Nombre">Nombre de la Subcategoría:</label>
+                        <input type="text" id="addapren" min="0" class="form-control" name="Nombre" value="" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="categoria" name="categoria" value="" />
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
