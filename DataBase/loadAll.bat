@@ -1,6 +1,6 @@
 SETLOCAL
 SET directory=.
-SET mysqldir="C:\wamp\bin\mysql\mysql5.7.19\bin
+SET mysqldir="C:\wamp64\bin\mysql\mysql5.7.19\bin
 SET user=root
 SET pwd=
 SET dbname=syllabus
