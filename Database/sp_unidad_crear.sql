@@ -2,8 +2,8 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_unidad_crear $$
 CREATE PROCEDURE sp_saber_crear
 (
-	in_id INTEGER
-	in_titulo VARCHAR(250),
+	in_id INTEGER,
+	in_titulo VARCHAR(250)
   	
 )
 BEGIN

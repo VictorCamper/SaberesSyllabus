@@ -60,7 +60,7 @@ namespace SaberesSyllabus.Models
                 var ds = new DataSet();
                 using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
                 {
-                    var command = new MySqlCommand() { CommandText = "Titulos", CommandType = CommandType.StoredProcedure };
+                    var command = new MySqlCommand() { CommandText = "leer_tituloUnidad", CommandType = CommandType.StoredProcedure };
 
                     conn.Open();
                     command.Connection = conn;
