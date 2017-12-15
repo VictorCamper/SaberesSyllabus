@@ -11,6 +11,7 @@ namespace SaberesSyllabus.Models
 {
     public class Unidad
     {
+        public int id { get; set; }
         public string titulo { get; set; }
         public List<Clase> clases { get; set; }
         public List<Saber> saberes { get; set; }
@@ -25,7 +26,7 @@ namespace SaberesSyllabus.Models
         
         public bool Crear()
         {
-            using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
+            using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["prueba"].ConnectionString))
             {
                 conn.Open();
                 var sqlTran = conn.BeginTransaction();
@@ -33,6 +34,7 @@ namespace SaberesSyllabus.Models
                 {
                     var command = new MySqlCommand() { CommandText = "crearUnidad", CommandType = CommandType.StoredProcedure };
                     //Setea el valor de los atributos del SP (procedimiento almacenado)
+                    command.Parameters.AddWithValue("id", this.id);
                     command.Parameters.AddWithValue("titulo", this.titulo);
 
                     command.Connection = conn;
@@ -53,13 +55,13 @@ namespace SaberesSyllabus.Models
 
         public List<Unidad> ListarTodos()
         {
-            var sucursales = new List<Unidad>();
-            try
-            {
-                var ds = new System.Data.DataSet();
+            var unidades = new List<Unidad>();
+            try { 
+                var ds = new DataSet();
                 using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
                 {
-                    var command = new MySqlCommand() { CommandText = "getTitulo", CommandType = CommandType.StoredProcedure };
+                    var command = new MySqlCommand() { CommandText = "Titulos", CommandType = CommandType.StoredProcedure };
+
                     conn.Open();
                     command.Connection = conn;
                     var sqlda = new MySqlDataAdapter(command);
@@ -70,14 +72,19 @@ namespace SaberesSyllabus.Models
                 {
                     Unidad s = new Unidad();
                     s.CargarDatos(dr);
-                    sucursales.Add(s);
+                    unidades.Add(s);
+                    Console.Write(unidades);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return sucursales;
+            Console.WriteLine("hola mundo");
+            foreach (Unidad unidad in unidades)
+                Console.WriteLine(unidad);
+
+            return unidades;
         }
 
         public void Seleccionar(String id)
@@ -85,7 +92,7 @@ namespace SaberesSyllabus.Models
             try
             {
                 var ds = new DataSet();
-                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["syllabus"].ConnectionString))
+                using (var conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["prueba"].ConnectionString))
                 {
                     var command = new MySqlCommand() { CommandText = "getTitulo", CommandType = CommandType.StoredProcedure };
                     command.Parameters.AddWithValue("titulo", titulo);
@@ -116,6 +123,7 @@ namespace SaberesSyllabus.Models
         public void CargarDatos(DataRow dr)
         {
 
+            this.id = Convert.ToInt16(dr["id"].ToString());
             this.titulo = dr["titulo"].ToString();
 
         }
