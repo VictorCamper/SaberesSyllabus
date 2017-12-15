@@ -1,5 +1,7 @@
 ﻿using SaberesSyllabus.Models;
+using SaberesSyllabus.Repositories;
 using SaberesySoluciones.Models;
+using SaberesySoluciones.Repositories;
 using SaberesySoluciones.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,16 @@ namespace SaberesySoluciones.Controllers
         public ActionResult Index()
         {
             AprendizajeEnSaberesController aprendizajeSaber = new AprendizajeEnSaberesController();
+            aprendizajeSaber.aprendizajes = Aprendizajes.LeerHabilitados();
+            if (aprendizajeSaber.aprendizajes == null)
+            {
+                aprendizajeSaber.aprendizajes = new List<Aprendizaje>();
+            }
+            aprendizajeSaber.saberes = Saberes.LeerHabilitado();
+            if (aprendizajeSaber.saberes == null)
+            {
+                aprendizajeSaber.saberes = new List<Saber>();
+            }
 
             return View(aprendizajeSaber);
         }

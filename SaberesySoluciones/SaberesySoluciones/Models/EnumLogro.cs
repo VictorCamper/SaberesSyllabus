@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SaberesSyllabus.Models
 {
-    public enum EnumLogros
+    public enum EnumLogro
     {
         Saber,
         SaberSer,
