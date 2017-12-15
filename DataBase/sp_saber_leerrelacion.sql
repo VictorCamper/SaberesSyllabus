@@ -4,7 +4,7 @@ CREATE PROCEDURE sp_saber_leerrelacion(
 	in_codigoAprendizaje VARCHAR(250)
 )
 BEGIN
-	SELECT codigoAprendizaje, codigoSaber
+	SELECT codigoSaber
 	FROM Aprendizaje_Saber
 	WHERE codigoAprendizaje = in_codigoAprendizaje;
 END
