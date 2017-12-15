@@ -39,7 +39,7 @@ namespace SaberesySoluciones.Controllers
 
         public ActionResult SubTablaSaberes()
         {
-            List<Saber> finalsaberes = SaberesLogrados.LeerTodo();
+            List<Saber> finalsaberes = Saberes.LeerTodo();
             if (finalsaberes == null)
             {
                 finalsaberes = new List<Saber>();
