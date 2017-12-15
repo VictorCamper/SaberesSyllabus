@@ -28,26 +28,14 @@ namespace SaberesySoluciones.ViewModel
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine("leeeeeeeer");
 
-
-                //var commandS = new MySqlCommand() { CommandText = "sp_saber_logrado_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
-                //var datosS = DataSource.GetDataSet(commandS);
-
-                //var commandA = new MySqlCommand() { CommandText = "sp_aprendizaje_logrado_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
-                //var datosA = DataSource.GetDataSet(commandA);
-
-                //List<Competencia> c = Competencias.LeerTodo();
                 var commandC = new MySqlCommand() { CommandText = "sp_competencias_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
                 var datosC = DataSource.GetDataSet(commandC);
-
-                //System.Diagnostics.Debug.WriteLine("cdcdcd: " + c[0].Descripcion);
-
+                
                 List<String> componentes = new List<String>();
 
                 if (datosC.Tables[0].Rows.Count > 0)
                 {
-                    System.Diagnostics.Debug.WriteLine("leeeeeeeer Competencias");
 
                     foreach (System.Data.DataRow row in datosC.Tables[0].Rows)
                     {
@@ -80,23 +68,17 @@ namespace SaberesySoluciones.ViewModel
                         {
                             foreach (System.Data.DataRow rowA in datosA.Tables[0].Rows)
                             {
-                                System.Diagnostics.Debug.WriteLine("leeeeeeeer aprendi");
-
                                 var prodDataA = rowA;
 
                                 Enum.TryParse(prodDataA["estado"].ToString(), out EnumEstado EEstado);
                                 var aprendizaje = new Aprendizaje()
                                 {
-                                    Codigo = Convert.ToString(prodData["codigo"]),
-                                    Categoria = prodData["categoria"].ToString(),
-                                    SubCategoria = prodData["subCategoria"].ToString(),
+                                    Codigo = Convert.ToInt32(prodData["codigo"]),
                                     Descripcion = prodData["descripcion"].ToString(),
                                     PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
                                     Estado = EEstado
                                 };
-
-                                //componentes.Add(aprendizaje);
-
+                                
                                 var commandS = new MySqlCommand() { CommandText = "sp_saber_logrado_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
                                 commandA.Parameters.Add(new MySqlParameter() { ParameterName = "in_codigo", Direction = System.Data.ParameterDirection.Input, Value = aprendizaje.Codigo });
                                 var datosS = DataSource.GetDataSet(commandA);
@@ -107,8 +89,6 @@ namespace SaberesySoluciones.ViewModel
                                 List<Saber> saberes = new List<Saber>();
                                 foreach (System.Data.DataRow rowS in datosS.Tables[0].Rows)
                                 {
-                                    System.Diagnostics.Debug.WriteLine("leeeeeeeer saberes");
-
                                     var prodDataS = rowS;
 
                                     Enum.TryParse(prodDataS["nivelLogro"].ToString(), out EnumLogro ELogro);
@@ -142,7 +122,7 @@ namespace SaberesySoluciones.ViewModel
                                 //se agregan los aprendizajes a los componentes
                                 componentes.Add("Aprendizaje");
                                 componentes.Add(Convert.ToString(nSaberes));
-                                componentes.Add(aprendizaje.Codigo);
+                                componentes.Add(Convert.ToString(aprendizaje.Codigo));
                                 componentes.Add(aprendizaje.Descripcion);
                                 componentes.Add(Convert.ToString(porcentajeAprendizaje));
 
@@ -157,35 +137,10 @@ namespace SaberesySoluciones.ViewModel
                         componentes.Add(competencia.Nombre);
                         componentes.Add(competencia.Descripcion);
                         componentes.Add(Convert.ToString(porcentajeCompetencia));
-
-                        //se agrega la competencia FALTA UPDATE BD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-
-
+                        
                     }
                 }
-
-                /*
-                if (datos.Tables[0].Rows.Count > 0)
-                {
-                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
-                    {
-                        var prodData = row;
-
-                        Enum.TryParse(prodData["nivel_logro"].ToString(), out EnumLogro ELogro);
-                        Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
-                        var sabe = new Saber()
-                        {
-                            Codigo = Convert.ToString(prodData["codigo"]),
-                            Descripcion = prodData["descripcion"].ToString(),
-                            Logro = ELogro,
-                            Estado = EEstado,
-                            PorcentajeLogro = prodData["porcentajeLogro"].ToString()
-
-                        }
-                        comps.Add(sabe);
-                    }
-                }
-                return comps;*/
+                
             }
             catch (Exception ex)
             {
@@ -198,15 +153,6 @@ namespace SaberesySoluciones.ViewModel
             return null;
         }
 
-        /*private static string obtenerTipo(Competencia competencia)
-        {
-            String tipo;
-            if (competencia.GetType() == typeof(Competencia))
-            {
-                tipo = "Competencia";
-                return tipo;
-            }
-        }*/
 
         public static int calcularPorcentaje(List<int> porcentajes)
         {

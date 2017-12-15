@@ -289,6 +289,44 @@ namespace SaberesSyllabus.Repositories
             return null;
         }
 
+        public static List<Aprendizaje> LeerTodo()
+        {
+            try
+            {
+                var command = new MySqlCommand() { CommandText = "sp_aprendizajes_leertodo", CommandType = System.Data.CommandType.StoredProcedure };
+                var datos = DataSource.GetDataSet(command);
+
+                List<Aprendizaje> aprendizajes = new List<Aprendizaje>();
+                if (datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow row in datos.Tables[0].Rows)
+                    {
+                        var prodData = row;
+                        Enum.TryParse(prodData["estado"].ToString(), out EnumEstado EEstado);
+                        var aprendizaje = new Aprendizaje()
+                        {
+
+                            Codigo = Convert.ToInt32(prodData["codigo"]),
+                            Descripcion = prodData["descripcion"].ToString(),
+                            PorcentajeLogro = Convert.ToInt32(prodData["porcentajeLogro"]),
+                            Estado = EEstado
+                        };
+                        aprendizajes.Add(aprendizaje);
+                    }
+                }
+                return aprendizajes;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+
+            }
+            return null;
+        }
+
         public static List<Aprendizaje> LeerHabilitados() {
 
             try
@@ -326,6 +364,8 @@ namespace SaberesSyllabus.Repositories
             }
             return null;
         }
+
+
 
     }
 }
